@@ -147,30 +147,30 @@
   //
   // FILE EXPLORER NAVIGATION SHORTCUTS
   //
-  {
-    // "ctrl+h": Collapses the selected folder in File Explorer when list is focused and not in input mode
-    "key": "ctrl+h",
-    "command": "list.collapse",
-    "when": "listFocus && !inputFocus"
-  },
-  {
-    // "ctrl+l": Expands the selected folder in File Explorer when list is focused and not in input mode
-    "key": "ctrl+l",
-    "command": "list.expand",
-    "when": "listFocus && !inputFocus"
-  },
-  {
-    // "ctrl+k": Moves selection up in File Explorer when list is focused and not in input mode
-    "key": "ctrl+k",
-    "command": "list.focusUp",
-    "when": "listFocus && !inputFocus"
-  },
-  {
-    // "ctrl+j": Moves selection down in File Explorer when list is focused and not in input mode
-    "key": "ctrl+j",
-    "command": "list.focusDown",
-    "when": "listFocus && !inputFocus"
-  },
+  // {
+  //   // "ctrl+h": Collapses the selected folder in File Explorer when list is focused and not in input mode
+  //   "key": "ctrl+h",
+  //   "command": "list.collapse",
+  //   "when": "listFocus && !inputFocus"
+  // },
+  // {
+  //   // "ctrl+l": Expands the selected folder in File Explorer when list is focused and not in input mode
+  //   "key": "ctrl+l",
+  //   "command": "list.expand",
+  //   "when": "listFocus && !inputFocus"
+  // },
+  // {
+  //   // "ctrl+k": Moves selection up in File Explorer when list is focused and not in input mode
+  //   "key": "ctrl+k",
+  //   "command": "list.focusUp",
+  //   "when": "listFocus && !inputFocus"
+  // },
+  // {
+  //   // "ctrl+j": Moves selection down in File Explorer when list is focused and not in input mode
+  //   "key": "ctrl+j",
+  //   "command": "list.focusDown",
+  //   "when": "listFocus && !inputFocus"
+  // },
   {
     // "ctrl+enter": Initiates file rename when File Explorer is focused
     "key": "ctrl+enter",
