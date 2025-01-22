@@ -1,8 +1,8 @@
-# VS Code Vim Configuration
+# VimCode - Modern Vim Experience in VS Code
 
 Enhanced VS Code configuration with Vim keybindings for efficient coding workflows. This setup combines the power of Vim motions with VS Code's modern features.
 
-Some of the shortcuts are experimental and I am trying things on the go so please leave a comment and feel free to adjust.
+*IMPROTANT:* Some of the shortcuts are experimental and I am trying things on the go so they might not work at all or as intended! Please leave a comment and feel free to adjust and fix!
 
 ## Features
 
@@ -10,6 +10,8 @@ Some of the shortcuts are experimental and I am trying things on the go so pleas
 - Vim-style split navigation (`ctrl+h/j/k/l`)
 - Quick file switching with `alt+[` and `alt+]`
 - Efficient split management with `alt+h/l` for resizing
+- Enhanced bracket navigation with colorization
+- Improved minimap visibility
 
 ### 📁 File Explorer
 - Toggle sidebar: `<leader>e`
@@ -20,6 +22,7 @@ Some of the shortcuts are experimental and I am trying things on the go so pleas
 - Enhanced workspace search with `<leader>s w`
 - Find in files: `ctrl+shift+f`
 - Navigate results: `F4/Shift+F4`
+- Custom search highlighting
 
 ### ⚡ Quick Actions
 - Format document: `ctrl+space f`
@@ -38,13 +41,42 @@ Some of the shortcuts are experimental and I am trying things on the go so pleas
 - Maximize terminal: `ctrl+shift+;`
 - Create new terminal: `<leader>t n`
 
+### ✨ Visual Mode Enhancements
+- Sort lines: `<leader>s s`
+- Transform to uppercase: `<leader>u`
+- Transform to lowercase: `<leader>l`
+- Select all occurrences: `<leader>a`
+
+### 🎨 Status Line Integration
+- Mode-specific colors
+- Visual mode indicators
+- Clear status feedback
+- Custom color schemes for each mode
+
 ## Installation
 
-1. Copy `settings.json` to your VS Code user settings
-2. Copy `keybindings.json` to your VS Code keybindings
-3. Install required extensions:
-   - Vim
-   - GitLens (for enhanced git features)
+1. Open VS Code settings.json:
+   - Press `Cmd+Shift+P` (Mac) or `Ctrl+Shift+P` (Windows/Linux)
+   - Type "settings json"
+   - Click "Preferences: Open User Settings (JSON)"
+   - Clear the file and paste the content from `settings.json`
+
+2. Open VS Code keybindings.json:
+   - Press `Cmd+Shift+P` (Mac) or `Ctrl+Shift+P` (Windows/Linux)
+   - Type "keyboard json"
+   - Click "Preferences: Open Keyboard Shortcuts (JSON)"
+   - Clear the file and paste the content from `keybindings.json`
+
+3. Install required extensions from VS Code Marketplace
+4. Restart VS Code
+
+Alternative ways to open configuration files:
+- Settings:
+  - Mac: `Cmd+,` then click the "Open Settings (JSON)" icon in the top right
+  - Windows/Linux: `Ctrl+,` then click the "Open Settings (JSON)" icon in the top right
+- Keybindings:
+  - Mac: `Cmd+K Cmd+S` then click the "Open Keyboard Shortcuts (JSON)" icon
+  - Windows/Linux: `Ctrl+K Ctrl+S` then click the "Open Keyboard Shortcuts (JSON)" icon
 
 ## Required Extensions
 
@@ -58,6 +90,7 @@ Some of the shortcuts are experimental and I am trying things on the go so pleas
 - Consistent use of Vim navigation patterns
 - Integration with VS Code's native features
 - Enhanced terminal and git workflows
+- Visual feedback through status line colors
 
 ## Common Workflows
 
@@ -77,11 +110,34 @@ Some of the shortcuts are experimental and I am trying things on the go so pleas
 2. Return from definition: `ctrl+t`
 3. Find in workspace: `<leader>s w`
 
+### Text Manipulation
+1. Sort lines: Select lines + `<leader>s s`
+2. Transform case: Select text + `<leader>u/l`
+3. Multi-line editing: Select lines + `<leader>a`
+
+## Editor Settings
+
+Key settings include:
+- Bracket pair colorization
+- Enhanced minimap configuration
+- Improved fold handling
+- Yank highlighting
+- Custom search highlighting
+- Mode-specific status line colors
+
 ## Customization
 
 Edit the following files to customize the configuration:
 - `settings.json`: VS Code and Vim settings
 - `keybindings.json`: Custom keyboard shortcuts
+
+### Status Line Colors
+You can customize mode colors in `settings.json`:
+```json
+"vim.statusBarColors.normal": "#519aba",
+"vim.statusBarColors.insert": "#98c379",
+"vim.statusBarColors.visual": "#c678dd"
+```
 
 ## Contributing
 
