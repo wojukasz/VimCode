@@ -2,6 +2,23 @@
 
 All notable changes to this configuration will be documented in this file.
 
+## [1.1.0] - 2025-01-22
+
+### Added
+- Custom status line integration with mode-specific colors
+- Enhanced editor settings
+  - Bracket pair colorization
+  - Improved minimap configuration
+  - Better bracket guides
+- New visual mode features
+  - Line sorting
+  - Case transformation
+  - Multi-line editing
+- Improved Vim experience
+  - Yank highlighting
+  - Better fold handling
+  - Custom search highlighting
+
 ## [1.0.0] - 2025-01-22
 
 ### Added
