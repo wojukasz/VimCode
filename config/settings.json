@@ -1,0 +1,282 @@
+{
+  // Editor Settings
+  // Display line numbers relative to the current cursor position
+  "editor.lineNumbers": "relative",
+  // Prevent scrolling beyond the last line of the file
+  "editor.scrollBeyondLastLine": false,
+  // Keep 8 lines visible above and below the cursor when scrolling
+  "editor.cursorSurroundingLines": 8,
+  // Enable smooth scrolling animation
+  "editor.smoothScrolling": true,
+  
+  // Vim Configuration
+  // Enable easymotion plugin for quick navigation
+  "vim.easymotion": true,
+  // Enable incremental search highlighting
+  "vim.incsearch": true,
+  // Use system clipboard for vim operations
+  "vim.useSystemClipboard": true,
+  // Enable Ctrl key combinations
+  "vim.useCtrlKeys": true,
+  // Enable search highlight
+  "vim.hlsearch": true,
+  // Set space as the leader key
+  "vim.leader": " ",
+  // Enable vim-sneak plugin for improved motion
+  "vim.sneak": true,
+  // Use relative line numbers in normal mode
+  "vim.smartRelativeLine": true,
+  
+  // Handle specific keys
+  "vim.handleKeys": {
+    // Keep Ctrl+d for scrolling down
+    "<C-d>": true,
+    // Keep Ctrl+u for scrolling up
+    "<C-u>": true,
+    // Disable Ctrl+f to use VS Code's find instead
+    "<C-f>": false
+  },
+
+  // Insert Mode Keybindings
+  "vim.insertModeKeyBindings": [
+    {
+      // Exit insert mode by pressing 'j' twice quickly
+      "before": ["j", "j"],
+      "after": ["<Esc>"]
+    }
+  ],
+
+  // Normal Mode Keybindings
+  "vim.normalModeKeyBindingsNonRecursive": [
+    // Basic Operations
+    {
+      // Delete current line with leader+d
+      "before": ["<leader>", "d"],
+      "after": ["d", "d"]
+    },
+    {
+      // Clear search highlighting with Ctrl+n
+      "before": ["<C-n>"],
+      "commands": [":nohl"]
+    },
+    {
+      // Insert line break above cursor with K
+      "before": ["K"],
+      "commands": ["lineBreakInsert"],
+      "silent": true
+    },
+
+    // Window Management
+    {
+      // Split editor with leader+w
+      "before": ["<leader>", "w"],
+      "commands": ["workbench.action.splitEditor"]
+    },
+    {
+      // Save current file with leader+w+w
+      "before": ["<leader>", "w", "w"],
+      "commands": [":w"]
+    },
+
+    // Sidebar and Explorer
+    {
+      // Toggle sidebar and focus explorer with leader+e
+      "before": ["<leader>", "e"],
+      "commands": ["workbench.action.toggleSidebarVisibility", "workbench.files.action.focusFilesExplorer"]
+    },
+    {
+      // Reveal current file in explorer with leader+f
+      "before": ["<leader>", "f"],
+      "commands": ["revealInExplorer"]
+    },
+
+    // File Operations
+    {
+      // Copy current file path with leader+f+y
+      "before": ["<leader>", "f", "y"],
+      "commands": ["copyFilePath"]
+    },
+    {
+      // Create new file in current directory with leader+f+n
+      "before": ["<leader>", "f", "n"],
+      "commands": ["explorer.newFile"]
+    },
+
+    // Code Actions
+    {
+      // Toggle line comment with leader+c
+      "before": ["<leader>", "c"],
+      "commands": ["editor.action.commentLine"]
+    },
+    {
+      // Rename symbol with leader+r+e
+      "before": ["<leader>", "r", "e"],
+      "commands": ["editor.action.rename"]
+    },
+    {
+      // Rename file with leader+r+f
+      "before": ["<leader>", "r", "f"],
+      "commands": ["fileutils.renameFile"]
+    },
+
+    // Navigation
+    {
+      // Go to previous method with [m
+      "before": ["[", "m"],
+      "commands": ["editor.action.previousMethodOrAttributeKeys"]
+    },
+    {
+      // Go to next method with ]m
+      "before": ["]", "m"],
+      "commands": ["editor.action.nextMethodOrAttributeKeys"]
+    },
+    {
+      // Go to next problem/error with ]d
+      "before": ["]", "d"],
+      "commands": ["editor.action.marker.next"]
+    },
+    {
+      // Go to previous problem/error with [d
+      "before": ["[", "d"],
+      "commands": ["editor.action.marker.prev"]
+    },
+
+    // Search and Symbols
+    {
+      // Show all symbols in workspace with leader+o+g
+      "before": ["<leader>", "o", "g"],
+      "commands": ["workbench.action.showAllSymbols"]
+    },
+    {
+      // Show all editors in active group with leader+o+o
+      "before": ["<leader>", "o", "o"],
+      "commands": ["workbench.action.showEditorsInActiveGroup"]
+    },
+    {
+      // Open quick open panel with leader+o+p
+      "before": ["<leader>", "o", "p"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      // Search word under cursor in workspace with leader+s+w
+      "before": ["<leader>", "s", "w"],
+      "commands": ["editor.action.addSelectionToNextFindMatch", "workbench.action.findInFiles"]
+    },
+
+    // Code Folding
+    {
+      // Fold code with leader+z
+      "before": ["<leader>", "z"],
+      "commands": ["editor.fold"]
+    },
+    {
+      // Unfold code with leader+Z
+      "before": ["<leader>", "Z"],
+      "commands": ["editor.unfold"]
+    },
+
+    // Git Integration
+    {
+      // Toggle git blame with leader+g+b
+      "before": ["<leader>", "g", "b"],
+      "commands": ["gitlens.toggleFileBlame"]
+    },
+    {
+      // Show git diff with leader+g+d
+      "before": ["<leader>", "g", "d"],
+      "commands": ["workbench.action.compareEditor.previousChange"]
+    },
+    {
+      // Stage current file with leader+g+s
+      "before": ["<leader>", "g", "s"],
+      "commands": ["git.stage"]
+    },
+    {
+      // Git pull with leader+g+p
+      "before": ["<leader>", "g", "p"],
+      "commands": ["git.pull"]
+    },
+    {
+      // Git push with leader+g+P
+      "before": ["<leader>", "g", "P"],
+      "commands": ["git.push"]
+    },
+    {
+      // Show file history with leader+g+h
+      "before": ["<leader>", "g", "h"],
+      "commands": ["git.viewFileHistory"]
+    },
+
+    // Terminal
+    {
+      // Create new terminal and focus with leader+t+n
+      "before": ["<leader>", "t", "n"],
+      "commands": ["multiCommand.newTerminalAndFocus"]
+    },
+
+    // Debug
+    {
+      // Toggle breakpoint with leader+b
+      "before": ["<leader>", "b"],
+      "commands": ["editor.debug.action.toggleBreakpoint"]
+    },
+    {
+      // Continue debugging with leader+d+c
+      "before": ["<leader>", "d", "c"],
+      "commands": ["workbench.action.debug.continue"]
+    },
+    {
+      // Step over in debug mode with leader+d+n
+      "before": ["<leader>", "d", "n"],
+      "commands": ["workbench.action.debug.stepOver"]
+    },
+
+    // Split Management
+    {
+      // Equalize editor widths with ctrl+w =
+      "before": ["<C-w>", "="],
+      "commands": ["workbench.action.evenEditorWidths"]
+    },
+
+    // Bookmarks
+    {
+      // Toggle bookmark 1 with m+a
+      "before": ["m", "a"],
+      "commands": ["numberedBookmarks.toggleBookmark1"]
+    }
+  ],
+
+  // Visual Mode Keybindings
+  "vim.visualModeKeyBindings": [
+    {
+      // Comment selected lines and exit visual mode with leader+c
+      "before": ["<leader>", "c"],
+      "commands": ["editor.action.commentLine", "extension.vim_escape"]
+    },
+    {
+      // Select all occurrences of current selection with leader+a
+      "before": ["<leader>", "a"],
+      "commands": ["editor.action.selectHighlights"]
+    }
+  ],
+
+  // Multi-command Configuration
+  "multiCommand.commands": [
+    {
+      // Toggle maximized terminal panel and focus terminal
+      "command": "multiCommand.toggleMaximizedPanelAndFocusTerminal",
+      "sequence": [
+        "workbench.action.toggleMaximizedPanel",
+        "workbench.action.terminal.focus"
+      ]
+    },
+    {
+      // Create new terminal and focus it
+      "command": "multiCommand.newTerminalAndFocus",
+      "sequence": [
+        "workbench.action.terminal.new",
+        "workbench.action.terminal.focus"
+      ]
+    }
+  ]
+}
