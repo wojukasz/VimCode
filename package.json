@@ -1,0 +1,58 @@
+{
+  "name": "vimcode-config",
+  "version": "2.0.0",
+  "description": "LazyVim-inspired Vim configuration for VS Code with 50+ keybindings. Bring Neovim muscle memory to VS Code with full LSP, Git integration, and modern editor features.",
+  "keywords": [
+    "vim",
+    "vscode",
+    "neovim",
+    "lazyvim",
+    "vscodevim",
+    "vim-config",
+    "vim-configuration",
+    "vscode-vim",
+    "vscode-config",
+    "vscode-configuration",
+    "keybindings",
+    "keyboard-shortcuts",
+    "modal-editing",
+    "text-editor",
+    "productivity",
+    "developer-tools",
+    "vim-keybindings",
+    "vim-bindings",
+    "code-editor",
+    "lsp",
+    "gitlens",
+    "editor-config",
+    "dotfiles",
+    "vim-mode",
+    "vscode-settings",
+    "cursor-editor",
+    "windsurf",
+    "antigravity"
+  ],
+  "homepage": "https://github.com/wojukasz/VimCode#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wojukasz/VimCode.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wojukasz/VimCode/issues"
+  },
+  "author": "wojukasz",
+  "license": "MIT",
+  "scripts": {
+    "install:vscode": "code --install-extension vscodevim.vim && code --install-extension eamodio.gitlens && code --install-extension hoovercj.vscode-settings-cycler",
+    "install:cursor": "cursor --install-extension vscodevim.vim && cursor --install-extension eamodio.gitlens && cursor --install-extension hoovercj.vscode-settings-cycler"
+  },
+  "files": [
+    "config/",
+    "*.md"
+  ],
+  "dependencies": {},
+  "devDependencies": {},
+  "engines": {
+    "vscode": "^1.60.0"
+  }
+}
