@@ -11,6 +11,11 @@ All notable changes to this configuration will be documented in this file.
 - `EDITOR_COMPARISON.md` has been added to provide a detailed analysis of the compatibility and potential issues with each editor.
 
 ### Changed
+- Keybindings have been updated to better align with LazyVim conventions, using `<space>` as the primary leader key.
+  - **File Explorer Toggle:** `<space>e` (was `ctrl+shift+e`)
+  - **Workspace Search:** `<space>/` (was `ctrl+shift+f`)
+  - **Format Document:** `<space>f` (was `ctrl+space f`)
+  - **Navigate Back:** `ctrl+o` (was `ctrl+t`)
 - The `README.md` file has been updated to reflect the simplified file structure.
 
 ## [3.1.0] - 2026-01-16

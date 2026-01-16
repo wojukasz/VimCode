@@ -19,7 +19,7 @@
 | `alt+[` | Previous editor | Any |
 | `alt+]` | Next editor | Any |
 | `ctrl+]` | Go to definition | Normal |
-| `ctrl+t` | Navigate back | Any |
+| `ctrl+o` | Navigate back | Any |
 
 ## File Operations
 
@@ -36,8 +36,7 @@
 
 | Key | Action | Mode |
 |-----|--------|------|
-| `<leader>e` | Toggle sidebar | Normal |
-| `ctrl+shift+e` | Toggle focus: editor ↔ explorer | Any |
+| `<leader>e` | Toggle file explorer | Normal |
 | `ctrl+shift+1` | Open file in left split | Explorer |
 | `ctrl+shift+2` | Open file in right split | Explorer |
 | `ctrl+enter` | Rename file | Explorer |
@@ -67,8 +66,7 @@
 
 | Key | Action | Mode |
 |-----|--------|------|
-| `<leader>sw` | Search in workspace | Normal |
-| `ctrl+shift+f` | Find in files | Any |
+| `<leader>sw` or `<space>/` | Search in workspace / Find in files | Normal |
 | `F4` | Next search result | Any |
 | `shift+F4` | Previous search result | Any |
 | `ctrl+n` | Clear search highlight | Normal |
@@ -79,7 +77,7 @@
 |-----|--------|------|
 | `<leader>c` | Toggle comment | Normal/Visual |
 | `<leader>rn` | Rename symbol | Normal |
-| `ctrl+space f` | Format document | Any |
+| `<space>f` | Format document | Any |
 | `F8` | Next problem | Any |
 | `shift+F8` | Previous problem | Any |
 

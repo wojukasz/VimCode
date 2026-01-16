@@ -31,8 +31,8 @@
   // CODE NAVIGATION AND EDITING
   //
   {
-    // "ctrl+space f": Formats the entire document
-    "key": "ctrl+space f",
+    // "space f": Formats the entire document
+    "key": "space f",
     "command": "editor.action.formatDocument",
     "when": "editorTextFocus && !editorReadonly"
   },
@@ -43,8 +43,8 @@
     "when": "editorHasDefinitionProvider && editorTextFocus"
   },
   {
-    // "ctrl+t": Go back to previous location after jumping to definition
-    "key": "ctrl+t",
+    // "ctrl+o": Go back to previous location after jumping to definition
+    "key": "ctrl+o",
     "command": "workbench.action.navigateBack"
   },
 
@@ -80,8 +80,8 @@
   // SEARCH AND NAVIGATION
   //
   {
-    // "ctrl+shift+f": Opens find in files with current word
-    "key": "ctrl+shift+f",
+    // "space /": Opens find in files with current word
+    "key": "space /",
     "command": "workbench.action.findInFiles",
     "when": "editorFocus"
   },
@@ -118,14 +118,14 @@
   // FILE EXPLORER SHORTCUTS
   //
   {
-    // "ctrl+shift+e": Focuses on File Explorer when text editor is focused
-    "key": "ctrl+shift+e",
+    // "space e": Focuses on File Explorer when text editor is focused
+    "key": "space e",
     "command": "workbench.files.action.focusFilesExplorer",
     "when": "editorTextFocus"
   },
   {
-    // "ctrl+shift+e": Focuses back on active editor group when File Explorer is focused
-    "key": "ctrl+shift+e",
+    // "space e": Focuses back on active editor group when File Explorer is focused
+    "key": "space e",
     "command": "workbench.action.focusActiveEditorGroup",
     "when": "explorerViewletVisible && filesExplorerFocus"
   },
