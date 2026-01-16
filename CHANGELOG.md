@@ -2,6 +2,15 @@
 
 All notable changes to this configuration will be documented in this file.
 
+## [3.1.0] - 2026-01-16
+
+### Added
+- Official support for Windsurf (Antigravity) editor.
+- Populated `config/antigravity/` with `settings.json` and `keybindings.json` based on the VS Code configuration.
+
+### Changed
+- Updated `README.md` to reflect full support for Antigravity.
+
 ## [3.0.0] - 2026-01-16
 
 ### BREAKING CHANGE

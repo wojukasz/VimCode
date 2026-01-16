@@ -9,8 +9,8 @@ Enhanced configuration with Vim keybindings for efficient coding workflows. This
 | Editor | Status | Config Path |
 |--------|--------|-------------|
 | VS Code | ✅ Full Support | `config/vscode/` |
+| Windsurf (Antigravity) | ✅ Full Support | `config/antigravity/` |
 | Cursor | 🚧 Planned | `config/cursor/` |
-| Windsurf (Antigravity) | 🚧 Planned | `config/antigravity/` |
 
 ## Repository Structure
 
@@ -107,8 +107,11 @@ Alternative ways to open configuration files:
 ## Required Extensions
 
 - [Vim](https://marketplace.visualstudio.com/items?itemName=vscodevim.vim)
+  - **Core of the setup.** Provides the Vim emulation layer, including modes, motions, and the `<leader>` key functionality.
 - [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)
+  - **Powers all Git integration.** Enables features like blame annotations, file history, and staging, which are mapped to the `<leader>g` keybindings.
 - [Multi Command](https://marketplace.visualstudio.com/items?itemName=ryuta46.multi-command)
+  - **Enables complex key sequences.** Used to chain multiple VS Code commands together into a single keybinding, such as maximizing the terminal and focusing it with one keypress.
 
 ## Key Concepts
 
