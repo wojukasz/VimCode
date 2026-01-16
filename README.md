@@ -2,7 +2,7 @@
 
 Enhanced VS Code configuration with Vim keybindings for efficient coding workflows. This setup combines the power of Vim motions with VS Code's modern features.
 
-*IMPROTANT:* Some of the shortcuts are experimental and I am trying things on the go so they might not work at all or as intended! Please leave a comment and feel free to adjust and fix!
+*IMPORTANT:* Some of the shortcuts are experimental and I am trying things on the go so they might not work at all or as intended! Please leave a comment and feel free to adjust and fix!
 
 ## Features
 
