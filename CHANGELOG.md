@@ -2,6 +2,17 @@
 
 All notable changes to this configuration will be documented in this file.
 
+## [4.0.0] - 2026-01-16
+
+### BREAKING CHANGE
+- The multi-editor support has been removed in favor of a single, unified configuration. The `config/vscode`, `config/cursor`, and `config/antigravity` directories have been removed, and the configuration files now reside in the root `config` directory.
+
+### Added
+- `EDITOR_COMPARISON.md` has been added to provide a detailed analysis of the compatibility and potential issues with each editor.
+
+### Changed
+- The `README.md` file has been updated to reflect the simplified file structure.
+
 ## [3.1.0] - 2026-01-16
 
 ### Added

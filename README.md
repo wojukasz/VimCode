@@ -6,95 +6,33 @@ Enhanced configuration with Vim keybindings for efficient coding workflows. This
 
 ## Supported Editors
 
-| Editor | Status | Config Path |
-|--------|--------|-------------|
-| VS Code | ✅ Full Support | `config/vscode/` |
-| Windsurf (Antigravity) | ✅ Full Support | `config/antigravity/` |
-| Cursor | 🚧 Planned | `config/cursor/` |
+This configuration is primarily targeted at **VS Code** but should be compatible with other VS Code-based editors like **Cursor** and **Antigravity (Windsurf)**. The `EDITOR_COMPARISON.md` file contains a more detailed analysis of the compatibility and potential issues with each editor.
 
 ## Repository Structure
 
 ```
 config/
-├── vscode/             # VS Code configuration (baseline)
-│   ├── settings.json   # VS Code settings + Vim plugin configuration
-│   └── keybindings.json# Custom keyboard shortcuts
-├── cursor/             # Cursor-specific config (planned)
-└── antigravity/        # Windsurf/Antigravity config (planned)
-KEYBINDINGS.md          # Quick reference cheatsheet (VS Code)
+├── settings.json   # VS Code settings + Vim plugin configuration
+└── keybindings.json# Custom keyboard shortcuts
+KEYBINDINGS.md      # Quick reference cheatsheet
 ```
 
-## Features
-
-### 💻 Editor Navigation
-- Vim-style split navigation (`ctrl+h/j/k/l`)
-- Quick file switching with `alt+[` and `alt+]`
-- Efficient split management with `alt+h/l` for resizing
-- Enhanced bracket navigation with colorization
-- Improved minimap visibility
-
-### 📁 File Explorer
-- Toggle sidebar: `<leader>e`
-- File navigation with Vim keys
-- Quick file operations (rename, create, delete)
-
-### 🔍 Search and Replace
-- Enhanced workspace search with `<leader>s w`
-- Find in files: `ctrl+shift+f`
-- Navigate results: `F4/Shift+F4`
-- Custom search highlighting
-
-### ⚡ Quick Actions
-- Format document: `ctrl+space f`
-- Go to definition: `ctrl+]`
-- Navigate back: `ctrl+t`
-
-### 🔧 Git Integration
-- Toggle blame: `<leader>g b`
-- Quick stage: `<leader>g s`
-- Pull: `<leader>g p`
-- Push: `<leader>g P`
-- View history: `<leader>g h`
-
-### 🖥️ Terminal Integration
-- Toggle terminal: `ctrl+;`
-- Maximize terminal: `ctrl+shift+;`
-- Create new terminal: `<leader>t n`
-
-### ✨ Visual Mode Enhancements
-- Sort lines: `<leader>s s`
-- Transform to uppercase: `<leader>u`
-- Transform to lowercase: `<leader>l`
-- Select all occurrences: `<leader>a`
-
-### 🎨 Status Line Integration
-- Mode-specific colors
-- Visual mode indicators
-- Clear status feedback
-- Custom color schemes for each mode
-
 ## Installation
-
-### VS Code
 
 1. Open VS Code settings.json:
    - Press `Cmd+Shift+P` (Mac) or `Ctrl+Shift+P` (Windows/Linux)
    - Type "settings json"
    - Click "Preferences: Open User Settings (JSON)"
-   - Clear the file and paste the content from `config/vscode/settings.json`
+   - Clear the file and paste the content from `config/settings.json`
 
 2. Open VS Code keybindings.json:
    - Press `Cmd+Shift+P` (Mac) or `Ctrl+Shift+P` (Windows/Linux)
    - Type "keyboard json"
    - Click "Preferences: Open Keyboard Shortcuts (JSON)"
-   - Clear the file and paste the content from `config/vscode/keybindings.json`
+   - Clear the file and paste the content from `config/keybindings.json`
 
 3. Install required extensions from VS Code Marketplace
 4. Restart VS Code
-
-### Cursor / Windsurf
-
-Editor-specific configurations are planned. In the meantime, the VS Code configuration should work as a baseline for these VS Code-based editors.
 
 Alternative ways to open configuration files:
 - Settings:
@@ -103,6 +41,7 @@ Alternative ways to open configuration files:
 - Keybindings:
   - Mac: `Cmd+K Cmd+S` then click the "Open Keyboard Shortcuts (JSON)" icon
   - Windows/Linux: `Ctrl+K Ctrl+S` then click the "Open Keyboard Shortcuts (JSON)" icon
+
 
 ## Required Extensions
 
