@@ -2,7 +2,31 @@
 
 All notable changes to this configuration will be documented in this file.
 
-## [1.1.0] - 2025-01-22
+## [2.0.0] - 2025-01-16
+
+### Added
+- Quick reference cheatsheet (`KEYBINDINGS.md`)
+- Performance optimization via `extensions.experimental.affinity`
+- Tab navigation with `H`/`L` keys
+- Git operations: blame, stage, pull, push, history, diff (`<leader>g` prefix)
+- Workspace search: `<leader>sw`
+- Rename symbol: `<leader>rn`
+- New terminal: `<leader>tn`
+
+### Changed
+- Reorganized `settings.json` with clear section headers
+- File operations moved to cleaner namespace:
+  - Save: `<leader>fs` (was `<leader>ww`)
+  - Close: `<leader>q` (was `<leader>wc`)
+- Updated `CLAUDE.md` with new architecture documentation
+
+### Removed
+- Experimental `#TODO` comments cleaned up
+- Redundant/conflicting keybindings removed
+
+## [1.0.0] - 2025-01-22
+
+Initial release with comprehensive Vim keybindings for VS Code.
 
 ### Added
 - Custom status line integration with mode-specific colors
@@ -10,57 +34,29 @@ All notable changes to this configuration will be documented in this file.
   - Bracket pair colorization
   - Improved minimap configuration
   - Better bracket guides
-- New visual mode features
-  - Line sorting
-  - Case transformation
-  - Multi-line editing
+- Visual mode features
+  - Line sorting: `<leader>ss`
+  - Case transformation: `<leader>u`, `<leader>l`
+  - Select all occurrences: `<leader>a`
 - Improved Vim experience
   - Yank highlighting
   - Better fold handling
   - Custom search highlighting
-
-## [1.0.0] - 2025-01-22
-
-### Added
-- Enhanced Git integration
-  - Pull command: `<leader>g p`
-  - Push command: `<leader>g P`
-  - File history: `<leader>g h`
-- New navigation shortcuts
-  - Method boundaries: `[m`, `]m`
-  - Error navigation: `[d`, `]d`
+  - EasyMotion and Sneak plugins enabled
+- Navigation shortcuts
+  - Split navigation: `ctrl+h/j/k/l`
+  - Tab navigation: `alt+[`, `alt+]`
   - Definition jumping: `ctrl+]`, `ctrl+t`
 - Split management
   - Resize shortcuts: `alt+h`, `alt+l`
   - Maximize toggle: `ctrl+w m`
-  - Equal sizing: `<C-w>=`
-- Code folding commands
-  - Fold: `<leader>z`
-  - Unfold: `<leader>Z`
-- Tab navigation
-  - Previous/Next: `alt+[`, `alt+]`
-- Workspace management
-  - Close workspace: `ctrl+shift+w`
-  - Copy file path: `ctrl+k p`
-- Enhanced panel navigation
-  - Consistent ctrl+j/k in all panels
-  - Improved terminal focus controls
-
-### Changed
-- Standardized sidebar toggling to use `<leader>e`
-- Improved comments and documentation
-- Reorganized keybindings into logical groups
-
-### Fixed
-- Removed redundant keybindings
-- Standardized leader key usage
-- Improved context awareness for shortcuts
-
-## [0.1.0] - Initial Release
-
-### Added
-- Basic Vim keybindings
+- Terminal integration
+  - Toggle terminal: `ctrl+;`
+  - Maximize terminal: `ctrl+shift+;`
 - File explorer integration
-- Terminal shortcuts
-- Basic Git commands
-- Split navigation
+  - Toggle sidebar: `<leader>e`
+  - Reveal in explorer: `<leader>f`
+- Basic operations
+  - Exit insert mode: `jj`
+  - Toggle comment: `<leader>c`
+  - Clear search: `ctrl+n`
