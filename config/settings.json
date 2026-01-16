@@ -1,4 +1,4 @@
-{
+{
   // Editor Settings
   // Display line numbers relative to the current cursor position
   "editor.lineNumbers": "relative",
@@ -8,7 +8,7 @@
   "editor.cursorSurroundingLines": 8,
   // Enable smooth scrolling animation
   "editor.smoothScrolling": true,
-  // Enable bracket pair colorization for better readability
+  // Enable bracket pair colourization for better readability
   "editor.bracketPairColorization.enabled": true,
   // Show vertical lines for bracket pairs
   "editor.guides.bracketPairs": true,
