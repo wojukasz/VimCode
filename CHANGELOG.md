@@ -2,6 +2,26 @@
 
 All notable changes to this configuration will be documented in this file.
 
+## [3.0.0] - 2026-01-16
+
+### BREAKING CHANGE
+- Configuration files moved from `config/` to `config/vscode/`
+- Users must update their installation paths
+
+### Added
+- Multi-editor repository structure
+- Scaffolding for Cursor editor support (`config/cursor/`)
+- Scaffolding for Windsurf/Antigravity editor support (`config/antigravity/`)
+- "Supported Editors" table in README.md
+- Editor-specific README files in each config directory
+- Guidelines for adding new editor support in CLAUDE.md
+
+### Changed
+- VS Code configuration now lives in `config/vscode/` subdirectory
+- Updated all documentation to reflect new structure
+- KEYBINDINGS.md now notes it is VS Code-specific
+- CLAUDE.md rewritten for multi-editor architecture
+
 ## [2.0.0] - 2025-01-16
 
 ### Added

@@ -1,5 +1,7 @@
 # VimCode Keybindings Quick Reference
 
+> **Note:** This reference is for VS Code. See `config/vscode/` for configuration files.
+
 > Leader key: `<space>`
 
 ## Navigation

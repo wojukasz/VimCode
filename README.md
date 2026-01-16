@@ -1,8 +1,28 @@
-# VimCode - Modern Vim Experience in VS Code
+# VimCode - Modern Vim Experience for Code Editors
 
-Enhanced VS Code configuration with Vim keybindings for efficient coding workflows. This setup combines the power of Vim motions with VS Code's modern features.
+Enhanced configuration with Vim keybindings for efficient coding workflows. This setup combines the power of Vim motions with modern editor features.
 
 *IMPORTANT:* Some of the shortcuts are experimental and I am trying things on the go so they might not work at all or as intended! Please leave a comment and feel free to adjust and fix!
+
+## Supported Editors
+
+| Editor | Status | Config Path |
+|--------|--------|-------------|
+| VS Code | ✅ Full Support | `config/vscode/` |
+| Cursor | 🚧 Planned | `config/cursor/` |
+| Windsurf (Antigravity) | 🚧 Planned | `config/antigravity/` |
+
+## Repository Structure
+
+```
+config/
+├── vscode/             # VS Code configuration (baseline)
+│   ├── settings.json   # VS Code settings + Vim plugin configuration
+│   └── keybindings.json# Custom keyboard shortcuts
+├── cursor/             # Cursor-specific config (planned)
+└── antigravity/        # Windsurf/Antigravity config (planned)
+KEYBINDINGS.md          # Quick reference cheatsheet (VS Code)
+```
 
 ## Features
 
@@ -55,20 +75,26 @@ Enhanced VS Code configuration with Vim keybindings for efficient coding workflo
 
 ## Installation
 
+### VS Code
+
 1. Open VS Code settings.json:
    - Press `Cmd+Shift+P` (Mac) or `Ctrl+Shift+P` (Windows/Linux)
    - Type "settings json"
    - Click "Preferences: Open User Settings (JSON)"
-   - Clear the file and paste the content from `settings.json`
+   - Clear the file and paste the content from `config/vscode/settings.json`
 
 2. Open VS Code keybindings.json:
    - Press `Cmd+Shift+P` (Mac) or `Ctrl+Shift+P` (Windows/Linux)
    - Type "keyboard json"
    - Click "Preferences: Open Keyboard Shortcuts (JSON)"
-   - Clear the file and paste the content from `keybindings.json`
+   - Clear the file and paste the content from `config/vscode/keybindings.json`
 
 3. Install required extensions from VS Code Marketplace
 4. Restart VS Code
+
+### Cursor / Windsurf
+
+Editor-specific configurations are planned. In the meantime, the VS Code configuration should work as a baseline for these VS Code-based editors.
 
 Alternative ways to open configuration files:
 - Settings:
@@ -128,11 +154,11 @@ Key settings include:
 ## Customization
 
 Edit the following files to customize the configuration:
-- `settings.json`: VS Code and Vim settings
-- `keybindings.json`: Custom keyboard shortcuts
+- `config/vscode/settings.json`: VS Code and Vim settings
+- `config/vscode/keybindings.json`: Custom keyboard shortcuts
 
 ### Status Line Colors
-You can customize mode colors in `settings.json`:
+You can customize mode colors in `config/vscode/settings.json`:
 ```json
 "vim.statusBarColors.normal": "#519aba",
 "vim.statusBarColors.insert": "#98c379",
