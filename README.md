@@ -11,8 +11,6 @@
 
 A comprehensive **Vim configuration for VS Code** that mirrors the LazyVim experience with `<space>` as the leader key. Perfect for developers who want **Neovim muscle memory in VS Code** with full LSP integration, Git operations, and modern editor features. Compatible with **VSCodeVim, Cursor, and Windsurf** editors.
 
-**Keywords:** vim config vscode, vscode vim keybindings, lazyvim vscode, neovim to vscode, vscodevim configuration, vim mode vscode, vscode vim settings
-
 ## Features
 
 - **50+ LazyVim-aligned keybindings** - Organized by prefix (`<leader>f*`, `<leader>s*`, `<leader>c*`, etc.)
@@ -161,19 +159,13 @@ If you love Vim but need the power of VS Code's ecosystem, VimCode gives you the
 
 ## Contributing
 
-Found a bug or have a suggestion? Feel free to open an issue or submit a pull request!
+Contributions are welcome! Found a bug or have a suggestion? Feel free to open an issue or submit a pull request.
+
+For major changes, please open an issue first to discuss what you would like to change. See [.github/CONTRIBUTING.md](.github/CONTRIBUTING.md) for detailed contribution guidelines.
 
 ## Note
 
 Some keybindings are experimental and may require adjustments based on your workflow. Feel free to customize the configuration files to suit your needs.
-
-## Star History
-
-⭐ **Star this repo if you find it useful!** It helps others discover VimCode.
-
-## Discoverability
-
-Want to help spread the word? See [DISCOVERY.md](DISCOVERY.md) for ways to promote VimCode and make it easier for others to find this configuration.
 
 ## License
 
@@ -181,4 +173,4 @@ MIT
 
 ---
 
-**Get Started:** [SETUP.md](SETUP.md) | **Quick Reference:** [KEYBINDINGS.md](KEYBINDINGS.md) | **Learn More:** [TIPS_AND_TRICKS.md](TIPS_AND_TRICKS.md) | **Promote:** [DISCOVERY.md](DISCOVERY.md)
+**Get Started:** [SETUP.md](SETUP.md) | **Quick Reference:** [KEYBINDINGS.md](KEYBINDINGS.md) | **Learn More:** [TIPS_AND_TRICKS.md](TIPS_AND_TRICKS.md)
