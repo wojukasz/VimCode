@@ -1,53 +1,29 @@
-{
-  // Editor Settings
-  // Display line numbers relative to the current cursor position
+{
+  // *** VSCode Editor Settings ***
   "editor.lineNumbers": "relative",
-  // Prevent scrolling beyond the last line of the file
   "editor.scrollBeyondLastLine": false,
-  // Keep 8 lines visible above and below the cursor when scrolling
   "editor.cursorSurroundingLines": 8,
-  // Enable smooth scrolling animation
   "editor.smoothScrolling": true,
-  // Enable bracket pair colorization for better readability
   "editor.bracketPairColorization.enabled": true,
-  // Show vertical lines for bracket pairs
   "editor.guides.bracketPairs": true,
-  // Configure minimap for better performance and visibility
   "editor.minimap.renderCharacters": false,
   "editor.minimap.scale": 2,
 
-  // Vim Configuration
-  // Enable easymotion plugin for quick navigation
-  "vim.easymotion": true,
-  // Enable incremental search highlighting
-  "vim.incsearch": true,
-  // Use system clipboard for vim operations
-  "vim.useSystemClipboard": true,
-  // Enable Ctrl key combinations
+  // *** Vim Extension Settings ***
+  "vim.leader": "<space>",
   "vim.useCtrlKeys": true,
-  // Enable search highlight
-  "vim.hlsearch": true,
-  // Set space as the leader key
-  "vim.leader": " ",
-  // Enable vim-sneak plugin for improved motion
-  "vim.sneak": true,
-  // Use relative line numbers in normal mode
+  "vim.useSystemClipboard": true,
   "vim.smartRelativeLine": true,
-  // Fix common fold-related issues
+  "vim.incsearch": true,
+  "vim.hlsearch": true,
+  "vim.easymotion": true,
+  "vim.sneak": true,
   "vim.foldfix": true,
-  // Enable and configure yank highlighting
   "vim.highlightedyank.enable": true,
   "vim.highlightedyank.duration": 200,
-  // Customize search highlight color
   "vim.searchHighlightColor": "rgba(180, 142, 173, 0.5)",
-  // Don't start on the first line of a file
-  "vim.startup.firstline": false,
-
-  // #TODO: experimenting with those
-  // Status Line Integration
-  // Enable status bar color control based on Vim mode
+  // Status Bar coloring (LazyVim mode colors)
   "vim.statusBarColorControl": true,
-  // Define colors for different Vim modes
   "vim.statusBarColors.normal": "#519aba",
   "vim.statusBarColors.insert": "#98c379",
   "vim.statusBarColors.visual": "#c678dd",
@@ -55,240 +31,125 @@
   "vim.statusBarColors.visualblock": "#c678dd",
   "vim.statusBarColors.replace": "#e06c75",
 
-  // Handle specific keys
+  // Let VSCode handle certain keys (false = handled by VSCode, true = handled by Vim extension)
   "vim.handleKeys": {
-    // Keep Ctrl+d for scrolling down
-    "<C-d>": true,
-    // Keep Ctrl+u for scrolling up
-    "<C-u>": true,
-    // Disable Ctrl+f to use VS Code's find instead
-    "<C-f>": false
+    "<C-d>": true,    // allow Vim paging (half-page down)
+    "<C-u>": true,    // allow Vim paging (half-page up)
+    "<C-f>": false,   // Ctrl+F = VSCode find
+    "<C-b>": false,   // Ctrl+B = VSCode toggle sidebar
+    "<C-h>": false,   // let VSCode handle Ctrl+H/J/K/L for navigation
+    "<C-j>": false,
+    "<C-k>": false,
+    "<C-l>": false,
+    "<C-w>": false,   // (Ctrl+W in Vim would manage splits; here use VSCode or custom leader keys)
+    "<C-s>": false    // let VSCode handle save
   },
-  // Insert Mode Keybindings
+
+  // Insert Mode keybindings (jj -> Esc)
   "vim.insertModeKeyBindings": [
-    {
-      // Exit insert mode by pressing 'j' twice quickly
-      "before": [
-        "j",
-        "j"
-      ],
-      "after": [
-        "<Esc>"
-      ]
-    }
+    { "before": ["j", "j"], "after": ["<Esc>"] }
   ],
-  // Normal Mode Keybindings
+
+  // Normal Mode custom keybindings (LazyVim-aligned leader keys)
   "vim.normalModeKeyBindingsNonRecursive": [
-    // Basic Operations
-    {
-      // Delete current line with leader+d
-      "before": [
-        "<leader>",
-        "d"
-      ],
-      "after": [
-        "d",
-        "d"
-      ]
-    },
-    {
-      // Clear search highlighting with Ctrl+n
-      "before": [
-        "<C-n>"
-      ],
-      "commands": [
-        ":nohl"
-      ]
-    },
-    {
-      // Insert line break above cursor with K
-      "before": [
-        "K"
-      ],
-      "commands": [
-        "lineBreakInsert"
-      ],
-      "silent": true
-    },
-    // Window Management
-    {
-      // Split editor with leader+w
-      "before": [
-        "<leader>",
-        "w"
-      ],
-      "commands": [
-        "workbench.action.splitEditor"
-      ]
-    },
-    {
-      // Save current file with leader+w+w
-      "before": [
-        "<leader>",
-        "w",
-        "w"
-      ],
-      "commands": [
-        ":w"
-      ]
-    },
-    {
-      // Close current file with leader+w+c
-      "before": ["<leader>", "w", "c"],
-      "commands": ["workbench.action.closeActiveEditor"]
-    },
-    // Sidebar and Explorer
-    {
-      // Toggle sidebar and focus explorer with leader+e
-      "before": [
-        "<leader>",
-        "e"
-      ],
-      "commands": [
-        "workbench.action.toggleSidebarVisibility",
-        // "workbench.files.action.focusFilesExplorer" // #TODO: dosent work as expected
-      ]
-    },
-    {
-      // Reveal current file in explorer with leader+f
-      "before": [
-        "<leader>",
-        "f"
-      ],
-      "commands": [
-        "revealInExplorer"
-      ]
-    },
-    // File Operations
-    {
-      // Copy current file path with leader+f+y
-      "before": [
-        "<leader>",
-        "f",
-        "y"
-      ],
-      "commands": [
-        "copyFilePath"
-      ]
-    },
-    {
-      // Create new file in current directory with leader+f+n
-      "before": [
-        "<leader>",
-        "f",
-        "n"
-      ],
-      "commands": [
-        "explorer.newFile"
-      ]
-    },
-    // Code Actions
-    {
-      // Toggle line comment with leader+c
-      "before": [
-        "<leader>",
-        "c"
-      ],
-      "commands": [
-        "editor.action.commentLine"
-      ]
-    },
-    // #TODO: confirm the following
-    // {
-    //   // Rename symbol with leader+r+e
-    //   "before": [
-    //     "<leader>",
-    //     "r",
-    //     "e"
-    //   ],
-    //   "commands": [
-    //     "editor.action.rename"
-    //   ]
-    // },
-    // {
-    //   // Rename file with leader+r+f
-    //   "before": [
-    //     "<leader>",
-    //     "r",
-    //     "f"
-    //   ],
-    //   "commands": [
-    //     "fileutils.renameFile"
-    //   ]
-    // }
+    // GENERAL
+    { "before": ["<leader>", "d"], "after": ["d", "d"] },              // <leader>d = delete line (maps to dd)
+    { "before": ["<Esc>"], "commands": [":nohl"] },                   // Esc = clear search highlight
+    { "before": ["<leader>", "u", "r"], "commands": [":nohl"] },      // <leader>ur = clear search highlight (LazyVim "unredraw")
+    { "before": ["K"], "commands": ["editor.action.showHover"] },     // K = hover documentation
+
+    // FILES (<leader>f *)
+    { "before": ["<leader>", "<space>"], "commands": ["workbench.action.quickOpen"] },       // <leader><space> = fuzzy find files
+    { "before": ["<leader>", "f", "f"], "commands": ["workbench.action.quickOpen"] },        // <leader>ff = same as above
+    { "before": ["<leader>", "f", "r"], "commands": ["workbench.action.openRecent"] },       // <leader>fr = recent files
+    { "before": ["<leader>", "f", "n"], "commands": ["workbench.action.files.newUntitledFile"] }, // <leader>fn = new file
+    { "before": ["<leader>", "f", "g"], "commands": ["git.openFile"], "when": "isInDiffEditor" },  // <leader>fg = open file from diff (Git: Open File):contentReference[oaicite:27]{index=27}
+    { "before": ["<leader>", "f", "b"], "commands": ["workbench.action.showAllEditors"] },   // <leader>fb = list open buffers (editors)
+
+    // SEARCH (<leader>/ or <leader>s*)
+    { "before": ["<leader>", "/"], "commands": ["workbench.action.findInFiles"] },           // <leader>/ = project search
+    { "before": ["<leader>", "s", "g"], "commands": ["workbench.action.findInFiles"] },      // <leader>sg = search (live grep equivalent)
+    { "before": ["<leader>", "s", "w"], "commands": ["workbench.action.findInFiles"] },      // <leader>sw = search word under cursor
+    { "before": ["<leader>", "s", "s"], "commands": ["workbench.action.gotoSymbol"] },       // <leader>ss = goto symbol in file
+    { "before": ["<leader>", "s", "k"], "commands": ["workbench.action.openGlobalKeybindings"] }, // <leader>sk = open keyboard shortcuts
+    { "before": ["<leader>", "s", "c"], "commands": ["workbench.action.showCommands"] },     // <leader>sc = command palette
+
+    // BUFFERS (<leader>b *)
+    { "before": ["<leader>", ","], "commands": ["workbench.action.showAllEditors"] },        // <leader>, = list buffers (same as <leader>fb)
+    { "before": ["<leader>", "b", "b"], "commands": ["workbench.action.showAllEditors"] },   // <leader>bb = list buffers
+    { "before": ["<leader>", "b", "d"], "commands": ["workbench.action.closeActiveEditor"] },// <leader>bd = close buffer (close tab)
+    { "before": ["<leader>", "b", "o"], "commands": ["workbench.action.closeOtherEditors"] },// <leader>bo = close other buffers (tabs)
+    { "before": ["<leader>", "`"], "commands": ["workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup"] }, // <leader>` = last buffer
+
+    // EXPLORER
+    { "before": ["<leader>", "e"], "commands": ["workbench.view.explorer"] },               // <leader>e = focus file explorer
+    { "before": ["<leader>", "f", "e"], "commands": ["workbench.view.explorer"] },          // <leader>fe = (same as above for compatibility)
+
+    // CODE ACTIONS (<leader>c *)
+    { "before": ["<leader>", "c", "a"], "commands": ["editor.action.quickFix"] },            // <leader>ca = code action (quick fix):contentReference[oaicite:28]{index=28}
+    { "before": ["<leader>", "c", "f"], "commands": ["editor.action.formatDocument"] },      // <leader>cf = format document:contentReference[oaicite:29]{index=29}
+    { "before": ["<leader>", "c", "r"], "commands": ["editor.action.rename"] },              // <leader>cr = rename symbol:contentReference[oaicite:30]{index=30}
+    { "before": ["<leader>", "c", "d"], "commands": ["editor.action.showHover"] },           // <leader>cd = show “line diagnostics” (reusing hover) 
+    { "before": ["<leader>", "c", "l"], "commands": ["workbench.action.problems.focus"] },   // <leader>cl = focus problems (diagnostics list)
+
+    // LSP GOTO
+    { "before": ["g", "d"], "commands": ["editor.action.revealDefinition"] },                // gd = go to definition
+    { "before": ["g", "r"], "commands": ["editor.action.goToReferences"] },                  // gr = go to references
+    { "before": ["g", "I"], "commands": ["editor.action.goToImplementation"] },              // gI = go to implementation:contentReference[oaicite:31]{index=31}
+    { "before": ["g", "D"], "commands": ["editor.action.revealDeclaration"] },               // gD = go to declaration
+    { "before": ["g", "y"], "commands": ["editor.action.goToTypeDefinition"] },              // gy = go to type definition
+    // (Optional) LSP signature help:
+    { "before": ["g", "K"], "commands": ["editor.action.triggerParameterHints"], "when": "editorHasSignatureHelpProvider && editorTextFocus" }, // gK = signature help:contentReference[oaicite:32]{index=32}
+
+    // SPLITS/Windows
+    { "before": ["<leader>", "-"], "commands": ["workbench.action.splitEditorDown"] },       // <leader>- = horizontal split
+    { "before": ["<leader>", "|"], "commands": ["workbench.action.splitEditorRight"] },      // <leader>| = vertical split
+    { "before": ["<leader>", "w", "d"], "commands": ["workbench.action.closeEditorsInGroup"] }, // <leader>wd = close window (close split)
+    { "before": ["<leader>", "w", "m"], "commands": ["workbench.action.toggleMaximizeEditorGroup"] }, // <leader>wm = toggle maximize current split
+
+    // GIT (<leader>g *)
+    { "before": ["<leader>", "g", "g"], "commands": ["workbench.view.scm"] },                // <leader>gg = open source control (like LazyGit in Vim):contentReference[oaicite:33]{index=33}
+    { "before": ["<leader>", "g", "s"], "commands": ["workbench.view.scm"] },                // <leader>gs = same as gg (two common combos)
+    { "before": ["<leader>", "g", "b"], "commands": ["gitlens.toggleLineBlame"] },           // <leader>gb = GitLens: toggle inline blame (requires GitLens)
+    { "before": ["<leader>", "g", "d"], "commands": ["git.openChange"] },                    // <leader>gd = open diff (changes) for current file
+    { "before": ["<leader>", "g", "l"], "commands": ["git.viewHistory"] },                   // <leader>gl = Git: View history (requires Git History or similar extension)
+
+    // TERMINAL
+    { "before": ["<leader>", "f", "t"], "commands": ["workbench.action.terminal.new"] },     // <leader>ft = open a new terminal
+
+    // QUICK QUIT
+    { "before": ["<leader>", "q", "q"], "commands": ["workbench.action.closeWindow"] },      // <leader>qq = quit VSCode
+
+    // DIAGNOSTICS (Problems)
+    { "before": ["<leader>", "x", "x"], "commands": ["workbench.action.problems.focus"] },   // <leader>xx = open problems pane (all diagnostics)
+    { "before": ["<leader>", "x", "q"], "commands": ["workbench.action.problems.focus"] },   // <leader>xq = open problems pane (quickfix)
+
+    // TOGGLES (UI)
+    { "before": ["<leader>", "u", "w"], "commands": ["editor.action.toggleWordWrap"] },      // <leader>uw = toggle word wrap:contentReference[oaicite:34]{index=34}
+    // { "before": ["<leader>", "u", "l"], "commands": ["editor.action.toggleLineNumbers"] },// <leader>ul = (DISABLED - no VSCode cmd; see notes above)
+    { "before": ["<leader>", "u", "z"], "commands": ["workbench.action.toggleZenMode"] }     // <leader>uz = toggle Zen mode
   ],
-  // Visual Mode Keybindings
+
+  // Visual Mode keybindings
   "vim.visualModeKeyBindings": [
-    {
-      // Comment selected lines and exit visual mode with leader+c
-      "before": [
-        "<leader>",
-        "c"
-      ],
-      "commands": [
-        "editor.action.commentLine",
-        "extension.vim_escape"
-      ]
-    },
-    {
-      // Select all occurrences of current selection with leader+a
-      "before": [
-        "<leader>",
-        "a"
-      ],
-      "commands": [
-        "editor.action.selectHighlights"
-      ]
-    },
-    {
-      // Sort selected lines
-      "before": [
-        "<leader>",
-        "s",
-        "s"
-      ],
-      "commands": [
-        "editor.action.sortLinesAscending"
-      ]
-    },
-    {
-      // Transform to uppercase
-      "before": [
-        "<leader>",
-        "u"
-      ],
-      "commands": [
-        "editor.action.transformToUppercase"
-      ]
-    },
-    {
-      // Transform to lowercase
-      "before": [
-        "<leader>",
-        "l"
-      ],
-      "commands": [
-        "editor.action.transformToLowercase"
-      ]
-    }
+    { "before": ["<leader>", "c", "a"], "commands": ["editor.action.quickFix"] },            // <leader>ca (visual) = code action on selection
+    { "before": ["<leader>", "c", "f"], "commands": ["editor.action.formatSelection"] },     // <leader>cf (visual) = format selection
+    { "before": ["g", "c"], "commands": ["editor.action.commentLine"] },                     // gc (visual) = comment toggle selection
+    { "before": ["<leader>", "/"], "commands": ["workbench.action.findInFiles"] },           // <leader>/ (visual) = search selection in files
+    { "before": ["<leader>", "s", "w"], "commands": ["workbench.action.findInFiles"] },      // <leader>sw (visual) = search selection (same as above)
+    // Indent retain selection:
+    { "before": ["<"], "after": ["<", "g", "v"] },   // < (visual) = indent and reselect:contentReference[oaicite:35]{index=35}
+    { "before": [">"], "after": [">", "g", "v"] }    // > (visual) = outdent and reselect
   ],
-  // Multi-command Configuration
+
+  // Optional: multi-command sequences (requires `ryuta46.multi-command` extension)
   "multiCommand.commands": [
     {
-      // Toggle maximized terminal panel and focus terminal
       "command": "multiCommand.toggleMaximizedPanelAndFocusTerminal",
       "sequence": [
         "workbench.action.toggleMaximizedPanel",
         "workbench.action.terminal.focus"
       ]
-    },
-    {
-      // Create new terminal and focus it
-      "command": "multiCommand.newTerminalAndFocus",
-      "sequence": [
-        "workbench.action.terminal.new",
-        "workbench.action.terminal.focus"
-      ]
     }
-  ],
+  ]
 }
