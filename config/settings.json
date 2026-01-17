@@ -43,7 +43,6 @@
   // Don't start on the first line of a file
   "vim.startup.firstline": false,
 
-  // #TODO: experimenting with those
   // Status Line Integration
   // Enable status bar color control based on Vim mode
   "vim.statusBarColorControl": true,
@@ -55,15 +54,23 @@
   "vim.statusBarColors.visualblock": "#c678dd",
   "vim.statusBarColors.replace": "#e06c75",
 
-  // Handle specific keys
+  // Handle specific keys (let VS Code manage these when false)
   "vim.handleKeys": {
     // Keep Ctrl+d for scrolling down
     "<C-d>": true,
     // Keep Ctrl+u for scrolling up
     "<C-u>": true,
-    // Disable Ctrl+f to use VS Code's find instead
-    "<C-f>": false
+    // Use VS Code for find, window, and navigation shortcuts
+    "<C-f>": false,
+    "<C-b>": false,
+    "<C-h>": false,
+    "<C-j>": false,
+    "<C-k>": false,
+    "<C-l>": false,
+    "<C-w>": false,
+    "<C-s>": false
   },
+
   // Insert Mode Keybindings
   "vim.insertModeKeyBindings": [
     {
@@ -77,9 +84,10 @@
       ]
     }
   ],
-  // Normal Mode Keybindings
+
+  // Normal Mode Keybindings (LazyVim-aligned)
   "vim.normalModeKeyBindingsNonRecursive": [
-    // Basic Operations
+    // General
     {
       // Delete current line with leader+d
       "before": [
@@ -92,186 +100,540 @@
       ]
     },
     {
-      // Clear search highlighting with Ctrl+n
+      // Clear search highlighting
       "before": [
-        "<C-n>"
+        "<Esc>"
       ],
       "commands": [
         ":nohl"
       ]
     },
     {
-      // Insert line break above cursor with K
+      // Clear search highlighting (LazyVim: <leader>ur)
+      "before": [
+        "<leader>",
+        "u",
+        "r"
+      ],
+      "commands": [
+        ":nohl"
+      ]
+    },
+    {
+      // Hover docs
       "before": [
         "K"
       ],
       "commands": [
-        "lineBreakInsert"
-      ],
-      "silent": true
+        "editor.action.showHover"
+      ]
     },
-    // Window Management
+
+    // File Operations (LazyVim: <leader>f)
     {
-      // Split editor with leader+w
       "before": [
         "<leader>",
-        "w"
+        "<space>"
       ],
       "commands": [
-        "workbench.action.splitEditor"
+        "workbench.action.quickOpen"
       ]
     },
     {
-      // Save current file with leader+w+w
-      "before": [
-        "<leader>",
-        "w",
-        "w"
-      ],
-      "commands": [
-        ":w"
-      ]
-    },
-    {
-      // Close current file with leader+w+c
-      "before": ["<leader>", "w", "c"],
-      "commands": ["workbench.action.closeActiveEditor"]
-    },
-    // Sidebar and Explorer
-    {
-      // Toggle sidebar and focus explorer with leader+e
-      "before": [
-        "<leader>",
-        "e"
-      ],
-      "commands": [
-        "workbench.action.toggleSidebarVisibility",
-        // "workbench.files.action.focusFilesExplorer" // #TODO: dosent work as expected
-      ]
-    },
-    {
-      // Reveal current file in explorer with leader+f
-      "before": [
-        "<leader>",
-        "f"
-      ],
-      "commands": [
-        "revealInExplorer"
-      ]
-    },
-    // File Operations
-    {
-      // Copy current file path with leader+f+y
       "before": [
         "<leader>",
         "f",
-        "y"
+        "f"
       ],
       "commands": [
-        "copyFilePath"
+        "workbench.action.quickOpen"
       ]
     },
     {
-      // Create new file in current directory with leader+f+n
+      "before": [
+        "<leader>",
+        "f",
+        "r"
+      ],
+      "commands": [
+        "workbench.action.openRecent"
+      ]
+    },
+    {
       "before": [
         "<leader>",
         "f",
         "n"
       ],
       "commands": [
-        "explorer.newFile"
+        "workbench.action.files.newUntitledFile"
       ]
     },
-    // Code Actions
     {
-      // Toggle line comment with leader+c
       "before": [
         "<leader>",
-        "c"
+        "f",
+        "e"
       ],
       "commands": [
-        "editor.action.commentLine"
+        "workbench.view.explorer"
       ]
     },
-    // #TODO: confirm the following
-    // {
-    //   // Rename symbol with leader+r+e
-    //   "before": [
-    //     "<leader>",
-    //     "r",
-    //     "e"
-    //   ],
-    //   "commands": [
-    //     "editor.action.rename"
-    //   ]
-    // },
-    // {
-    //   // Rename file with leader+r+f
-    //   "before": [
-    //     "<leader>",
-    //     "r",
-    //     "f"
-    //   ],
-    //   "commands": [
-    //     "fileutils.renameFile"
-    //   ]
-    // }
-  ],
-  // Visual Mode Keybindings
-  "vim.visualModeKeyBindings": [
     {
-      // Comment selected lines and exit visual mode with leader+c
       "before": [
         "<leader>",
-        "c"
+        "f",
+        "b"
       ],
       "commands": [
-        "editor.action.commentLine",
-        "extension.vim_escape"
+        "workbench.action.showAllEditors"
       ]
     },
+
+    // Search (LazyVim: <leader>s, <leader>/)
     {
-      // Select all occurrences of current selection with leader+a
       "before": [
         "<leader>",
-        "a"
+        "/"
       ],
       "commands": [
-        "editor.action.selectHighlights"
+        "workbench.action.findInFiles"
       ]
     },
     {
-      // Sort selected lines
+      "before": [
+        "<leader>",
+        "s",
+        "g"
+      ],
+      "commands": [
+        "workbench.action.findInFiles"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "s",
+        "w"
+      ],
+      "commands": [
+        "workbench.action.findInFiles"
+      ]
+    },
+    {
       "before": [
         "<leader>",
         "s",
         "s"
       ],
       "commands": [
-        "editor.action.sortLinesAscending"
+        "workbench.action.gotoSymbol"
       ]
     },
     {
-      // Transform to uppercase
       "before": [
         "<leader>",
-        "u"
+        "s",
+        "k"
       ],
       "commands": [
-        "editor.action.transformToUppercase"
+        "workbench.action.openGlobalKeybindings"
       ]
     },
     {
-      // Transform to lowercase
       "before": [
         "<leader>",
+        "s",
+        "c"
+      ],
+      "commands": [
+        "workbench.action.showCommands"
+      ]
+    },
+
+    // Buffer Management (LazyVim: <leader>b)
+    {
+      "before": [
+        "<leader>",
+        ","
+      ],
+      "commands": [
+        "workbench.action.showAllEditors"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "b",
+        "b"
+      ],
+      "commands": [
+        "workbench.action.showAllEditors"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "b",
+        "d"
+      ],
+      "commands": [
+        "workbench.action.closeActiveEditor"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "b",
+        "o"
+      ],
+      "commands": [
+        "workbench.action.closeOtherEditors"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "`"
+      ],
+      "commands": [
+        "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup"
+      ]
+    },
+
+    // Explorer (LazyVim: <leader>e)
+    {
+      "before": [
+        "<leader>",
+        "e"
+      ],
+      "commands": [
+        "workbench.view.explorer"
+      ]
+    },
+
+    // Code Actions (LazyVim: <leader>c)
+    {
+      "before": [
+        "<leader>",
+        "c",
+        "a"
+      ],
+      "commands": [
+        "editor.action.quickFix"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "c",
+        "f"
+      ],
+      "commands": [
+        "editor.action.formatDocument"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "c",
+        "r"
+      ],
+      "commands": [
+        "editor.action.rename"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "c",
+        "d"
+      ],
+      "commands": [
+        "editor.action.showHover"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "c",
         "l"
       ],
       "commands": [
-        "editor.action.transformToLowercase"
+        "workbench.action.problems.focus"
+      ]
+    },
+
+    // LSP Navigation
+    {
+      "before": [
+        "g",
+        "d"
+      ],
+      "commands": [
+        "editor.action.revealDefinition"
+      ]
+    },
+    {
+      "before": [
+        "g",
+        "r"
+      ],
+      "commands": [
+        "editor.action.goToReferences"
+      ]
+    },
+    {
+      "before": [
+        "g",
+        "I"
+      ],
+      "commands": [
+        "editor.action.goToImplementation"
+      ]
+    },
+    {
+      "before": [
+        "g",
+        "D"
+      ],
+      "commands": [
+        "editor.action.revealDeclaration"
+      ]
+    },
+    {
+      "before": [
+        "g",
+        "y"
+      ],
+      "commands": [
+        "editor.action.goToTypeDefinition"
+      ]
+    },
+
+    // Window Splits (LazyVim: <leader>-, <leader>|, <leader>w)
+    {
+      "before": [
+        "<leader>",
+        "-"
+      ],
+      "commands": [
+        "workbench.action.splitEditorDown"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "|"
+      ],
+      "commands": [
+        "workbench.action.splitEditorRight"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "w",
+        "d"
+      ],
+      "commands": [
+        "workbench.action.closeActiveEditor"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "w",
+        "m"
+      ],
+      "commands": [
+        "workbench.action.toggleMaximizeEditorGroup"
+      ]
+    },
+
+    // Git (LazyVim: <leader>g)
+    {
+      "before": [
+        "<leader>",
+        "g",
+        "g"
+      ],
+      "commands": [
+        "workbench.view.scm"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "g",
+        "s"
+      ],
+      "commands": [
+        "workbench.view.scm"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "g",
+        "b"
+      ],
+      "commands": [
+        "gitlens.toggleLineBlame"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "g",
+        "d"
+      ],
+      "commands": [
+        "git.openChange"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "g",
+        "l"
+      ],
+      "commands": [
+        "git.viewHistory"
+      ]
+    },
+
+    // Terminal (LazyVim: <leader>ft)
+    {
+      "before": [
+        "<leader>",
+        "f",
+        "t"
+      ],
+      "commands": [
+        "multiCommand.newTerminalAndFocus"
+      ]
+    },
+
+    // Quit (LazyVim: <leader>qq)
+    {
+      "before": [
+        "<leader>",
+        "q",
+        "q"
+      ],
+      "commands": [
+        "workbench.action.closeWindow"
+      ]
+    },
+
+    // Diagnostics (LazyVim: <leader>xx, <leader>xq)
+    {
+      "before": [
+        "<leader>",
+        "x",
+        "x"
+      ],
+      "commands": [
+        "workbench.actions.view.problems"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "x",
+        "q"
+      ],
+      "commands": [
+        "workbench.actions.view.problems"
+      ]
+    },
+
+    // Toggles (LazyVim: <leader>u)
+    {
+      "before": [
+        "<leader>",
+        "u",
+        "w"
+      ],
+      "commands": [
+        "editor.action.toggleWordWrap"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "u",
+        "l"
+      ],
+      "commands": [
+        "workbench.action.toggleEditorLineNumbers"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "u",
+        "z"
+      ],
+      "commands": [
+        "workbench.action.toggleZenMode"
       ]
     }
   ],
+
+  // Visual Mode Keybindings (LazyVim-aligned)
+  "vim.visualModeKeyBindings": [
+    {
+      "before": [
+        "<leader>",
+        "c",
+        "a"
+      ],
+      "commands": [
+        "editor.action.quickFix"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "c",
+        "f"
+      ],
+      "commands": [
+        "editor.action.formatSelection"
+      ]
+    },
+    {
+      "before": [
+        "g",
+        "c"
+      ],
+      "commands": [
+        "editor.action.commentLine"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "/"
+      ],
+      "commands": [
+        "workbench.action.findInFiles"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "s",
+        "w"
+      ],
+      "commands": [
+        "workbench.action.findInFiles"
+      ]
+    }
+  ],
+
   // Multi-command Configuration
   "multiCommand.commands": [
     {
@@ -290,5 +652,5 @@
         "workbench.action.terminal.focus"
       ]
     }
-  ],
+  ]
 }

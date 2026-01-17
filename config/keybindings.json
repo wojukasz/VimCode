@@ -1,291 +1,206 @@
 [
   //
-  // VIM NAVIGATION SHORTCUTS
+  // WINDOW NAVIGATION (LazyVim: <C-h/j/k/l>)
   //
   {
-    // "ctrl+h": Focuses on the left editor group when the text editor is focused, Vim extension is active, and Vim is not in Insert mode
     "key": "ctrl+h",
-    "command": "workbench.action.focusLeftGroup",
-    "when": "editorTextFocus && vim.active && vim.mode != 'Insert'"
+    "command": "workbench.action.navigateLeft",
+    "when": "editorTextFocus && vim.active && vim.mode != 'Insert' && !terminalFocus"
   },
   {
-    // "ctrl+l": Focuses on the right editor group when the text editor is focused, Vim extension is active, and Vim is not in Insert mode
     "key": "ctrl+l",
-    "command": "workbench.action.focusRightGroup",
-    "when": "editorTextFocus && vim.active && vim.mode != 'Insert'"
+    "command": "workbench.action.navigateRight",
+    "when": "editorTextFocus && vim.active && vim.mode != 'Insert' && !terminalFocus"
   },
   {
-    // "ctrl+k": Focuses on the editor group above when the text editor is focused, Vim extension is active, and Vim is not in Insert mode
     "key": "ctrl+k",
-    "command": "workbench.action.focusAboveGroup",
-    "when": "editorTextFocus && vim.active && vim.mode != 'Insert'"
+    "command": "workbench.action.navigateUp",
+    "when": "editorTextFocus && vim.active && vim.mode != 'Insert' && !terminalFocus && !suggestWidgetVisible && !inQuickOpen"
   },
   {
-    // "ctrl+j": Focuses on the editor group below when the text editor is focused, Vim extension is active, and Vim is not in Insert mode
     "key": "ctrl+j",
-    "command": "workbench.action.focusBelowGroup",
-    "when": "editorTextFocus && vim.active && vim.mode != 'Insert'"
+    "command": "workbench.action.navigateDown",
+    "when": "editorTextFocus && vim.active && vim.mode != 'Insert' && !terminalFocus && !suggestWidgetVisible && !inQuickOpen"
   },
 
   //
-  // CODE NAVIGATION AND EDITING
+  // WINDOW RESIZING (LazyVim: <C-Up/Down/Left/Right>)
   //
   {
-    // "space f": Formats the entire document
-    "key": "space f",
-    "command": "editor.action.formatDocument",
+    "key": "ctrl+up",
+    "command": "workbench.action.increaseViewHeight"
+  },
+  {
+    "key": "ctrl+down",
+    "command": "workbench.action.decreaseViewHeight"
+  },
+  {
+    "key": "ctrl+left",
+    "command": "workbench.action.decreaseViewWidth"
+  },
+  {
+    "key": "ctrl+right",
+    "command": "workbench.action.increaseViewWidth"
+  },
+
+  //
+  // BUFFER NAVIGATION (LazyVim: <S-h>, <S-l>)
+  //
+  {
+    "key": "shift+h",
+    "command": "workbench.action.previousEditor",
+    "when": "vim.active && vim.mode != 'Insert'"
+  },
+  {
+    "key": "shift+l",
+    "command": "workbench.action.nextEditor",
+    "when": "vim.active && vim.mode != 'Insert'"
+  },
+
+  //
+  // MOVE LINES (LazyVim: <A-j>, <A-k>)
+  //
+  {
+    "key": "alt+j",
+    "command": "editor.action.moveLinesDownAction",
     "when": "editorTextFocus && !editorReadonly"
   },
   {
-    // "ctrl+]": Go to definition when hovering over a symbol
-    "key": "ctrl+]",
-    "command": "editor.action.revealDefinition",
-    "when": "editorHasDefinitionProvider && editorTextFocus"
-  },
-  {
-    // "ctrl+o": Go back to previous location after jumping to definition
-    "key": "ctrl+o",
-    "command": "workbench.action.navigateBack"
+    "key": "alt+k",
+    "command": "editor.action.moveLinesUpAction",
+    "when": "editorTextFocus && !editorReadonly"
   },
 
   //
-  // SUGGESTIONS AND AUTOCOMPLETION SHORTCUTS
+  // SAVE FILE (LazyVim: <C-s>)
   //
   {
-    // "ctrl+j": Selects the next suggestion in the suggestions widget when it's visible
+    "key": "ctrl+s",
+    "command": "workbench.action.files.save",
+    "when": "editorTextFocus"
+  },
+
+  //
+  // SUGGESTIONS AND AUTOCOMPLETION
+  //
+  {
     "key": "ctrl+j",
     "command": "selectNextSuggestion",
     "when": "suggestWidgetVisible"
   },
   {
-    // "ctrl+k": Selects the previous suggestion in the suggestions widget when it's visible
     "key": "ctrl+k",
     "command": "selectPrevSuggestion",
     "when": "suggestWidgetVisible"
   },
   {
-    // "ctrl+j": Selects the next item in the Quick Open dialog when it's open
     "key": "ctrl+j",
     "command": "workbench.action.quickOpenSelectNext",
     "when": "inQuickOpen"
   },
   {
-    // "ctrl+k": Selects the previous item in the Quick Open dialog when it's open
     "key": "ctrl+k",
     "command": "workbench.action.quickOpenSelectPrevious",
     "when": "inQuickOpen"
   },
 
   //
-  // SEARCH AND NAVIGATION
+  // DIAGNOSTICS NAVIGATION (LazyVim: [d, ]d, [e, ]e)
   //
   {
-    // "space /": Opens find in files with current word
-    "key": "space /",
-    "command": "workbench.action.findInFiles",
-    "when": "editorFocus"
-  },
-  {
-    // "F4": Goes to next search result
-    "key": "F4",
-    "command": "editor.action.nextMatchFindAction",
-    "when": "editorFocus"
-  },
-  {
-    // "shift+F4": Goes to previous search result
-    "key": "shift+F4",
-    "command": "editor.action.previousMatchFindAction",
-    "when": "editorFocus"
-  },
-
-  //
-  // PROBLEM NAVIGATION
-  //
-  {
-    // "F8": Goes to next problem (error, warning) in the editor
-    "key": "F8",
-    "command": "editor.action.marker.nextInFiles",
-    "when": "editorFocus"
-  },
-  {
-    // "shift+F8": Goes to previous problem in the editor
-    "key": "shift+F8",
+    "key": "shift+oem_4 d",
     "command": "editor.action.marker.prevInFiles",
-    "when": "editorFocus"
+    "when": "editorTextFocus && vim.active && vim.mode == 'Normal'"
+  },
+  {
+    "key": "shift+oem_6 d",
+    "command": "editor.action.marker.nextInFiles",
+    "when": "editorTextFocus && vim.active && vim.mode == 'Normal'"
+  },
+  {
+    "key": "shift+oem_4 e",
+    "command": "editor.action.marker.prev",
+    "when": "editorTextFocus && vim.active && vim.mode == 'Normal'"
+  },
+  {
+    "key": "shift+oem_6 e",
+    "command": "editor.action.marker.next",
+    "when": "editorTextFocus && vim.active && vim.mode == 'Normal'"
   },
 
   //
-  // FILE EXPLORER SHORTCUTS
+  // QUICKFIX NAVIGATION (LazyVim: [q, ]q)
   //
   {
-    // "space e": Focuses on File Explorer when text editor is focused
-    "key": "space e",
-    "command": "workbench.files.action.focusFilesExplorer",
+    "key": "shift+oem_4 q",
+    "command": "search.action.focusPreviousSearchResult",
+    "when": "hasSearchResult && vim.active && vim.mode == 'Normal'"
+  },
+  {
+    "key": "shift+oem_6 q",
+    "command": "search.action.focusNextSearchResult",
+    "when": "hasSearchResult && vim.active && vim.mode == 'Normal'"
+  },
+
+  //
+  // BUFFER NAVIGATION (LazyVim: [b, ]b)
+  //
+  {
+    "key": "shift+oem_4 b",
+    "command": "workbench.action.previousEditor",
     "when": "editorTextFocus"
   },
   {
-    // "space e": Focuses back on active editor group when File Explorer is focused
-    "key": "space e",
-    "command": "workbench.action.focusActiveEditorGroup",
-    "when": "explorerViewletVisible && filesExplorerFocus"
+    "key": "shift+oem_6 b",
+    "command": "workbench.action.nextEditor",
+    "when": "editorTextFocus"
   },
+
+  //
+  // FILE EXPLORER NAVIGATION (LazyVim: <C-h/j/k/l>)
+  //
   {
-    // "ctrl+shift+1": Opens selected file in the first (left) editor group from File Explorer
-    "key": "ctrl+shift+1",
-    "command": "explorer.openToSide",
-    "args": { "group": 0 },
+    "key": "ctrl+h",
+    "command": "list.collapse",
     "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
   },
   {
-    // "ctrl+shift+2": Opens selected file in the second (right) editor group from File Explorer
-    "key": "ctrl+shift+2",
-    "command": "explorer.openToSide",
-    "args": { "group": 1 },
+    "key": "ctrl+l",
+    "command": "list.expand",
+    "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "list.focusUp",
+    "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "list.focusDown",
     "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
   },
 
   //
-  // FILE EXPLORER NAVIGATION SHORTCUTS
+  // TERMINAL (LazyVim: <C-/>)
   //
-  // {
-  //   // "ctrl+h": Collapses the selected folder in File Explorer when list is focused and not in input mode
-  //   "key": "ctrl+h",
-  //   "command": "list.collapse",
-  //   "when": "listFocus && !inputFocus"
-  // },
-  // {
-  //   // "ctrl+l": Expands the selected folder in File Explorer when list is focused and not in input mode
-  //   "key": "ctrl+l",
-  //   "command": "list.expand",
-  //   "when": "listFocus && !inputFocus"
-  // },
-  // {
-  //   // "ctrl+k": Moves selection up in File Explorer when list is focused and not in input mode
-  //   "key": "ctrl+k",
-  //   "command": "list.focusUp",
-  //   "when": "listFocus && !inputFocus"
-  // },
-  // {
-  //   // "ctrl+j": Moves selection down in File Explorer when list is focused and not in input mode
-  //   "key": "ctrl+j",
-  //   "command": "list.focusDown",
-  //   "when": "listFocus && !inputFocus"
-  // },
   {
-    // "ctrl+enter": Initiates file rename when File Explorer is focused
-    "key": "ctrl+enter",
-    "command": "renameFile",
-    "when": "explorerViewletVisible && filesExplorerFocus"
-  },
-  {
-    // Disables the default "renameFile" command on enter key when File Explorer is focused
-    "key": "enter",
-    "command": "-renameFile",
-    "when": "explorerViewletVisible && filesExplorerFocus"
-  },
-  {
-    // "enter": Selects/opens the focused item in any list when not in input mode
-    "key": "enter",
-    "command": "list.select",
-    "when": "listFocus && !inputFocus"
+    "key": "ctrl+oem_2",
+    "command": "workbench.action.terminal.toggleTerminal"
   },
 
   //
-  // SPLIT MANAGEMENT
+  // FOCUS EDITOR GROUPS (LazyVim: <C-1>, <C-2>, <C-3>)
   //
   {
-    // "alt+h": Decreases the width of the current editor group
-    "key": "alt+h",
-    "command": "workbench.action.decreaseViewWidth"
-  },
-  {
-    // "alt+l": Increases the width of the current editor group
-    "key": "alt+l",
-    "command": "workbench.action.increaseViewWidth"
-  },
-  {
-    // "ctrl+w m": Toggles maximizing the current editor group
-    "key": "ctrl+w m",
-    "command": "workbench.action.toggleMaximizeEditorGroup"
-  },
-
-  //
-  // TAB MANAGEMENT
-  //
-  {
-    // "alt+[": Goes to previous editor in group
-    "key": "alt+[",
-    "command": "workbench.action.previousEditor"
-  },
-  {
-    // "alt+]": Goes to next editor in group
-    "key": "alt+]",
-    "command": "workbench.action.nextEditor"
-  },
-
-  //
-  // WORKSPACE MANAGEMENT
-  //
-  {
-    // "ctrl+shift+w": Closes current workspace
-    "key": "ctrl+shift+w",
-    "command": "workbench.action.closeFolder",
-    "when": "emptyWorkspaceSupport"
-  },
-  {
-    // "ctrl+k p": Copies the path of the active file
-    "key": "ctrl+k p",
-    "command": "workbench.action.files.copyPathOfActiveFile"
-  },
-
-  //
-  // TERMINAL SHORTCUTS
-  //
-  {
-    // "ctrl+;": Focuses the terminal when it's not currently focused
-    "key": "ctrl+;",
-    "command": "workbench.action.terminal.focus"
-  },
-  {
-    // "ctrl+;": Focuses back to the active editor group when terminal is focused
-    "key": "ctrl+;",
-    "command": "workbench.action.focusActiveEditorGroup",
-    "when": "terminalFocus"
-  },
-  {
-    // "ctrl+shift+;": Toggles terminal panel maximization and focuses on terminal
-    "key": "ctrl+shift+;",
-    "command": "multiCommand.toggleMaximizedPanelAndFocusTerminal",
-    "when": "!terminalFocus || terminalFocus"
-  },
-
-  //
-  // QUICK NAVIGATION SHORTCUTS
-  //
-  {
-    // "ctrl+1": Quickly focuses the first editor group (leftmost editor)
     "key": "ctrl+1",
     "command": "workbench.action.focusFirstEditorGroup"
   },
   {
-    // "ctrl+2": Quickly focuses the second editor group (right editor)
     "key": "ctrl+2",
     "command": "workbench.action.focusSecondEditorGroup"
   },
-
-  //
-  // PANEL NAVIGATION SHORTCUTS
-  //
   {
-    // "ctrl+j": Navigate to next panel item when panel is focused
-    "key": "ctrl+j",
-    "command": "list.focusDown",
-    "when": "panelFocus"
-  },
-  {
-    // "ctrl+k": Navigate to previous panel item when panel is focused
-    "key": "ctrl+k",
-    "command": "list.focusUp",
-    "when": "panelFocus"
+    "key": "ctrl+3",
+    "command": "workbench.action.focusThirdEditorGroup"
   }
 ]
