@@ -153,6 +153,49 @@
   },
 
   // ┌────────────────────────────────────────────────────────────────────────────────────┐
+  // │ TERMINAL TOGGLE - Ctrl+/ (LazyVim: <C-/>)                                          │
+  // └────────────────────────────────────────────────────────────────────────────────────┘
+  //
+  // Toggle terminal panel visibility using Ctrl+/.
+  // - If terminal is hidden: opens and focuses it
+  // - If terminal is visible and focused: closes it
+  // - If terminal is visible but not focused: focuses it
+  //
+  // Note: oem_2 is the / (forward slash) key
+  //
+  {
+    "key": "ctrl+oem_2",
+    "command": "workbench.action.terminal.toggleTerminal"
+  },
+
+  // Alternative terminal toggle that focuses terminal if not focused
+  {
+    "key": "ctrl+oem_2",
+    "command": "workbench.action.terminal.focus",
+    "when": "!terminalFocus"
+  },
+
+  // ┌────────────────────────────────────────────────────────────────────────────────────┐
+  // │ TERMINAL NAVIGATION - Ctrl+; (bidirectional toggle)                                │
+  // └────────────────────────────────────────────────────────────────────────────────────┘
+  //
+  // Use Ctrl+; to jump between editor and terminal without closing it:
+  // - When in editor: jumps to terminal (opens if closed)
+  // - When in terminal: jumps back to editor
+  //
+  {
+    "key": "ctrl+;",
+    "command": "workbench.action.terminal.focus",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "ctrl+;",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "terminalFocus"
+  }
+
+  // #TODO: EXPERIMENTAL - TO TEST AND VALIDATE!
+  // ┌────────────────────────────────────────────────────────────────────────────────────┐
   // │ SUGGESTION WIDGET NAVIGATION - Ctrl+j/k when autocomplete is visible               │
   // └────────────────────────────────────────────────────────────────────────────────────┘
   //
@@ -375,30 +418,7 @@
     "when": "panelFocus && !terminalFocus"
   },
 
-  // ┌────────────────────────────────────────────────────────────────────────────────────┐
-  // │ TERMINAL TOGGLE - Ctrl+/ (LazyVim: <C-/>)                                          │
-  // └────────────────────────────────────────────────────────────────────────────────────┘
-  //
-  // Toggle terminal panel visibility using Ctrl+/.
-  // - If terminal is hidden: opens and focuses it
-  // - If terminal is visible and focused: closes it
-  // - If terminal is visible but not focused: focuses it
-  //
-  // Note: oem_2 is the / (forward slash) key
-  //
-  {
-    "key": "ctrl+oem_2",
-    "command": "workbench.action.terminal.toggleTerminal"
-  },
-
-  // Alternative terminal toggle that focuses terminal if not focused
-  {
-    "key": "ctrl+oem_2",
-    "command": "workbench.action.terminal.focus",
-    "when": "!terminalFocus"
-  },
-
-  // ┌────────────────────────────────────────────────────────────────────────────────────┐
+// ┌────────────────────────────────────────────────────────────────────────────────────┐
   // │ FOCUS EDITOR GROUPS - Ctrl+1/2/3                                                   │
   // └────────────────────────────────────────────────────────────────────────────────────┘
   //
