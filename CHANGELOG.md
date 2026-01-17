@@ -2,21 +2,44 @@
 
 All notable changes to this configuration will be documented in this file.
 
-## [4.0.0] - 2026-01-16
-
-### BREAKING CHANGE
-- The multi-editor support has been removed in favor of a single, unified configuration. The `config/vscode`, `config/cursor`, and `config/antigravity` directories have been removed, and the configuration files now reside in the root `config` directory.
+## [4.0.0] - 2026-01-17
 
 ### Added
-- `EDITOR_COMPARISON.md` has been added to provide a detailed analysis of the compatibility and potential issues with each editor.
+- Comprehensive documentation overhaul:
+  - `SETUP.md` - Detailed installation and configuration guide
+  - `TIPS_AND_TRICKS.md` - Advanced usage patterns and workflows
+  - `TROUBLESHOOTING.md` - Common issues and solutions
+  - `REFERENCES.md` - Additional resources and learning materials
+- Significantly expanded `EDITOR_COMPARISON.md` with detailed compatibility analysis
+- Enhanced `KEYBINDINGS.md` with more comprehensive key mapping documentation
 
 ### Changed
-- Keybindings have been updated to better align with LazyVim conventions, using `<space>` as the primary leader key.
+- Major improvements to configuration files with better organization and documentation
+- Updated `README.md` with improved structure and clarity
+- Refined keybindings for better usability and consistency
+
+## [3.2.0] - 2026-01-16
+
+### BREAKING CHANGE
+- Multi-editor support has been removed in favor of a single, unified configuration
+- The `config/vscode`, `config/cursor`, and `config/antigravity` directories have been removed
+- Configuration files now reside in the root `config` directory
+
+### Added
+- `EDITOR_COMPARISON.md` to provide analysis of editor compatibility and potential issues
+
+### Changed
+- Keybindings updated to align with LazyVim conventions, using `<space>` as the primary leader key:
   - **File Explorer Toggle:** `<space>e` (was `ctrl+shift+e`)
   - **Workspace Search:** `<space>/` (was `ctrl+shift+f`)
   - **Format Document:** `<space>f` (was `ctrl+space f`)
   - **Navigate Back:** `ctrl+o` (was `ctrl+t`)
-- The `README.md` file has been updated to reflect the simplified file structure.
+- Consolidated configuration from multi-editor structure back to unified setup
+- Updated documentation to reflect simplified structure
+
+### Removed
+- `CLAUDE.md` (content integrated into other documentation)
+- Multi-editor scaffolding directories
 
 ## [3.1.0] - 2026-01-16
 
@@ -47,27 +70,16 @@ All notable changes to this configuration will be documented in this file.
 - KEYBINDINGS.md now notes it is VS Code-specific
 - CLAUDE.md rewritten for multi-editor architecture
 
-## [2.0.0] - 2025-01-16
+## [2.0.0] - 2026-01-16
 
 ### Added
-- Quick reference cheatsheet (`KEYBINDINGS.md`)
-- Performance optimization via `extensions.experimental.affinity`
-- Tab navigation with `H`/`L` keys
-- Git operations: blame, stage, pull, push, history, diff (`<leader>g` prefix)
-- Workspace search: `<leader>sw`
-- Rename symbol: `<leader>rn`
-- New terminal: `<leader>tn`
+- `KEYBINDINGS.md` - Quick reference cheatsheet for all keybindings
+- `CLAUDE.md` - Documentation for working with Claude Code on this repository
 
 ### Changed
-- Reorganized `settings.json` with clear section headers
-- File operations moved to cleaner namespace:
-  - Save: `<leader>fs` (was `<leader>ww`)
-  - Close: `<leader>q` (was `<leader>wc`)
-- Updated `CLAUDE.md` with new architecture documentation
+- Minor updates to `CHANGELOG.md` formatting and organization
 
-### Removed
-- Experimental `#TODO` comments cleaned up
-- Redundant/conflicting keybindings removed
+**Note:** This release focused on documentation. All configuration features were part of v1.0.0.
 
 ## [1.0.0] - 2025-01-22
 
