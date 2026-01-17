@@ -2,7 +2,7 @@
 
 > Bring the power and efficiency of LazyVim to VS Code with 50+ carefully crafted keybindings.
 
-[![Version](https://img.shields.io/badge/version-4.0.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](#)
 ![GitHub stars](https://img.shields.io/github/stars/wojukasz/VimCode?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/wojukasz/VimCode?style=social)

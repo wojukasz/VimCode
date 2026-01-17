@@ -1,6 +1,6 @@
 {
   "name": "vimcode-config",
-  "version": "4.0.0",
+  "version": "2.0.0",
   "description": "LazyVim-inspired Vim configuration for VS Code with 50+ keybindings. Bring Neovim muscle memory to VS Code with full LSP, Git integration, and modern editor features.",
   "keywords": [
     "vim",
