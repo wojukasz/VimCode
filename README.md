@@ -4,8 +4,14 @@
 
 [![Version](https://img.shields.io/badge/version-4.0.0-blue.svg)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](#)
+![GitHub stars](https://img.shields.io/github/stars/wojukasz/VimCode?style=social)
+![GitHub forks](https://img.shields.io/github/forks/wojukasz/VimCode?style=social)
+![GitHub last commit](https://img.shields.io/github/last-commit/wojukasz/VimCode)
+![GitHub issues](https://img.shields.io/github/issues/wojukasz/VimCode)
 
-A comprehensive Vim configuration for VS Code that mirrors the LazyVim experience with `<space>` as the leader key. Get the same muscle memory between Neovim and VS Code, with full LSP integration, Git operations, and modern editor features.
+A comprehensive **Vim configuration for VS Code** that mirrors the LazyVim experience with `<space>` as the leader key. Perfect for developers who want **Neovim muscle memory in VS Code** with full LSP integration, Git operations, and modern editor features. Compatible with **VSCodeVim, Cursor, and Windsurf** editors.
+
+**Keywords:** vim config vscode, vscode vim keybindings, lazyvim vscode, neovim to vscode, vscodevim configuration, vim mode vscode, vscode vim settings
 
 ## Features
 
@@ -161,10 +167,18 @@ Found a bug or have a suggestion? Feel free to open an issue or submit a pull re
 
 Some keybindings are experimental and may require adjustments based on your workflow. Feel free to customize the configuration files to suit your needs.
 
+## Star History
+
+⭐ **Star this repo if you find it useful!** It helps others discover VimCode.
+
+## Discoverability
+
+Want to help spread the word? See [DISCOVERY.md](DISCOVERY.md) for ways to promote VimCode and make it easier for others to find this configuration.
+
 ## License
 
 MIT
 
 ---
 
-**Get Started:** [SETUP.md](SETUP.md) | **Quick Reference:** [KEYBINDINGS.md](KEYBINDINGS.md) | **Learn More:** [TIPS_AND_TRICKS.md](TIPS_AND_TRICKS.md)
+**Get Started:** [SETUP.md](SETUP.md) | **Quick Reference:** [KEYBINDINGS.md](KEYBINDINGS.md) | **Learn More:** [TIPS_AND_TRICKS.md](TIPS_AND_TRICKS.md) | **Promote:** [DISCOVERY.md](DISCOVERY.md)
