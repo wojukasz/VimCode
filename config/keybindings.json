@@ -1,27 +1,87 @@
 [
-  // Window navigation (Normal mode) - use Ctrl+h/j/k/l to move splits
+  // ╔══════════════════════════════════════════════════════════════════════════════════╗
+  // ║                   VSCODE VIM LAZYVIM KEYBINDINGS                                  ║
+  // ║                   Modifier Key Bindings (Ctrl, Alt, Shift)                        ║
+  // ╚══════════════════════════════════════════════════════════════════════════════════╝
+  //
+  // This file contains keybindings that use modifier keys (Ctrl, Alt, Shift) and special
+  // characters that need VSCode's key binding system (not Vim's).
+  //
+  // IMPORTANT: DO NOT put space-leader bindings here (<leader>...)
+  // Those belong in settings.json under vim.normalModeKeyBindingsNonRecursive
+  //
+  // FILE ORGANIZATION:
+  // - Window navigation (Ctrl+h/j/k/l)
+  // - Buffer navigation (Shift+h/l, [b, ]b)
+  // - Diagnostic navigation ([d, ]d, [e, ]e)
+  // - Quickfix navigation ([q, ]q)
+  // - Git hunk navigation ([h, ]h)
+  // - Suggestion/autocomplete navigation
+  // - File explorer navigation
+  // - Terminal toggle
+  // - Line movement (Alt+j/k)
+  //
+  // SPECIAL KEY CODES:
+  // - oem_4 = [ (left bracket)
+  // - oem_6 = ] (right bracket)
+  // - oem_2 = / (forward slash)
+  // - oem_1 = ; (semicolon)
+  //
+  // For keyboard layout independence, you can use scan codes instead:
+  // - [BracketLeft] instead of oem_4
+  // - [BracketRight] instead of oem_6
+  // - [Slash] instead of oem_2
+  //
+  // WHEN CLAUSES:
+  // The "when" field controls when a binding is active. Common contexts:
+  // - editorTextFocus: cursor is in an editor
+  // - vim.active: Vim extension is active
+  // - vim.mode: current Vim mode (Normal, Insert, Visual)
+  // - suggestWidgetVisible: autocomplete menu is open
+  // - inQuickOpen: Quick Open (Ctrl+P) is open
+  // - terminalFocus: terminal is focused
+  // - listFocus: a list (explorer, search) has focus
+  //
+  // ══════════════════════════════════════════════════════════════════════════════════════
+
+  // ┌────────────────────────────────────────────────────────────────────────────────────┐
+  // │ WINDOW NAVIGATION - Ctrl+h/j/k/l (LazyVim: <C-h/j/k/l>)                            │
+  // └────────────────────────────────────────────────────────────────────────────────────┘
+  //
+  // Navigate between editor splits using Vim-style hjkl keys with Ctrl modifier.
+  // These work in Normal mode and are disabled when:
+  // - Terminal is focused (so Ctrl+h/j/k/l work normally in terminal)
+  // - Suggestion widget is visible (so Ctrl+j/k navigate suggestions)
+  // - Quick Open is active (so Ctrl+j/k navigate file list)
+  //
   {
-    "key": "ctrl+h", 
-    "command": "workbench.action.navigateLeft",
+    "key": "ctrl+h",
+    "command": "workbench.action.focusLeftGroup",
+    "when": "!terminalFocus && vim.active && vim.mode != 'Insert'"
+  },
+  {
+    "key": "ctrl+l",
+    "command": "workbench.action.focusRightGroup",
     "when": "!terminalFocus && vim.active && vim.mode != 'Insert'"
   },
   {
     "key": "ctrl+j",
-    "command": "workbench.action.navigateDown",
+    "command": "workbench.action.focusBelowGroup",
     "when": "!terminalFocus && !suggestWidgetVisible && !inQuickOpen && vim.active && vim.mode != 'Insert'"
   },
   {
     "key": "ctrl+k",
-    "command": "workbench.action.navigateUp",
+    "command": "workbench.action.focusAboveGroup",
     "when": "!terminalFocus && !suggestWidgetVisible && !inQuickOpen && vim.active && vim.mode != 'Insert'"
   },
-  {
-    "key": "ctrl+l",
-    "command": "workbench.action.navigateRight",
-    "when": "!terminalFocus && vim.active && vim.mode != 'Insert'"
-  },
 
-  // Window resizing (Ctrl + Arrow keys)
+  // ┌────────────────────────────────────────────────────────────────────────────────────┐
+  // │ WINDOW RESIZING - Ctrl+Arrow Keys (LazyVim: <C-Up/Down/Left/Right>)                │
+  // └────────────────────────────────────────────────────────────────────────────────────┘
+  //
+  // Resize editor splits using Ctrl+Arrow keys. Only active in Normal mode to avoid
+  // interfering with text editing shortcuts (Ctrl+Left/Right normally jump words).
+  //
   {
     "key": "ctrl+up",
     "command": "workbench.action.increaseViewHeight",
@@ -43,7 +103,14 @@
     "when": "vim.active && vim.mode == 'Normal'"
   },
 
-  // Buffer navigation (previous/next editor tab) - Shift+h / Shift+l in Normal mode
+  // ┌────────────────────────────────────────────────────────────────────────────────────┐
+  // │ BUFFER NAVIGATION - Shift+h/l (LazyVim: <S-h>, <S-l>)                              │
+  // └────────────────────────────────────────────────────────────────────────────────────┘
+  //
+  // Switch between open editor tabs using Shift+H (previous) and Shift+L (next).
+  // Only active in Normal/Visual modes to avoid conflicts with text selection.
+  // Alternative: Use [b and ]b (defined below) for the same functionality.
+  //
   {
     "key": "shift+h",
     "command": "workbench.action.previousEditor",
@@ -55,7 +122,13 @@
     "when": "vim.active && vim.mode != 'Insert'"
   },
 
-  // Move lines up/down (Alt+j/k)
+  // ┌────────────────────────────────────────────────────────────────────────────────────┐
+  // │ LINE MOVEMENT - Alt+j/k (LazyVim: <A-j>, <A-k>)                                    │
+  // └────────────────────────────────────────────────────────────────────────────────────┘
+  //
+  // Move lines up/down using Alt+J/K. Works in Normal and Visual modes.
+  // In Visual mode, moves the entire selection.
+  //
   {
     "key": "alt+j",
     "command": "editor.action.moveLinesDownAction",
@@ -67,14 +140,25 @@
     "when": "editorTextFocus && !editorReadonly"
   },
 
-  // Save file (Ctrl+s)
+  // ┌────────────────────────────────────────────────────────────────────────────────────┐
+  // │ SAVE FILE - Ctrl+s (LazyVim: <C-s>)                                                │
+  // └────────────────────────────────────────────────────────────────────────────────────┘
+  //
+  // Standard save shortcut. Works in all modes.
+  //
   {
     "key": "ctrl+s",
     "command": "workbench.action.files.save",
     "when": "editorTextFocus"
   },
 
-  // Suggestion/Quick Open navigation with Ctrl+j/k
+  // ┌────────────────────────────────────────────────────────────────────────────────────┐
+  // │ SUGGESTION WIDGET NAVIGATION - Ctrl+j/k when autocomplete is visible               │
+  // └────────────────────────────────────────────────────────────────────────────────────┘
+  //
+  // Navigate autocomplete suggestions using Vim-style j/k keys.
+  // These override the window navigation when suggestion widget is visible.
+  //
   {
     "key": "ctrl+j",
     "command": "selectNextSuggestion",
@@ -86,6 +170,23 @@
     "when": "suggestWidgetVisible"
   },
   {
+    "key": "ctrl+d",
+    "command": "selectNextPageSuggestion",
+    "when": "suggestWidgetVisible"
+  },
+  {
+    "key": "ctrl+u",
+    "command": "selectPrevPageSuggestion",
+    "when": "suggestWidgetVisible"
+  },
+
+  // ┌────────────────────────────────────────────────────────────────────────────────────┐
+  // │ QUICK OPEN NAVIGATION - Ctrl+j/k when file picker is open                          │
+  // └────────────────────────────────────────────────────────────────────────────────────┘
+  //
+  // Navigate Quick Open (Ctrl+P) file list using Vim-style j/k keys.
+  //
+  {
     "key": "ctrl+j",
     "command": "workbench.action.quickOpenSelectNext",
     "when": "inQuickOpen"
@@ -96,63 +197,114 @@
     "when": "inQuickOpen"
   },
 
-  // Diagnostics navigation (go to next/prev problem) - LazyVim [d ]d (all diagnostics) and [e ]e (errors)
+  // ┌────────────────────────────────────────────────────────────────────────────────────┐
+  // │ DIAGNOSTICS NAVIGATION - [d, ]d (all files) and [e, ]e (current file)              │
+  // └────────────────────────────────────────────────────────────────────────────────────┘
+  //
+  // LazyVim diagnostic navigation using bracket prefix:
+  // - [d / ]d = previous/next diagnostic across all files
+  // - [e / ]e = previous/next diagnostic in current file only
+  //
+  // SPECIAL KEY CODES:
+  // - oem_4 = [ (left bracket)
+  // - oem_6 = ] (right bracket)
+  //
+  // On non-US keyboards, you may need to use scan codes instead:
+  // - "key": "[BracketLeft] d" instead of "key": "oem_4 d"
+  //
+  // Only active in Normal mode to prevent conflicts when typing brackets in Insert mode.
+  //
   {
-    "key": "shift+oem_4 d",    // [d = previous diagnostic (in all files)
+    "key": "oem_4 d",                                  // [d = previous diagnostic (all files)
     "command": "editor.action.marker.prevInFiles",
-    "when": "editorFocus && vim.active && vim.mode == 'Normal'"
+    "when": "editorTextFocus && vim.active && vim.mode == 'Normal'"
   },
   {
-    "key": "shift+oem_6 d",    // ]d = next diagnostic (in all files)
+    "key": "oem_6 d",                                  // ]d = next diagnostic (all files)
     "command": "editor.action.marker.nextInFiles",
-    "when": "editorFocus && vim.active && vim.mode == 'Normal'"
+    "when": "editorTextFocus && vim.active && vim.mode == 'Normal'"
   },
   {
-    "key": "shift+oem_4 e",    // [e = previous problem (current file)
+    "key": "oem_4 e",                                  // [e = previous diagnostic (current file)
     "command": "editor.action.marker.prev",
-    "when": "editorFocus && vim.active && vim.mode == 'Normal'"
+    "when": "editorTextFocus && vim.active && vim.mode == 'Normal'"
   },
   {
-    "key": "shift+oem_6 e",    // ]e = next problem (current file)
+    "key": "oem_6 e",                                  // ]e = next diagnostic (current file)
     "command": "editor.action.marker.next",
-    "when": "editorFocus && vim.active && vim.mode == 'Normal'"
+    "when": "editorTextFocus && vim.active && vim.mode == 'Normal'"
   },
 
-  // Quickfix list navigation (search results navigation) - [q and ]q 
+  // ┌────────────────────────────────────────────────────────────────────────────────────┐
+  // │ QUICKFIX/SEARCH RESULTS NAVIGATION - [q, ]q                                        │
+  // └────────────────────────────────────────────────────────────────────────────────────┘
+  //
+  // Navigate search results using bracket prefix.
+  // Only active when search results exist and in Normal mode.
+  //
   {
-    "key": "shift+oem_4 q",    // [q = previous search result
+    "key": "oem_4 q",                                  // [q = previous search result
     "command": "search.action.focusPreviousSearchResult",
     "when": "hasSearchResult && vim.active && vim.mode == 'Normal'"
   },
   {
-    "key": "shift+oem_6 q",    // ]q = next search result
+    "key": "oem_6 q",                                  // ]q = next search result
     "command": "search.action.focusNextSearchResult",
     "when": "hasSearchResult && vim.active && vim.mode == 'Normal'"
   },
 
-  // Alternate buffer navigation ([b and ]b for prev/next buffer) 
+  // ┌────────────────────────────────────────────────────────────────────────────────────┐
+  // │ BUFFER NAVIGATION - [b, ]b (alternate method)                                      │
+  // └────────────────────────────────────────────────────────────────────────────────────┘
+  //
+  // Alternative buffer navigation using bracket prefix (same as Shift+H/L).
+  // Some users prefer this LazyVim pattern for consistency with other bracket navigation.
+  //
   {
-    "key": "shift+oem_4 b",    // [b = previous editor
+    "key": "oem_4 b",                                  // [b = previous buffer/editor
     "command": "workbench.action.previousEditor",
-    "when": "editorFocus && vim.active && vim.mode == 'Normal'"
+    "when": "editorTextFocus && vim.active && vim.mode == 'Normal'"
   },
   {
-    "key": "shift+oem_6 b",    // ]b = next editor
+    "key": "oem_6 b",                                  // ]b = next buffer/editor
     "command": "workbench.action.nextEditor",
-    "when": "editorFocus && vim.active && vim.mode == 'Normal'"
+    "when": "editorTextFocus && vim.active && vim.mode == 'Normal'"
   },
 
-  // (LSP goto keys like gd, gD, etc., are handled in settings.json via Vim extension)
-
-  // File explorer navigation with vim keys (when explorer focused, use Ctrl+h/j/k/l to move)
+  // ┌────────────────────────────────────────────────────────────────────────────────────┐
+  // │ GIT HUNK NAVIGATION - [h, ]h (requires Git or GitLens)                             │
+  // └────────────────────────────────────────────────────────────────────────────────────┘
+  //
+  // Navigate between git changes/hunks in the current file.
+  // Works with native VSCode git or GitLens extension.
+  //
   {
-    "key": "ctrl+h",
-    "command": "list.collapse",
-    "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
+    "key": "oem_4 h",                                  // [h = previous git change
+    "command": "workbench.action.editor.previousChange",
+    "when": "editorTextFocus && vim.active && vim.mode == 'Normal'"
   },
   {
-    "key": "ctrl+l",
-    "command": "list.expand",
+    "key": "oem_6 h",                                  // ]h = next git change
+    "command": "workbench.action.editor.nextChange",
+    "when": "editorTextFocus && vim.active && vim.mode == 'Normal'"
+  },
+
+  // ┌────────────────────────────────────────────────────────────────────────────────────┐
+  // │ FILE EXPLORER NAVIGATION - Ctrl+h/j/k/l when explorer is focused                   │
+  // └────────────────────────────────────────────────────────────────────────────────────┘
+  //
+  // Navigate file explorer using Vim keys when it has focus:
+  // - j/k = down/up
+  // - h = collapse folder or go to parent
+  // - l = expand folder or open file
+  //
+  // IMPORTANT: These must come AFTER the window navigation bindings above.
+  // VSCode processes keybindings from bottom to top, so more specific contexts
+  // (explorerViewletVisible) override more general ones (!terminalFocus).
+  //
+  {
+    "key": "ctrl+j",
+    "command": "list.focusDown",
     "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
   },
   {
@@ -161,23 +313,98 @@
     "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
   },
   {
-    "key": "ctrl+j",
-    "command": "list.focusDown",
+    "key": "ctrl+h",
+    "command": "list.collapse",
+    "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
+  },
+  {
+    "key": "ctrl+l",
+    "command": "list.select",
     "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
   },
 
-  // Terminal toggling (Ctrl+/)
+  // Alternative: Use j/k without Ctrl for explorer navigation (more Vim-like)
+  // Uncomment these if you prefer plain j/k in the explorer:
+  // {
+  //   "key": "j",
+  //   "command": "list.focusDown",
+  //   "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
+  // },
+  // {
+  //   "key": "k",
+  //   "command": "list.focusUp",
+  //   "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
+  // },
+  // {
+  //   "key": "h",
+  //   "command": "list.collapse",
+  //   "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
+  // },
+  // {
+  //   "key": "l",
+  //   "command": "list.select",
+  //   "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
+  // },
+
+  // ┌────────────────────────────────────────────────────────────────────────────────────┐
+  // │ SEARCH/PROBLEMS PANEL NAVIGATION - j/k when panel has focus                        │
+  // └────────────────────────────────────────────────────────────────────────────────────┘
+  //
+  // Navigate lists in search results and problems panel using j/k.
+  //
+  {
+    "key": "j",
+    "command": "list.focusDown",
+    "when": "listFocus && !inputFocus"
+  },
+  {
+    "key": "k",
+    "command": "list.focusUp",
+    "when": "listFocus && !inputFocus"
+  },
+
+  // Navigate in panels with Ctrl+j/k as alternative
+  {
+    "key": "ctrl+j",
+    "command": "list.focusDown",
+    "when": "panelFocus && !terminalFocus"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "list.focusUp",
+    "when": "panelFocus && !terminalFocus"
+  },
+
+  // ┌────────────────────────────────────────────────────────────────────────────────────┐
+  // │ TERMINAL TOGGLE - Ctrl+/ (LazyVim: <C-/>)                                          │
+  // └────────────────────────────────────────────────────────────────────────────────────┘
+  //
+  // Toggle terminal panel visibility using Ctrl+/.
+  // - If terminal is hidden: opens and focuses it
+  // - If terminal is visible and focused: closes it
+  // - If terminal is visible but not focused: focuses it
+  //
+  // Note: oem_2 is the / (forward slash) key
+  //
   {
     "key": "ctrl+oem_2",
     "command": "workbench.action.terminal.toggleTerminal"
   },
+
+  // Alternative terminal toggle that focuses terminal if not focused
   {
     "key": "ctrl+oem_2",
     "command": "workbench.action.terminal.focus",
     "when": "!terminalFocus"
   },
 
-  // Focus editor groups (Ctrl+1/2/3 for group 1/2/3)
+  // ┌────────────────────────────────────────────────────────────────────────────────────┐
+  // │ FOCUS EDITOR GROUPS - Ctrl+1/2/3                                                   │
+  // └────────────────────────────────────────────────────────────────────────────────────┘
+  //
+  // Quickly jump to specific editor groups/splits.
+  // Useful when you have multiple splits and want to jump directly to one.
+  //
   {
     "key": "ctrl+1",
     "command": "workbench.action.focusFirstEditorGroup"
@@ -189,5 +416,61 @@
   {
     "key": "ctrl+3",
     "command": "workbench.action.focusThirdEditorGroup"
+  },
+  {
+    "key": "ctrl+4",
+    "command": "workbench.action.focusFourthEditorGroup"
+  },
+  {
+    "key": "ctrl+5",
+    "command": "workbench.action.focusFifthEditorGroup"
   }
+
+  // ══════════════════════════════════════════════════════════════════════════════════════
+  // TROUBLESHOOTING NOTES
+  // ══════════════════════════════════════════════════════════════════════════════════════
+  //
+  // BRACKET KEYS NOT WORKING ([d, ]d, etc.):
+  //
+  // 1. UK/Non-US Keyboard Layouts:
+  //    If you're on a non-US keyboard, the oem_4 and oem_6 codes might not work.
+  //    Replace them with scan codes:
+  //    - "key": "[BracketLeft] d" instead of "key": "oem_4 d"
+  //    - "key": "[BracketRight] d" instead of "key": "oem_6 d"
+  //
+  // 2. MacOS:
+  //    Brackets might require different key codes. Try:
+  //    - "key": "[BracketLeft] d"
+  //    - "key": "[BracketRight] d"
+  //
+  // 3. Testing bracket keys:
+  //    Open VSCode Keyboard Shortcuts UI (Ctrl+K Ctrl+S / Cmd+K Cmd+S)
+  //    Try to record your bracket key to see what VSCode detects it as
+  //
+  // CONFLICTS WITH OTHER EXTENSIONS:
+  //
+  // If keybindings don't work, check for conflicts:
+  // 1. Open Keyboard Shortcuts UI (Ctrl+K Ctrl+S / Cmd+K Cmd+S)
+  // 2. Search for the key combination (e.g., "ctrl+h")
+  // 3. Look for duplicate bindings from other extensions
+  // 4. Either disable the conflicting extension or modify your binding
+  //
+  // WHEN CLAUSES NOT WORKING:
+  //
+  // To debug when clauses:
+  // 1. Open Command Palette (Ctrl+Shift+P / Cmd+Shift+P)
+  // 2. Run "Developer: Inspect Context Keys"
+  // 3. This shows all active context keys for debugging
+  //
+  // VALIDATION CHECKLIST:
+  // □ Ctrl+h/j/k/l navigates between splits
+  // □ Shift+h/l switches buffers
+  // □ [d / ]d navigates diagnostics
+  // □ [b / ]b switches buffers
+  // □ Ctrl+j/k navigates suggestions when autocomplete is open
+  // □ Ctrl+j/k navigates file list when Quick Open is active
+  // □ Alt+j/k moves lines up/down
+  // □ Ctrl+/ toggles terminal
+  //
+  // ══════════════════════════════════════════════════════════════════════════════════════
 ]
