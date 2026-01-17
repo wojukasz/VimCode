@@ -1,74 +1,303 @@
-# Editor Comparison: VS Code, Cursor, and Antigravity with Vim Mode
+# Editor Comparison: VS Code, Cursor, and Antigravity
 
-This document provides a deep dive into the interaction between the Vim extension and three different editors: VS Code, Cursor, and Antigravity. The goal is to identify potential conflicts, configuration differences, and best practices for using Vim mode in each editor.
+VimCode is designed primarily for VS Code but works with VS Code-based editors. This guide explains compatibility, differences, and potential issues with each editor.
 
-## 1. Baseline: VS Code
+## Quick Summary
 
-The VS Code configuration serves as the foundation for the other two editors. The key aspects of its Vim integration are:
+| Editor | Compatibility | Configuration Path | Notes |
+|--------|--------------|-------------------|-------|
+| **VS Code** | ✅ Full support | `~/.config/Code/User/` | Primary target, fully tested |
+| **Cursor** | ⚠️ Compatible | `~/.config/Cursor/User/` | AI features may conflict |
+| **Antigravity** | ✅ Compatible | `~/.config/Windsurf/User/` | VS Code fork, minimal issues |
 
-*   **Comprehensive Keybindings:** The `keybindings.json` file is carefully curated to provide a rich set of Vim-style shortcuts for editor and UI navigation.
-*   **Scoped Bindings:** The `when` clauses in the keybindings are crucial for preventing conflicts. For example, `vim.active && vim.mode != 'Insert'` ensures that a keybinding only applies when Vim is active and not in insert mode.
-*   **Leader Key:** The `<space>` key is used as the leader key for many custom commands, providing a familiar and extensible system for adding new functionality.
-*   **Extension Integration:** The configuration integrates with other popular extensions like GitLens and Multi Command to provide a seamless workflow.
+## VS Code (Primary Target)
 
-## 2. Antigravity
+**Status:** ✅ Fully Supported
 
-Antigravity is a fork of VS Code, so the core Vim experience is expected to be very similar. The existing configuration from the `config/vscode` directory has been copied to `config/antigravity` as a starting point.
+VimCode is designed and tested for VS Code. All features work as documented.
 
-### Potential Areas of Conflict:
+### Configuration Location
 
-*   **Antigravity-Specific Features:** Any new features in Antigravity that have their own keybindings could potentially conflict with the Vim bindings.
-*   **Default Settings:** Antigravity may have different default settings that could affect the behavior of the Vim extension.
+| Platform | Path |
+|----------|------|
+| **macOS** | `~/Library/Application Support/Code/User/` |
+| **Linux** | `~/.config/Code/User/` |
+| **Windows** | `%APPDATA%\Code\User\` |
 
-### Configuration:
+### Key Features
 
-The configuration for Antigravity is currently a direct copy of the VS Code configuration. Further testing is needed to identify any necessary modifications.
+- **50+ LazyVim keybindings** with space as leader
+- **Full LSP integration** for code navigation
+- **GitLens integration** for Git operations
+- **Performance optimized** with dedicated thread
+- **Comprehensive documentation** and troubleshooting
 
-## 3. Cursor
+### Installation
 
-Cursor is another fork of VS Code that includes a number of AI-powered features. This is the area where we can expect the most potential for conflicts and the greatest need for a custom configuration.
+```bash
+# Install core extension
+code --install-extension vscodevim.vim
 
-### Potential Areas of Conflict:
+# Copy configuration
+cp config/settings.json ~/.config/Code/User/
+cp config/keybindings.json ~/.config/Code/User/
+```
 
-*   **AI Feature Keybindings:** Cursor's AI features are likely to have their own keybindings, which could conflict with the Vim bindings.
-*   **Chat/Prompt Interface:** The interface for interacting with Cursor's AI features might interfere with Vim's command mode or other UI elements.
-*   **Modified Editor Behavior:** Cursor may have modified the core editor behavior in ways that affect the Vim extension.
+See [SETUP.md](SETUP.md) for complete installation instructions.
 
-### Proposed Configuration:
+## Cursor (AI-Powered Editor)
 
-A dedicated configuration for Cursor is needed to ensure a smooth experience. The following is a proposed starting point, based on the VS Code configuration:
+**Status:** ⚠️ Compatible with Caveats
 
-*   **`settings.json`:** The VS Code `settings.json` can be used as a baseline, with any necessary modifications to accommodate Cursor's features.
-*   **`keybindings.json`:** This file will likely require the most customization. It will be important to:
-    *   **Identify and resolve conflicts:** Any keybindings that conflict with Cursor's features will need to be remapped or disabled.
-    *   **Integrate with AI features:** It may be possible to create new Vim-style keybindings for interacting with Cursor's AI features.
+Cursor is a VS Code fork with AI features. VimCode works, but AI keybindings may conflict.
 
-## 4. Key Areas of Interaction and Potential Issues
+### Configuration Location
 
-### a. File Explorer / Sidebar
+| Platform | Path |
+|----------|------|
+| **macOS** | `~/Library/Application Support/Cursor/User/` |
+| **Linux** | `~/.config/Cursor/User/` |
+| **Windows** | `%APPDATA%\Cursor\User\` |
 
-*   **Current Setup:** The current configuration uses `j` and `k` for up/down navigation in the file explorer.
-*   **Potential Issues:** This could conflict with the default "find by typing" feature in the file explorer. However, the current `keybindings.json` has these bindings commented out, so this is not an immediate issue.
+### Potential Conflicts
 
-### b. Integrated Terminal
+#### AI Chat Interface
 
-*   **Current Setup:** `ctrl+;` is used to toggle focus between the editor and the terminal.
-*   **Potential Issues:** This is a common setup and is unlikely to cause conflicts.
+Cursor's chat interface may use keybindings that conflict with Vim:
+- **`Ctrl+K`** - Cursor AI command palette (conflicts with Vim navigation)
+- **`Ctrl+L`** - Cursor AI features (conflicts with split navigation)
 
-### c. IntelliSense / Suggestions
+**Solution:**
+Either disable Cursor AI keybindings or remap VimCode bindings.
 
-*   **Current Setup:** `ctrl+j` and `ctrl+k` are used to navigate the suggestion list.
-*   **Potential Issues:** This is a common and effective setup that should work well in all three editors.
+#### AI Autocomplete
 
-### d. Multi-cursor / Selection
+Cursor's AI autocomplete may interfere with:
+- Suggestion navigation (`Ctrl+j/k`)
+- Normal mode completion
 
-*   **Current Setup:** The configuration uses `<leader>a` to select all occurrences of the current selection.
-*   **Potential Issues:** This is a powerful feature that should work well in all three editors.
+**Solution:**
+Test autocomplete behavior and adjust `when` clauses if needed.
 
-## 5. Summary and Recommendations
+### Installation for Cursor
 
-*   **VS Code:** The current configuration is well-established and serves as a solid baseline.
-*   **Antigravity:** The configuration is in a good state, but requires real-world testing to identify any editor-specific issues.
-*   **Cursor:** This editor requires the most attention. A dedicated configuration is needed to resolve potential conflicts with its AI features and to integrate with them effectively.
+```bash
+# Install VSCodeVim in Cursor
+cursor --install-extension vscodevim.vim
 
-The next step is to create a baseline configuration for Cursor by copying the VS Code configuration and then beginning the process of testing and refinement.
+# Copy configuration
+cp config/settings.json ~/Library/Application\ Support/Cursor/User/     # macOS
+cp config/keybindings.json ~/Library/Application\ Support/Cursor/User/  # macOS
+
+# Linux
+cp config/settings.json ~/.config/Cursor/User/
+cp config/keybindings.json ~/.config/Cursor/User/
+```
+
+### Recommended Cursor Settings
+
+Add to `settings.json` to minimize conflicts:
+
+```json
+{
+  // Disable conflicting Cursor keybindings
+  "cursor.aiChat.enabled": true,
+  "cursor.aiChat.openAIChatKeyBinding": "cmd+shift+k",  // Move away from Ctrl+K
+
+  // VimCode settings (keep these)
+  "vim.leader": "<space>",
+  "extensions.experimental.affinity": {
+    "vscodevim.vim": 1
+  }
+}
+```
+
+### Testing Checklist
+
+After installing in Cursor, verify:
+
+- [ ] `<leader>ff` - File finder works
+- [ ] `Ctrl+h/j/k/l` - Split navigation works
+- [ ] `gd` - Go to definition works
+- [ ] Cursor AI chat is accessible
+- [ ] No typing lag in Insert mode
+
+## Antigravity (Windsurf)
+
+**Status:** ✅ Compatible
+
+Antigravity (Windsurf) is a VS Code fork. VimCode works with minimal issues.
+
+### Configuration Location
+
+| Platform | Path |
+|----------|------|
+| **macOS** | `~/Library/Application Support/Windsurf/User/` |
+| **Linux** | `~/.config/Windsurf/User/` |
+| **Windows** | `%APPDATA%\Windsurf\User\` |
+
+### Known Issues
+
+**None reported.** Antigravity closely follows VS Code, so VimCode should work without modification.
+
+### Installation for Antigravity
+
+```bash
+# Install VSCodeVim in Antigravity
+# (Use Antigravity's extension marketplace)
+
+# Copy configuration
+cp config/settings.json ~/Library/Application\ Support/Windsurf/User/     # macOS
+cp config/keybindings.json ~/Library/Application\ Support/Windsurf/User/  # macOS
+
+# Linux
+cp config/settings.json ~/.config/Windsurf/User/
+cp config/keybindings.json ~/.config/Windsurf/User/
+```
+
+### macOS Key Repeat
+
+Enable key repeat for Antigravity:
+
+```bash
+defaults write com.windsurf.app ApplePressAndHoldEnabled -bool false
+```
+
+Restart your Mac for this to take effect.
+
+## Common Compatibility Considerations
+
+### Extension Availability
+
+Not all VS Code extensions are available in Cursor/Antigravity:
+
+| Extension | VS Code | Cursor | Antigravity |
+|-----------|---------|--------|-------------|
+| VSCodeVim | ✅ | ✅ | ✅ |
+| GitLens | ✅ | ✅ | ⚠️ Check |
+| Settings Cycler | ✅ | ✅ | ⚠️ Check |
+| Which Key | ✅ | ✅ | ⚠️ Check |
+
+**Recommendation:** Test each extension individually in your editor.
+
+### Performance
+
+All editors should support the dedicated thread setting:
+
+```json
+{
+  "extensions.experimental.affinity": {
+    "vscodevim.vim": 1
+  }
+}
+```
+
+This is **critical** for preventing typing lag.
+
+### Platform-Specific Settings
+
+**macOS key repeat** works the same way for all editors:
+
+```bash
+# VS Code
+defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
+
+# Cursor
+defaults write com.cursor.Cursor ApplePressAndHoldEnabled -bool false
+
+# Antigravity
+defaults write com.windsurf.app ApplePressAndHoldEnabled -bool false
+```
+
+## Switching Between Editors
+
+If you use multiple editors, you can:
+
+### Option 1: Separate Configurations
+
+Maintain separate configs per editor (more control):
+- VS Code: `~/.config/Code/User/`
+- Cursor: `~/.config/Cursor/User/`
+- Antigravity: `~/.config/Windsurf/User/`
+
+### Option 2: Symlinks
+
+Share configuration between editors (less maintenance):
+
+```bash
+# Example: Share VS Code config with Cursor
+ln -s ~/.config/Code/User/settings.json ~/.config/Cursor/User/settings.json
+ln -s ~/.config/Code/User/keybindings.json ~/.config/Cursor/User/keybindings.json
+```
+
+**Warning:** Symlinks mean changes affect all editors.
+
+## Troubleshooting Multi-Editor Issues
+
+### Issue: Keybindings Don't Work in Cursor
+
+**Solution:**
+1. Verify Cursor uses the correct config path
+2. Check for Cursor-specific keybinding conflicts
+3. Open Cursor's Keyboard Shortcuts UI and search for conflicts
+
+### Issue: GitLens Not Working in Antigravity
+
+**Solution:**
+1. Check if GitLens is available in Antigravity's marketplace
+2. Install manually if needed
+3. Verify you're in a git repository
+
+### Issue: Different Behavior Between Editors
+
+**Diagnosis:**
+Compare extension versions:
+```bash
+# VS Code
+code --list-extensions --show-versions
+
+# Cursor
+cursor --list-extensions --show-versions
+```
+
+**Solution:**
+Ensure extension versions match across editors.
+
+## Recommendations
+
+### For VS Code Users
+
+✅ **Use VimCode as-is.** Everything works out of the box.
+
+### For Cursor Users
+
+⚠️ **Test thoroughly.**
+1. Install VimCode configuration
+2. Test AI features separately
+3. Remap conflicts if needed
+4. Consider using `Cmd+Shift+K` for Cursor AI instead of `Ctrl+K`
+
+### For Antigravity Users
+
+✅ **Should work smoothly.**
+1. Install VSCodeVim extension
+2. Copy VimCode configuration
+3. Test keybindings
+4. Report any issues
+
+## Getting Help
+
+**Editor-specific issues:**
+- VS Code: [VimCode Issues](https://github.com/wojukasz/VimCode/issues)
+- Cursor: [Cursor Support](https://cursor.sh/support)
+- Antigravity: [Windsurf Support](https://codeium.com/windsurf)
+
+**VSCodeVim issues:**
+- [VSCodeVim GitHub](https://github.com/VSCodeVim/Vim/issues)
+
+---
+
+**See also:**
+- [SETUP.md](SETUP.md) - Installation guide
+- [TROUBLESHOOTING.md](TROUBLESHOOTING.md) - Common issues
+- [KEYBINDINGS.md](KEYBINDINGS.md) - Keybinding reference

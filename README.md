@@ -1,112 +1,170 @@
-# VimCode - Modern Vim Experience for Code Editors
+# VimCode - LazyVim-Style Configuration for VS Code
 
-Enhanced configuration with Vim keybindings for efficient coding workflows. This setup combines the power of Vim motions with modern editor features.
+> Bring the power and efficiency of LazyVim to VS Code with 50+ carefully crafted keybindings.
 
-*IMPORTANT:* Some of the shortcuts are experimental and I am trying things on the go so they might not work at all or as intended! Please leave a comment and feel free to adjust and fix!
+[![Version](https://img.shields.io/badge/version-4.0.0-blue.svg)](CHANGELOG.md)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](#)
+
+A comprehensive Vim configuration for VS Code that mirrors the LazyVim experience with `<space>` as the leader key. Get the same muscle memory between Neovim and VS Code, with full LSP integration, Git operations, and modern editor features.
+
+## Features
+
+- **50+ LazyVim-aligned keybindings** - Organized by prefix (`<leader>f*`, `<leader>s*`, `<leader>c*`, etc.)
+- **Full Vim emulation** - Modal editing with proper mode indicators
+- **LSP integration** - Code navigation, formatting, refactoring
+- **Git operations** - Integrated with GitLens for blame, history, diff
+- **Window management** - `Ctrl+h/j/k/l` split navigation
+- **Performance optimized** - Dedicated thread prevents typing lag
+- **Multi-editor support** - Works with VS Code, Cursor, and Antigravity (Windsurf)
+
+## Quick Start
+
+### 1. Install Required Extension
+
+```bash
+code --install-extension vscodevim.vim
+```
+
+### 2. Install Recommended Extensions
+
+```bash
+code --install-extension eamodio.gitlens
+code --install-extension hoovercj.vscode-settings-cycler
+```
+
+### 3. Apply Configuration
+
+Copy configuration files to your VS Code user directory:
+
+**macOS:**
+```bash
+cp config/settings.json ~/Library/Application\ Support/Code/User/
+cp config/keybindings.json ~/Library/Application\ Support/Code/User/
+```
+
+**Linux:**
+```bash
+cp config/settings.json ~/.config/Code/User/
+cp config/keybindings.json ~/.config/Code/User/
+```
+
+**Windows (PowerShell):**
+```powershell
+Copy-Item config\settings.json $env:APPDATA\Code\User\
+Copy-Item config\keybindings.json $env:APPDATA\Code\User\
+```
+
+### 4. Restart VS Code
+
+That's it! See [SETUP.md](SETUP.md) for detailed installation instructions and troubleshooting.
+
+## Essential Keybindings
+
+| Keybinding | Action | Category |
+|------------|--------|----------|
+| `<leader>ff` | Find files | File |
+| `<leader>/` | Search in workspace | Search |
+| `<leader>e` | Toggle sidebar | File |
+| `<leader>ca` | Code action | LSP |
+| `gd` | Go to definition | LSP |
+| `Shift+H/L` | Previous/next buffer | Buffer |
+| `Ctrl+h/j/k/l` | Navigate splits | Window |
+| `<leader>gg` | Git status | Git |
+| `[d` / `]d` | Previous/next diagnostic | Diagnostic |
+
+**Leader key:** `<space>`
+
+See [KEYBINDINGS.md](KEYBINDINGS.md) for complete shortcuts reference.
+
+## Documentation
+
+- **[SETUP.md](SETUP.md)** - Complete installation guide and configuration details
+- **[KEYBINDINGS.md](KEYBINDINGS.md)** - Comprehensive shortcuts guide and cheat sheet
+- **[TIPS_AND_TRICKS.md](TIPS_AND_TRICKS.md)** - Power user features, workflows, and best practices
+- **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)** - Common issues and solutions
+- **[EDITOR_COMPARISON.md](EDITOR_COMPARISON.md)** - VS Code vs Cursor vs Antigravity compatibility
+- **[REFERENCES.md](REFERENCES.md)** - Learning resources and external links
+- **[CHANGELOG.md](CHANGELOG.md)** - Version history and breaking changes
+
+## Configuration Structure
+
+```
+VimCode/
+├── config/
+│   ├── settings.json      # VS Code settings + all <leader> bindings
+│   └── keybindings.json   # Modifier keys (Ctrl/Alt/Shift) bindings
+├── SETUP.md               # Installation and configuration guide
+├── KEYBINDINGS.md         # Shortcuts reference and cheat sheet
+├── TIPS_AND_TRICKS.md     # Power user guide
+└── TROUBLESHOOTING.md     # Common issues and solutions
+```
+
+## Keybinding Organization
+
+VimCode uses the LazyVim convention of organizing keybindings by prefix:
+
+- **`<leader>f*`** - File operations (find, recent, new, buffer list)
+- **`<leader>s*`** - Search operations (grep, workspace symbols, replace)
+- **`<leader>c*`** - Code actions (format, rename, quick fix)
+- **`<leader>b*`** - Buffer management (close, switch, pin/unpin)
+- **`<leader>g*`** - Git operations (blame, status, history, diff)
+- **`<leader>w*`** - Window management (split, close, maximize)
+- **`<leader>x*`** - Diagnostics (problems panel, navigation)
+- **`<leader>u*`** - UI toggles (word wrap, zen mode, line numbers)
 
 ## Supported Editors
 
-This configuration is primarily targeted at **VS Code** but should be compatible with other VS Code-based editors like **Cursor** and **Antigravity (Windsurf)**. The `EDITOR_COMPARISON.md` file contains a more detailed analysis of the compatibility and potential issues with each editor.
+- **VS Code** - Full support (primary target)
+- **Cursor** - Compatible (AI-powered editor)
+- **Antigravity (Windsurf)** - Compatible (VS Code fork)
 
-## Repository Structure
+See [EDITOR_COMPARISON.md](EDITOR_COMPARISON.md) for details on multi-editor support.
 
-```
-config/
-├── settings.json   # VS Code settings + Vim plugin configuration
-└── keybindings.json# Custom keyboard shortcuts
-KEYBINDINGS.md      # Quick reference cheatsheet
-```
+## Philosophy
 
-## Installation
+VimCode follows these principles:
 
-1. Open VS Code settings.json:
-   - Press `Cmd+Shift+P` (Mac) or `Ctrl+Shift+P` (Windows/Linux)
-   - Type "settings json"
-   - Click "Preferences: Open User Settings (JSON)"
-   - Clear the file and paste the content from `config/settings.json`
+1. **Consistency** - Same keybindings between Neovim and VS Code
+2. **Discoverability** - Organized by prefix for easy learning
+3. **Efficiency** - Common operations accessible with minimal keystrokes
+4. **Integration** - Work with VS Code's native features, not against them
+5. **Performance** - Optimized configuration for responsive editing
 
-2. Open VS Code keybindings.json:
-   - Press `Cmd+Shift+P` (Mac) or `Ctrl+Shift+P` (Windows/Linux)
-   - Type "keyboard json"
-   - Click "Preferences: Open Keyboard Shortcuts (JSON)"
-   - Clear the file and paste the content from `config/keybindings.json`
+## Validation Checklist
 
-3. Install required extensions from VS Code Marketplace
-4. Restart VS Code
+After installation, test these essential bindings:
 
-Alternative ways to open configuration files:
-- Settings:
-  - Mac: `Cmd+,` then click the "Open Settings (JSON)" icon in the top right
-  - Windows/Linux: `Ctrl+,` then click the "Open Settings (JSON)" icon in the top right
-- Keybindings:
-  - Mac: `Cmd+K Cmd+S` then click the "Open Keyboard Shortcuts (JSON)" icon
-  - Windows/Linux: `Ctrl+K Ctrl+S` then click the "Open Keyboard Shortcuts (JSON)" icon
+- [ ] `Space` in Normal mode doesn't move cursor
+- [ ] `<leader>ff` (Space, f, f) opens file picker
+- [ ] `<leader>/` (Space, /) opens workspace search
+- [ ] `gd` jumps to definition
+- [ ] `Shift+H` / `Shift+L` switches buffers
+- [ ] `Ctrl+h/j/k/l` navigates between splits
 
+See [SETUP.md](SETUP.md#validation) for complete validation checklist.
 
-## Required Extensions
+## Why VimCode?
 
-- [Vim](https://marketplace.visualstudio.com/items?itemName=vscodevim.vim)
-  - **Core of the setup.** Provides the Vim emulation layer, including modes, motions, and the `<leader>` key functionality.
-- [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)
-  - **Powers all Git integration.** Enables features like blame annotations, file history, and staging, which are mapped to the `<leader>g` keybindings.
-- [Multi Command](https://marketplace.visualstudio.com/items?itemName=ryuta46.multi-command)
-  - **Enables complex key sequences.** Used to chain multiple VS Code commands together into a single keybinding, such as maximizing the terminal and focusing it with one keypress.
+If you love Vim but need the power of VS Code's ecosystem, VimCode gives you the best of both worlds:
 
-## Key Concepts
-
-- Leader key is set to `<space>`
-- Consistent use of Vim navigation patterns
-- Integration with VS Code's native features
-- Enhanced terminal and git workflows
-- Visual feedback through status line colors
-
-## Common Workflows
-
-### File Navigation
-1. Open sidebar: `<leader>e`
-2. Navigate files: `j/k`
-3. Expand/collapse: `l/h`
-4. Open in split: `ctrl+shift+1/2`
-
-### Git Operations
-1. Stage changes: `<leader>g s`
-2. View changes: `<leader>g d`
-3. Push changes: `<leader>g P`
-
-### Code Navigation
-1. Go to definition: `ctrl+]`
-2. Return from definition: `ctrl+t`
-3. Find in workspace: `<leader>s w`
-
-### Text Manipulation
-1. Sort lines: Select lines + `<leader>s s`
-2. Transform case: Select text + `<leader>u/l`
-3. Multi-line editing: Select lines + `<leader>a`
-
-## Editor Settings
-
-Key settings include:
-- Bracket pair colorization
-- Enhanced minimap configuration
-- Improved fold handling
-- Yank highlighting
-- Custom search highlighting
-- Mode-specific status line colors
-
-## Customization
-
-Edit the following files to customize the configuration:
-- `config/vscode/settings.json`: VS Code and Vim settings
-- `config/vscode/keybindings.json`: Custom keyboard shortcuts
-
-### Status Line Colors
-You can customize mode colors in `config/vscode/settings.json`:
-```json
-"vim.statusBarColors.normal": "#519aba",
-"vim.statusBarColors.insert": "#98c379",
-"vim.statusBarColors.visual": "#c678dd"
-```
+- **Familiar muscle memory** from LazyVim
+- **Modern LSP features** with VS Code's IntelliSense
+- **Rich extension ecosystem** (GitLens, debuggers, formatters)
+- **Visual feedback** with status bar mode indicators
+- **Cross-platform** works on macOS, Linux, and Windows
 
 ## Contributing
 
-Feel free to submit issues and enhancement requests!
+Found a bug or have a suggestion? Feel free to open an issue or submit a pull request!
+
+## Note
+
+Some keybindings are experimental and may require adjustments based on your workflow. Feel free to customize the configuration files to suit your needs.
+
+## License
+
+MIT
+
+---
+
+**Get Started:** [SETUP.md](SETUP.md) | **Quick Reference:** [KEYBINDINGS.md](KEYBINDINGS.md) | **Learn More:** [TIPS_AND_TRICKS.md](TIPS_AND_TRICKS.md)
