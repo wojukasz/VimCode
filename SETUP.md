@@ -260,31 +260,33 @@ VimCode uses two configuration files with specific purposes:
 
 After installation, run through this checklist to verify your setup:
 
-### Core Functionality
+### Core Functionality 
 
-- [ ] Press `Space` in Normal mode - cursor should NOT move
-- [ ] Press `i` to enter Insert mode - status bar turns green
-- [ ] Press `Esc` or `jk` to return to Normal mode - status bar turns blue
-- [ ] Press `v` to enter Visual mode - status bar turns purple
+> Marked = working
+
+- [x] Press `Space` in Normal mode - cursor should NOT move
+- [x] Press `i` to enter Insert mode - status bar turns green
+- [x] Press `Esc` or `jk` to return to Normal mode - status bar turns blue
+- [x] Press `v` to enter Visual mode - status bar turns purple
 
 ### File Operations (`<leader>f*`)
 
-- [ ] `<leader>ff` - Opens file picker (Quick Open)
-- [ ] `<leader>fr` - Shows recent files
-- [ ] `<leader>fn` - Creates new file
-- [ ] `<leader>fb` - Lists open buffers
-- [ ] `<leader>e` - Toggles sidebar
+- [x] `<leader>ff` - Opens file picker (Quick Open)
+- [x] `<leader>fr` - Shows recent files
+- [x] `<leader>fn` - Creates new file
+- [x] `<leader>fb` - Lists open buffers
+- [x] `<leader>e` - Toggles sidebar
 
 ### Search Operations (`<leader>s*`)
 
-- [ ] `<leader>/` - Opens workspace search
-- [ ] `<leader>sg` - Opens search/grep
-- [ ] `<leader>ss` - Shows document symbols
-- [ ] `<leader>sk` - Opens keyboard shortcuts
+- [x] `<leader>/` - Opens workspace search
+- [x] `<leader>sg` - Opens search/grep
+- [x] `<leader>ss` - Shows document symbols
+- [x] `<leader>sk` - Opens keyboard shortcuts
 
 ### Code Actions (`<leader>c*`)
 
-- [ ] `<leader>ca` - Shows code actions (on a code symbol)
+- [x] `<leader>ca` - Shows code actions (on a code symbol)
 - [ ] `<leader>cf` - Formats document
 - [ ] `<leader>cr` - Renames symbol (on a code symbol)
 
@@ -297,10 +299,10 @@ After installation, run through this checklist to verify your setup:
 
 ### Buffer Management
 
-- [ ] `Shift+H` - Switches to previous buffer/tab
-- [ ] `Shift+L` - Switches to next buffer/tab
-- [ ] `<leader>bd` - Closes current buffer
-- [ ] `[b` / `]b` - Navigate buffers (alternative)
+- [x] `Shift+H` - Switches to previous buffer/tab
+- [x] `Shift+L` - Switches to next buffer/tab
+- [x] `<leader>bd` - Closes current buffer - might remove ctrl + w in the future
+- [ ] `[b` / `]b` - Navigate buffers (alternative) - ]b dosent work
 
 ### Window Navigation
 
@@ -315,22 +317,23 @@ After installation, run through this checklist to verify your setup:
 
 - [ ] `[d` - Jumps to previous diagnostic
 - [ ] `]d` - Jumps to next diagnostic
-- [ ] `<leader>xx` - Opens problems panel
+- [x] `<leader>xx` - Opens problems panel
 
 ### Git Operations (requires GitLens)
 
-- [ ] `<leader>gg` - Opens Git status (Source Control)
+- [x] `<leader>gg` - Opens Git status (Source Control)
 - [ ] `<leader>gb` - Toggles Git blame
 - [ ] `<leader>gd` - Shows Git diff
 - [ ] `[h` / `]h` - Navigate Git hunks (if changes exist)
 
 ### Other Features
 
-- [ ] `jk` or `jj` - Exits Insert mode (same as `Esc`)
-- [ ] `Alt+j` / `Alt+k` - Moves lines up/down
+- [x] `jk` or `jj` - Exits Insert mode (same as `Esc`)
+- [x] `Alt+j` / `Alt+k` - Moves lines up/down
 - [ ] `<` / `>` in Visual mode - Indents and reselects
-- [ ] `Ctrl+/` - Toggles terminal
-- [ ] No typing lag in Insert mode
+- [x] `Ctrl+/` - Toggles terminal
+- [x] - `Ctrl+;` - Jump beetwen terminal and editor
+- [x] No typing lag in Insert mode
 
 If all checks pass, your setup is complete!
 
