@@ -2,6 +2,8 @@
 
 > Bring the power and efficiency of LazyVim to VS Code with 50+ carefully crafted keybindings.
 
+> This is very much a work in progress, and I plan to refine this configuration and fix it as I go on. The core principle is to stick to native Vim commands as much as possible and log weirdness and fix anything that feels odd.
+
 [![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](#)
 ![GitHub stars](https://img.shields.io/github/stars/wojukasz/VimCode?style=social)
