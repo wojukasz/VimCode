@@ -262,7 +262,7 @@ After installation, run through this checklist to verify your setup:
 
 ### Core Functionality 
 
-> Marked = working
+> Marked = confirmed working
 
 - [x] Press `Space` in Normal mode - cursor should NOT move
 - [x] Press `i` to enter Insert mode - status bar turns green
