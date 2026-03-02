@@ -516,14 +516,6 @@
 
   "vim.visualModeKeyBindings": [
     {
-      "before": ["<"],                                 // < = outdent and keep selection
-      "commands": ["editor.action.outdentLines"]       // VS Code native command preserves selection; 'after' + gv is unreliable in VSCodeVim
-    },
-    {
-      "before": [">"],                                 // > = indent and keep selection
-      "commands": ["editor.action.indentLines"]        // VS Code native command preserves selection; 'after' + gv is unreliable in VSCodeVim
-    },
-    {
       "before": ["<leader>", "/"],                     // <leader>/ = search selected text
       "commands": ["workbench.action.findInFiles"]
     },
