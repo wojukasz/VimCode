@@ -516,12 +516,12 @@
 
   "vim.visualModeKeyBindings": [
     {
-      "before": ["<"],                                 // < = indent left and reselect
-      "after": ["<", "g", "v"]                         // The 'gv' reselects the previous visual selection
+      "before": ["<"],                                 // < = outdent and keep selection
+      "commands": ["editor.action.outdentLines"]       // VS Code native command preserves selection; 'after' + gv is unreliable in VSCodeVim
     },
     {
-      "before": [">"],                                 // > = indent right and reselect
-      "after": [">", "g", "v"]
+      "before": [">"],                                 // > = indent and keep selection
+      "commands": ["editor.action.indentLines"]        // VS Code native command preserves selection; 'after' + gv is unreliable in VSCodeVim
     },
     {
       "before": ["<leader>", "/"],                     // <leader>/ = search selected text
