@@ -516,14 +516,6 @@
 
   "vim.visualModeKeyBindings": [
     {
-      "before": ["<"],                                 // < = indent left and reselect
-      "after": ["<", "g", "v"]                         // The 'gv' reselects the previous visual selection
-    },
-    {
-      "before": [">"],                                 // > = indent right and reselect
-      "after": [">", "g", "v"]
-    },
-    {
       "before": ["<leader>", "/"],                     // <leader>/ = search selected text
       "commands": ["workbench.action.findInFiles"]
     },
