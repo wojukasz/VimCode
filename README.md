@@ -1,11 +1,12 @@
-# VimCode - LazyVim-Style Configuration for VS Code / Cursor / AntiGravity or any VsCode Fork (I would hope :) )
+# VimCode - LazyVim-Style Configuration for VS Code / Cursor / AntiGravity or any VsCode Fork etc.)
 
 > Bring the power and efficiency of LazyVim to VS Code with 50+ carefully crafted keybindings.
 
 > This is very much a work in progress, and I plan to refine this configuration and fix it as I go on.
 > Coming from a Vim background, I have no desire to learn VS Code shortcuts and instead plan to use Vim functionality within VS Code.
 > The core principle is to rely on native Vim shortcuts/commands first, make them work in VS Code as much as possible, log any odd behaviour, and fix anything that feels off.
-> Please feel free to contribute and share ideas! 
+> Please feel free to contribute and share ideas!
+> Things might break in progress due to editors' updates and changes. If I notice something, I try to patch as I go on.
 
 [![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](#)
@@ -14,7 +15,7 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/wojukasz/VimCode)
 ![GitHub issues](https://img.shields.io/github/issues/wojukasz/VimCode)
 
-A comprehensive **Vim configuration for VS Code** that mirrors the LazyVim experience with `<space>` as the leader key. Perfect for developers who want **Neovim muscle memory in VS Code** with full LSP integration, Git operations, and modern editor features. Compatible with **VSCodeVim, Cursor, and Windsurf** editors.
+A comprehensive **Vim configuration for VS Code** that mirrors the LazyVim experience with `<space>` as the leader key. Perfect for developers who want **Neovim muscle memory in VS Code** with full LSP integration, Git operations, and modern editor features. Compatible with **VSCodeVim, Cursor, and AntiGravity** editors.
 
 ## Features
 
