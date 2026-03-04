@@ -1,4 +1,4 @@
-# VimCode - LazyVim-Style Configuration for VS Code / Cursor / AntiGravity or any VsCode Fork etc.)
+# VimCode - LazyVim-Style Configuration for VS Code / Cursor / AntiGravity (or any VsCode Forks, etc.)
 
 > Bring the power and efficiency of LazyVim to VS Code with 50+ carefully crafted keybindings.
 
