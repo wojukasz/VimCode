@@ -24,20 +24,9 @@ VimCode is designed and tested for VS Code. All features work as documented.
 | **Linux** | `~/.config/Code/User/` |
 | **Windows** | `%APPDATA%\Code\User\` |
 
-### Key Features
-
-- **50+ LazyVim keybindings** with space as leader
-- **Full LSP integration** for code navigation
-- **GitLens integration** for Git operations
-- **Performance optimized** with dedicated thread
-- **Comprehensive documentation** and troubleshooting
-
 ### Installation
 
 ```bash
-# Install core extension
-code --install-extension vscodevim.vim
-
 # Copy configuration
 cp config/settings.json ~/.config/Code/User/
 cp config/keybindings.json ~/.config/Code/User/
@@ -68,7 +57,7 @@ Cursor's chat interface may use keybindings that conflict with Vim:
 - **`Ctrl+L`** - Cursor AI features (conflicts with split navigation)
 
 **Solution:**
-Either disable Cursor AI keybindings or remap VimCode bindings.
+Remap VimCode bindings.
 
 #### AI Autocomplete
 
@@ -77,14 +66,11 @@ Cursor's AI autocomplete may interfere with:
 - Normal mode completion
 
 **Solution:**
-Test autocomplete behavior and adjust `when` clauses if needed.
+Test autocomplete behaviour and adjust `when` clauses if needed.
 
 ### Installation for Cursor
 
 ```bash
-# Install VSCodeVim in Cursor
-cursor --install-extension vscodevim.vim
-
 # Copy configuration
 cp config/settings.json ~/Library/Application\ Support/Cursor/User/     # macOS
 cp config/keybindings.json ~/Library/Application\ Support/Cursor/User/  # macOS
@@ -96,7 +82,7 @@ cp config/keybindings.json ~/.config/Cursor/User/
 
 ### Recommended Cursor Settings
 
-Add to `settings.json` to minimize conflicts:
+Add to `settings.json` to minimise conflicts:
 
 ```json
 {
@@ -143,9 +129,6 @@ Antigravity (Windsurf) is a VS Code fork. VimCode works with minimal issues.
 ### Installation for Antigravity
 
 ```bash
-# Install VSCodeVim in Antigravity
-# (Use Antigravity's extension marketplace)
-
 # Copy configuration
 cp config/settings.json ~/Library/Application\ Support/Windsurf/User/     # macOS
 cp config/keybindings.json ~/Library/Application\ Support/Windsurf/User/  # macOS
@@ -173,7 +156,6 @@ Not all VS Code extensions are available in Cursor/Antigravity:
 
 | Extension | VS Code | Cursor | Antigravity |
 |-----------|---------|--------|-------------|
-| VSCodeVim | ✅ | ✅ | ✅ |
 | GitLens | ✅ | ✅ | ⚠️ Check |
 | Settings Cycler | ✅ | ✅ | ⚠️ Check |
 | Which Key | ✅ | ✅ | ⚠️ Check |
@@ -218,7 +200,7 @@ If you use multiple editors, you can:
 Maintain separate configs per editor (more control):
 - VS Code: `~/.config/Code/User/`
 - Cursor: `~/.config/Cursor/User/`
-- Antigravity: `~/.config/Windsurf/User/`
+- Antigravity: `~/.config/Antigravity/User/`
 
 ### Option 2: Symlinks
 
@@ -239,35 +221,10 @@ ln -s ~/.config/Code/User/keybindings.json ~/.config/Cursor/User/keybindings.jso
 **Solution:**
 1. Verify Cursor uses the correct config path
 2. Check for Cursor-specific keybinding conflicts
-3. Open Cursor's Keyboard Shortcuts UI and search for conflicts
-
-### Issue: GitLens Not Working in Antigravity
-
-**Solution:**
-1. Check if GitLens is available in Antigravity's marketplace
-2. Install manually if needed
-3. Verify you're in a git repository
-
-### Issue: Different Behavior Between Editors
-
-**Diagnosis:**
-Compare extension versions:
-```bash
-# VS Code
-code --list-extensions --show-versions
-
-# Cursor
-cursor --list-extensions --show-versions
-```
+3. Open the Cursor's Keyboard Shortcuts UI and search for conflicts
 
 **Solution:**
 Ensure extension versions match across editors.
-
-## Recommendations
-
-### For VS Code Users
-
-✅ **Use VimCode as-is.** Everything works out of the box.
 
 ### For Cursor Users
 
