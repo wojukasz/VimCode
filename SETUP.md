@@ -1,6 +1,6 @@
 # VimCode Setup Guide
 
-Complete installation and configuration guide for VimCode - LazyVim-style keybindings for VS Code.
+Complete installation and configuration guide for VimCode - LazyVim-style keybindings for VS Code and compatible forks.
 
 ## Table of Contents
 
@@ -12,22 +12,25 @@ Complete installation and configuration guide for VimCode - LazyVim-style keybin
   - [Step 3: Backup Configuration](#step-3-backup-existing-configuration)
   - [Step 4: Apply Configuration](#step-4-apply-configuration)
   - [Step 5: Platform-Specific Setup](#step-5-platform-specific-setup)
-  - [Step 6: Restart VS Code](#step-6-restart-vs-code)
+  - [Step 6: Restart your editor](#step-6-restart-your-editor)
 - [Configuration Files Explained](#configuration-files-explained)
 - [Validation](#validation)
 - [Optional Features](#optional-features)
 - [Platform-Specific Notes](#platform-specific-notes)
+- [Editor-Specific Notes](#editor-specific-notes)
 - [Next Steps](#next-steps)
 
 ## Prerequisites
 
-- **VS Code** (or compatible editor: Cursor, Antigravity)
+- **VS Code or any VS Code-compatible fork** (Cursor, Antigravity, Windsurf, etc.)
 - **Basic Vim knowledge** (modes, motions, commands)
 - **Git** (for Git integration features)
 
 ## Quick Installation
 
 For experienced users who want to get started quickly:
+
+> Replace `code` with your editor's CLI command if needed (e.g. `cursor`, `antigravity`). If your editor doesn't have a CLI, install extensions via the Extensions panel (`Ctrl+Shift+X`).
 
 ```bash
 # 1. Install core extension
@@ -92,9 +95,9 @@ code --install-extension ryuta46.multi-command
 
 ### Step 2: Locate User Directory
 
-VS Code stores user configuration in the following locations:
+Each editor stores configuration in its own directory. Paths follow the standard VS Code fork convention — verify the exact path for your editor.
 
-| Platform | Path |
+| Platform | VS Code path (your editor likely follows the same pattern) |
 |----------|------|
 | **macOS** | `~/Library/Application Support/Code/User/` |
 | **Linux** | `~/.config/Code/User/` |
@@ -105,10 +108,10 @@ VS Code stores user configuration in the following locations:
 - Linux: `~/.config/Cursor/User/`
 - Windows: `%APPDATA%\Cursor\User\`
 
-**For Antigravity (Windsurf):**
-- macOS: `~/Library/Application Support/Windsurf/User/`
-- Linux: `~/.config/Windsurf/User/`
-- Windows: `%APPDATA%\Windsurf\User\`
+**For Antigravity (Google):**
+- macOS: `~/Library/Application Support/Antigravity/User/`
+- Linux: `~/.config/Antigravity/User/`
+- Windows: `%APPDATA%\Antigravity\User\`
 
 ### Step 3: Backup Existing Configuration
 
@@ -200,9 +203,9 @@ In `keybindings.json`, replace:
 - `oem_6` with `[BracketRight]`
 - `oem_2` with `[Slash]`
 
-### Step 6: Restart VS Code
+### Step 6: Restart your editor
 
-Close and reopen VS Code for all changes to take effect.
+Close and reopen your editor for all changes to take effect.
 
 ## Configuration Files Explained
 
@@ -413,6 +416,89 @@ To enable LazyVim-style keybinding menus:
 **Clipboard integration:**
 - Requires `xclip` or `xsel` on X11
 - Install with: `sudo apt install xclip` (Debian/Ubuntu)
+
+## Editor-Specific Notes
+
+This section covers known considerations for specific VS Code forks. The same config format works across all forks — differences are mainly in config paths, CLI commands, and editor-specific AI keybindings. If you find issues in a fork not listed here, please [open an issue](https://github.com/wojukasz/VimCode/issues) or submit a PR.
+
+> **Config paths follow the standard VS Code fork convention** (e.g. `~/.config/<EditorName>/User/` on Linux). If the path below doesn't exist for your installation, check your editor's documentation.
+
+### Cursor — AI Keybinding Conflicts
+
+#### Cursor AI Chat Interface
+
+Cursor's chat interface uses keybindings that conflict with Vim navigation:
+- **`Ctrl+K`** — Cursor AI command palette (conflicts with Vim split navigation)
+- **`Ctrl+L`** — Cursor AI features (conflicts with split navigation)
+
+**Solution:** Remap VimCode's conflicting bindings, or move Cursor's AI keybinding away from these keys:
+
+```json
+{
+  "cursor.aiChat.openAIChatKeyBinding": "cmd+shift+k"
+}
+```
+
+#### AI Autocomplete
+
+Cursor's AI autocomplete may interfere with:
+- Suggestion navigation (`Ctrl+j` / `Ctrl+k`)
+- Normal mode completion
+
+**Solution:** Test autocomplete behaviour and adjust `when` clauses in `keybindings.json` if needed.
+
+### Recommended Cursor Settings
+
+Add to `settings.json` to minimise conflicts:
+
+```json
+{
+  "vim.leader": "<space>",
+  "extensions.experimental.affinity": {
+    "vscodevim.vim": 1
+  }
+}
+```
+
+### macOS Key Repeat (All Editors)
+
+Enable key repeat for all editors (required for Vim hold-key navigation):
+
+```bash
+# VS Code
+defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
+
+# Cursor
+defaults write com.cursor.Cursor ApplePressAndHoldEnabled -bool false
+
+# Antigravity
+defaults write com.google.antigravity ApplePressAndHoldEnabled -bool false
+```
+
+Restart your Mac after running these commands.
+
+### Sharing Config Between Editors
+
+If you use multiple editors, you can share a single VimCode configuration:
+
+**Option 1: Separate configurations** (more control)
+
+Maintain separate copies per editor:
+- VS Code: `~/.config/Code/User/`
+- Cursor: `~/.config/Cursor/User/`
+- Antigravity: `~/.config/Antigravity/User/`
+
+**Option 2: Symlinks** (less maintenance)
+
+```bash
+# Share VS Code config with Cursor
+ln -s ~/.config/Code/User/settings.json ~/.config/Cursor/User/settings.json
+ln -s ~/.config/Code/User/keybindings.json ~/.config/Cursor/User/keybindings.json
+```
+
+> **Warning:** Symlinks mean changes affect all editors simultaneously.
+
+---
 
 ## Next Steps
 

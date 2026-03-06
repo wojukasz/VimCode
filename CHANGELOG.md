@@ -2,6 +2,56 @@
 
 All notable changes to this configuration will be documented in this file.
 
+## [2.4.0] - 2026-03-06
+
+Generalised documentation to be VS Code fork-agnostic.
+
+### Changed
+- README title no longer names specific editors — now "VS Code and Compatible Forks"
+- README intro, tagline, features, and Supported Editors section rewritten to describe fork compatibility generically
+- Supported Editors section replaced with a fork-compatibility explanation (no named list with "primary target" labels)
+- SETUP.md "Cursor and Antigravity Notes" section renamed to "Editor-Specific Notes" with general fork framing
+- SETUP.md prerequisites and step headings updated to be editor-neutral
+- SETUP.md path table prefaced with a verification note
+- Quick Install section notes that `code` CLI should be replaced with your editor's command
+- KEYBINDINGS.md and TIPS_AND_TRICKS.md subtitles updated to "VS Code and compatible forks"
+- TROUBLESHOOTING.md FAQ generalised to cover any VS Code-compatible fork
+
+---
+
+## [2.3.0] - 2026-03-06
+
+Replaced Windsurf with Antigravity throughout; corrected editor-specific technical details.
+
+### Changed
+- Updated all references from "Windsurf (Antigravity)" to "Antigravity" (Google's agentic IDE, distinct from Windsurf)
+- Corrected macOS bundle identifier: `com.windsurf.app` → `com.google.antigravity`
+- Updated config paths to use `Antigravity/User/` instead of `Windsurf/User/`
+- Removed `windsurf` from package.json keywords
+- Version bump: package.json and README badge to 2.3.0
+
+> Windsurf (by Codeium/Cognition AI) and Antigravity (by Google) are distinct products that share technological roots. VimCode now targets Antigravity specifically as the third supported editor.
+
+---
+
+## [2.2.0] - 2026-03-06
+
+Documentation refinement, link cleanup, and editor-specific notes.
+
+### Added
+- `KNOWN_ISSUES.md` - Tracks known issues and limitations with workarounds and links to issue reporting
+- Cursor and Antigravity section in `SETUP.md` covering AI keybinding conflicts, recommended settings, macOS key repeat for all editors, and config sharing via symlinks
+
+### Fixed
+- Removed 3 broken/unavailable links from `REFERENCES.md`: viemu.com (x2) and vscodecandothat.com
+- Fixed stale version in `package.json` (was 2.0.0, should have been 2.1.0)
+
+### Changed
+- Merged Cursor/Windsurf scratch notes (`OTER.md`) into `SETUP.md`
+- Updated README.md docs table to include `KNOWN_ISSUES.md`
+
+---
+
 ## [2.1.0] - 2026-03-06
 
 Documentation cleanup and consolidation.
@@ -46,7 +96,7 @@ Major update with comprehensive documentation, community health files, and refin
 - **Configuration Structure:**
   - Unified configuration in `config/` directory
   - Single `settings.json` and `keybindings.json` for all compatible editors
-  - Multi-editor support for VS Code, Cursor, and Windsurf
+  - Multi-editor support for VS Code, Cursor, and Antigravity
 - **Documentation Improvements:**
   - Updated `README.md` with improved structure and clarity
   - Better organization of all documentation files

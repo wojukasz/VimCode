@@ -20,7 +20,7 @@ What does it actually do?
 
 **Environment:**
  - OS: [e.g. macOS, Windows, Linux]
- - Editor: [e.g. VS Code 1.85, Cursor 0.20, Windsurf]
+ - Editor: [e.g. VS Code 1.85, Cursor 0.20, Antigravity]
  - Keyboard layout: [e.g. QWERTY US, AZERTY, etc.]
 
 **Other extensions**

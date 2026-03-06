@@ -335,7 +335,7 @@ defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
 defaults write com.cursor.Cursor ApplePressAndHoldEnabled -bool false
 
 # For Antigravity
-defaults write com.windsurf.app ApplePressAndHoldEnabled -bool false
+defaults write com.google.antigravity ApplePressAndHoldEnabled -bool false
 ```
 
 **IMPORTANT:** Restart your Mac (log out/in isn't enough).
@@ -650,13 +650,16 @@ Or use Vim's native:
 
 ## FAQ
 
-### Can I use VimCode with other editors (Cursor, Antigravity)?
+### Can I use VimCode with other editors (Cursor, Antigravity, Windsurf, etc.)?
 
-**Yes!** VimCode works with VS Code-based editors:
-- **Cursor:** Use `~/.config/Cursor/User/` (Linux) or equivalent
-- **Antigravity:** Use `~/.config/Windsurf/User/` (Linux) or equivalent
+**Yes!** VimCode works with any VS Code-compatible fork that supports the VSCodeVim extension. All forks use the same `settings.json` and `keybindings.json` format.
 
-See [SETUP.md](SETUP.md) for configuration paths and details.
+Each editor has its own config directory following the standard pattern:
+- `~/.config/<EditorName>/User/` on Linux
+- `~/Library/Application Support/<EditorName>/User/` on macOS
+- `%APPDATA%\<EditorName>\User\` on Windows
+
+See [SETUP.md](SETUP.md) for per-editor paths and editor-specific notes. Behaviour should be equivalent across forks, but minor differences may exist. Community contributions for fork-specific fixes are welcome.
 
 ### How do I temporarily disable Vim mode?
 

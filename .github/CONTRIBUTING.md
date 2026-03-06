@@ -26,7 +26,7 @@ Thank you for your interest in contributing to VimCode! This document provides g
    - Maintain LazyVim conventions where applicable
    - Update documentation if needed
 3. **Test thoroughly**:
-   - Test in VS Code (and Cursor/Windsurf if possible)
+   - Test in VS Code (and Cursor/Antigravity if possible)
    - Verify keybindings work in Normal, Insert, and Visual modes
    - Check for conflicts with existing bindings
 4. **Update documentation**:
