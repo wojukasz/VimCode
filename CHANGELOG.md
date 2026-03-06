@@ -2,6 +2,18 @@
 
 All notable changes to this configuration will be documented in this file.
 
+## [2.1.0] - 2026-03-06
+
+Documentation cleanup and consolidation.
+
+### Removed
+- `EDITOR_COMPARISON.md` - Removed as duplicate content; editor compatibility info is covered in `SETUP.md` and `README.md`
+
+### Changed
+- Updated `README.md` to remove `EDITOR_COMPARISON.md` links from Documentation section and Supported Editors section
+- Updated `REFERENCES.md` to remove `EDITOR_COMPARISON.md` from VimCode Documentation list
+- Updated `TROUBLESHOOTING.md` FAQ to point to `SETUP.md` instead of removed file
+
 ## [2.0.0] - 2026-01-17
 
 Major update with comprehensive documentation, community health files, and refined keybindings.
@@ -19,7 +31,6 @@ Major update with comprehensive documentation, community health files, and refin
   - `TIPS_AND_TRICKS.md` - Advanced usage patterns and workflows
   - `TROUBLESHOOTING.md` - Common issues and solutions
   - `REFERENCES.md` - Additional resources and learning materials
-  - `EDITOR_COMPARISON.md` - Detailed compatibility analysis for VS Code, Cursor, and Windsurf
 - **Enhanced Keybindings Documentation:**
   - Significantly expanded `KEYBINDINGS.md` with comprehensive key mapping documentation
   - Quick reference cheatsheet

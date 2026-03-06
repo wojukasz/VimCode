@@ -25,7 +25,6 @@ Comprehensive collection of learning resources, documentation, and community lin
 - **[Keybindings Reference](KEYBINDINGS.md)** - Full shortcuts guide
 - **[Tips and Tricks](TIPS_AND_TRICKS.md)** - Power user features
 - **[Troubleshooting](TROUBLESHOOTING.md)** - Common issues and solutions
-- **[Editor Comparison](EDITOR_COMPARISON.md)** - VS Code vs Cursor vs Antigravity
 - **[Changelog](CHANGELOG.md)** - Version history
 
 ### VSCodeVim Documentation

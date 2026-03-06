@@ -656,7 +656,7 @@ Or use Vim's native:
 - **Cursor:** Use `~/.config/Cursor/User/` (Linux) or equivalent
 - **Antigravity:** Use `~/.config/Windsurf/User/` (Linux) or equivalent
 
-See [EDITOR_COMPARISON.md](EDITOR_COMPARISON.md) for details.
+See [SETUP.md](SETUP.md) for configuration paths and details.
 
 ### How do I temporarily disable Vim mode?
 

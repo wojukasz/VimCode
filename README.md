@@ -8,7 +8,7 @@
 > Please feel free to contribute and share ideas!
 > Things might break in progress due to editors' updates and changes. If I notice something, I try to patch as I go on.
 
-[![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-2.1.0-blue.svg)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](#)
 ![GitHub stars](https://img.shields.io/github/stars/wojukasz/VimCode?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/wojukasz/VimCode?style=social)
@@ -92,7 +92,6 @@ See [KEYBINDINGS.md](KEYBINDINGS.md) for complete shortcuts reference.
 - **[KEYBINDINGS.md](KEYBINDINGS.md)** - Comprehensive shortcuts guide and cheat sheet
 - **[TIPS_AND_TRICKS.md](TIPS_AND_TRICKS.md)** - Power user features, workflows, and best practices
 - **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)** - Common issues and solutions
-- **[EDITOR_COMPARISON.md](EDITOR_COMPARISON.md)** - VS Code vs Cursor vs Antigravity compatibility
 - **[REFERENCES.md](REFERENCES.md)** - Learning resources and external links
 - **[CHANGELOG.md](CHANGELOG.md)** - Version history and breaking changes
 
@@ -127,8 +126,6 @@ VimCode uses the LazyVim convention of organizing keybindings by prefix:
 - **VS Code** - Full support (primary target)
 - **Cursor** - Compatible (AI-powered editor)
 - **Antigravity (Windsurf)** - Compatible (VS Code fork)
-
-See [EDITOR_COMPARISON.md](EDITOR_COMPARISON.md) for details on multi-editor support.
 
 ## Philosophy
 
