@@ -23,7 +23,7 @@ If applicable, add screenshots to help explain your problem.
 
 **Environment:**
  - OS: [e.g. macOS, Windows, Linux]
- - Editor: [e.g. VS Code 1.85, Cursor 0.20, Windsurf]
+ - Editor: [e.g. VS Code 1.85, Cursor 0.20, Antigravity]
  - VSCodeVim version: [e.g. 1.26.0]
  - VimCode version: [e.g. 4.0.0]
 

@@ -1,21 +1,21 @@
-# VimCode - LazyVim-Style Configuration for VS Code / Cursor / AntiGravity (or any VsCode Forks, etc.)
+# VimCode — LazyVim-Style Vim Configuration for VS Code and Compatible Forks
 
-> Bring the power and efficiency of LazyVim to VS Code with 50+ carefully crafted keybindings.
+> Bring the power and efficiency of LazyVim to VS Code and any compatible fork with 50+ carefully crafted keybindings.
 
 > This is very much a work in progress, and I plan to refine this configuration and fix it as I go on.
-> Coming from a Vim background, I have no desire to learn VS Code shortcuts and instead plan to use Vim functionality within VS Code.
-> The core principle is to rely on native Vim shortcuts/commands first, make them work in VS Code as much as possible, log any odd behaviour, and fix anything that feels off.
+> Coming from a Vim background, I have no desire to learn editor-specific shortcuts and instead plan to use Vim functionality within VS Code-compatible editors.
+> The core principle is to rely on native Vim shortcuts/commands first, make them work in VS Code and its forks as much as possible, log any odd behaviour, and fix anything that feels off.
 > Please feel free to contribute and share ideas!
 > Things might break in progress due to editors' updates and changes. If I notice something, I try to patch as I go on.
 
-[![Version](https://img.shields.io/badge/version-2.1.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-2.4.0-blue.svg)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](#)
 ![GitHub stars](https://img.shields.io/github/stars/wojukasz/VimCode?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/wojukasz/VimCode?style=social)
 ![GitHub last commit](https://img.shields.io/github/last-commit/wojukasz/VimCode)
 ![GitHub issues](https://img.shields.io/github/issues/wojukasz/VimCode)
 
-A comprehensive **Vim configuration for VS Code** that mirrors the LazyVim experience with `<space>` as the leader key. Perfect for developers who want **Neovim muscle memory in VS Code** with full LSP integration, Git operations, and modern editor features. Compatible with **VSCodeVim, Cursor, and AntiGravity** editors.
+A comprehensive **Vim configuration for VS Code and compatible forks** that mirrors the LazyVim experience with `<space>` as the leader key. Perfect for developers who want **Neovim muscle memory in their editor** with full LSP integration, Git operations, and modern editor features. Works with any editor that supports the **VSCodeVim extension**.
 
 ## Features
 
@@ -25,7 +25,7 @@ A comprehensive **Vim configuration for VS Code** that mirrors the LazyVim exper
 - **Git operations** - Integrated with GitLens for blame, history, diff
 - **Window management** - `Ctrl+h/j/k/l` split navigation
 - **Performance optimized** - Dedicated thread prevents typing lag
-- **Multi-editor support** - Works with VS Code, Cursor, and Antigravity (Windsurf)
+- **Multi-editor support** - Works with VS Code and any VS Code-compatible fork
 
 ## Quick Start
 
@@ -44,7 +44,7 @@ code --install-extension hoovercj.vscode-settings-cycler
 
 ### 3. Apply Configuration
 
-Copy configuration files to your VS Code user directory:
+Copy configuration files to your editor's user directory (VS Code shown — adjust path for your editor):
 
 **macOS:**
 ```bash
@@ -94,6 +94,7 @@ See [KEYBINDINGS.md](KEYBINDINGS.md) for complete shortcuts reference.
 - **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)** - Common issues and solutions
 - **[REFERENCES.md](REFERENCES.md)** - Learning resources and external links
 - **[CHANGELOG.md](CHANGELOG.md)** - Version history and breaking changes
+- **[KNOWN_ISSUES.md](KNOWN_ISSUES.md)** - Known issues and workarounds
 
 ## Configuration Structure
 
@@ -123,9 +124,11 @@ VimCode uses the LazyVim convention of organizing keybindings by prefix:
 
 ## Supported Editors
 
-- **VS Code** - Full support (primary target)
-- **Cursor** - Compatible (AI-powered editor)
-- **Antigravity (Windsurf)** - Compatible (VS Code fork)
+VimCode works with any editor built on VS Code's extension host that supports the VSCodeVim extension. This includes VS Code, Cursor, Antigravity, Windsurf, and other forks using the same settings and keybindings format.
+
+Configuration is actively maintained on a VS Code-compatible fork. Other editors follow the same settings format and should work equivalently, but minor differences may exist. Community contributions for fork-specific testing and fixes are very welcome.
+
+> **Path note:** Each editor stores config in its own directory (e.g. `~/.config/Cursor/User/`, `~/.config/Antigravity/User/`). See [SETUP.md](SETUP.md) for per-editor paths.
 
 ## Philosophy
 

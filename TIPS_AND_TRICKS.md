@@ -1,6 +1,6 @@
 # VimCode Tips and Tricks
 
-Power user guide for maximizing productivity with VimCode - LazyVim-style keybindings for VS Code.
+Power user guide for maximizing productivity with VimCode - LazyVim-style keybindings for VS Code and compatible forks.
 
 ## Table of Contents
 
@@ -754,7 +754,7 @@ Essential for smooth Vim usage:
 ```bash
 defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
 defaults write com.cursor.Cursor ApplePressAndHoldEnabled -bool false
-defaults write com.windsurf.app ApplePressAndHoldEnabled -bool false
+defaults write com.google.antigravity ApplePressAndHoldEnabled -bool false
 ```
 
 **Restart required:** Log out and back in.

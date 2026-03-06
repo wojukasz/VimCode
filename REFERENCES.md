@@ -138,8 +138,6 @@ VimCode follows LazyVim's keybinding organization:
 - **[Vim Cheat Sheet (devhints.io)](https://devhints.io/vim)** - Quick reference
 - **[Vim Cheat Sheet (rtorr.com)](https://vim.rtorr.com/)** - Visual cheat sheet
 - **[Vim Quick Reference Card](https://michaelgoerz.net/refcards/vimqrc.pdf)** - PDF reference
-- **[Graphical Vim Cheat Sheet](http://www.viemu.com/a_vi_vim_graphical_cheat_sheet_tutorial.html)** - Visual guide
-
 ### VS Code Cheat Sheets
 
 - **[VS Code Shortcuts (PDF)](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf)** - Official PDF
@@ -264,7 +262,6 @@ See [KEYBINDINGS.md](KEYBINDINGS.md) for the complete VimCode cheat sheet, inclu
 
 ### Articles
 
-- **[Why Vim?](https://www.viemu.com/a-why-vi-vim.html)** - Understanding Vim's power
 - **[Vim After 15 Years](https://statico.github.io/vim3.html)** - Long-term Vim usage
 - **[Vim for People Who Think Things Like Vim Are Weird](https://csswizardry.com/2014/06/vim-for-people-who-think-things-like-vim-are-weird-and-hard/)** - Beginner perspective
 - **[How to Learn Vim](https://medium.com/actualize-network/how-to-learn-vim-a-four-week-plan-cd8b376a9b85)** - 4-week plan
@@ -272,7 +269,6 @@ See [KEYBINDINGS.md](KEYBINDINGS.md) for the complete VimCode cheat sheet, inclu
 ### VS Code Blogs
 
 - **[VS Code Blog](https://code.visualstudio.com/blogs)** - Official blog
-- **[VS Code Can Do That?](https://vscodecandothat.com/)** - Tips and tricks
 - **[Smashing Magazine VS Code](https://www.smashingmagazine.com/category/vs-code/)** - Articles
 
 ## Quick Links by Topic

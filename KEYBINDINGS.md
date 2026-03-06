@@ -1,6 +1,6 @@
 # VimCode Keybindings Reference
 
-Complete shortcuts guide and cheat sheet for VimCode - LazyVim-style keybindings for VS Code.
+Complete shortcuts guide and cheat sheet for VimCode - LazyVim-style keybindings for VS Code and compatible forks.
 
 **Leader key:** `<space>`
 
