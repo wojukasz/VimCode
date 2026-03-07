@@ -2,6 +2,24 @@
 
 All notable changes to this configuration will be documented in this file.
 
+## [2.6.0] - 2026-03-07
+
+LazyVim parity documentation and bracket navigation in which-key.
+
+### Added
+- **`KNOWN_ISSUES.md`** — full rewrite documenting LazyVim parity ceiling (~95%):
+  - Parity table: what matches exactly vs works differently vs is architecturally impossible
+  - Hard limits of VSCodeVim (JS simulation, not real Vim): visual block mode, complex macros, register parity, Ctrl+D/U in autocomplete, EasyMotion differences
+  - Cross-reference to vscode-neovim for users needing higher parity
+- **`SETUP.md`** — new "Alternative: vscode-neovim" section:
+  - Side-by-side comparison table (VSCodeVim vs vscode-neovim + LazyVim extra)
+  - Setup steps for the vscode-neovim path
+  - Note that `keybindings.json` is reusable; `settings.json` is VSCodeVim-specific
+- **`config/settings.json`** — `[` and `]` groups added to `whichkey.bindings`:
+  - Bracket navigation (`[b ]b`, `[d ]d`, `[e ]e`, `[h ]h`, `[q ]q`) was only in `keybindings.json` and invisible in the which-key popup; now discoverable via `<space>[` and `<space>]`
+
+---
+
 ## [2.5.0] - 2026-03-07
 
 Bundled which-key integration with a full pre-configured popup menu.
