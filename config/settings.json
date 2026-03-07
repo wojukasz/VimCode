@@ -154,6 +154,39 @@
     },
 
     // ┌────────────────────────────────────────────────────────────────────────────────┐
+    // │ EASYMOTION JUMP - <leader>j* prefix                                            │
+    // └────────────────────────────────────────────────────────────────────────────────┘
+    //
+    // EasyMotion normally uses <leader><leader>* but that conflicts with which-key
+    // (pressing <space> shows the menu, so <space><space> becomes <space> in the menu
+    // rather than the EasyMotion double-leader trigger).
+    //
+    // Solution: wrap EasyMotion under <leader>j (j = jump) so it is accessible both
+    // directly and via the which-key +Jump submenu.
+    //
+
+    {
+      "before": ["<leader>", "j", "w"],                // <leader>jw = EasyMotion word forward
+      "after": ["<leader>", "<leader>", "w"]
+    },
+    {
+      "before": ["<leader>", "j", "b"],                // <leader>jb = EasyMotion word backward
+      "after": ["<leader>", "<leader>", "b"]
+    },
+    {
+      "before": ["<leader>", "j", "j"],                // <leader>jj = EasyMotion line down
+      "after": ["<leader>", "<leader>", "j"]
+    },
+    {
+      "before": ["<leader>", "j", "k"],                // <leader>jk = EasyMotion line up
+      "after": ["<leader>", "<leader>", "k"]
+    },
+    {
+      "before": ["<leader>", "j", "s"],                // <leader>js = EasyMotion char search
+      "after": ["<leader>", "<leader>", "s"]
+    },
+
+    // ┌────────────────────────────────────────────────────────────────────────────────┐
     // │ GENERAL UTILITY MAPPINGS                                                       │
     // └────────────────────────────────────────────────────────────────────────────────┘
 
@@ -377,14 +410,9 @@
       "before": ["<leader>", "`"],                     // <leader>` = last buffer (alternate file)
       "commands": ["workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup"]
     },
-    {
-      "before": ["<S-h>"],                             // Shift+h = previous buffer
-      "commands": [":bprev"]
-    },
-    {
-      "before": ["<S-l>"],                             // Shift+l = next buffer
-      "commands": [":bnext"]
-    },
+    // Note: Shift+H and Shift+L (buffer prev/next) are handled in keybindings.json.
+    // User keybindings.json takes priority over VSCodeVim's type handler, so defining
+    // <S-h>/<S-l> here would be dead code — keybindings.json wins.
 
     // ┌────────────────────────────────────────────────────────────────────────────────┐
     // │ GIT OPERATIONS - <leader>g* prefix (requires GitLens extension)                │
@@ -569,14 +597,21 @@
   "whichkey.bindings": [
 
     // ── Top-level direct bindings ──────────────────────────────────────────────────────
+    //
+    // Note: <space><space> is intentionally NOT bound here. Leaving it unbound means
+    // double-space closes the which-key menu, preserving EasyMotion's <leader><leader>
+    // trigger for users who invoke it without which-key (or via <leader>j* wrappers).
+    // Use <leader>ff or <leader>f f for Find Files instead.
+    //
 
-    { "key": " ",  "name": "Find Files",           "type": "command", "command": "workbench.action.quickOpen" },
     { "key": ",",  "name": "Switch Buffer",         "type": "command", "command": "workbench.action.showAllEditors" },
     { "key": "/",  "name": "Search in Files",       "type": "command", "command": "workbench.action.findInFiles" },
     { "key": "`",  "name": "Last Buffer",           "type": "command", "command": "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup" },
     { "key": "-",  "name": "Split Below",           "type": "command", "command": "workbench.action.splitEditorDown" },
     { "key": "|",  "name": "Split Right",           "type": "command", "command": "workbench.action.splitEditorRight" },
-    { "key": "d",  "name": "Delete Line",           "type": "command", "command": "editor.action.deleteLines" },
+    { "key": "d",  "name": "Delete Line",           "type": "command", "command": "vim.remap", "args": { "after": ["d","d"] } },
+    // ↑ Uses vim's dd (not editor.action.deleteLines) so the line goes into the unnamed
+    // register and remains pasteable with p. editor.action.deleteLines would discard it.
     { "key": "e",  "name": "Toggle Sidebar",        "type": "command", "command": "workbench.action.toggleSidebarVisibility" },
     { "key": "E",  "name": "Focus Explorer",        "type": "command", "command": "workbench.files.action.focusFilesExplorer" },
 
@@ -666,6 +701,26 @@
       ]
     },
 
+    // ── j = Jump (EasyMotion) ─────────────────────────────────────────────────────────
+    //
+    // EasyMotion is triggered via <leader>j* wrappers (defined in normalModeKeyBindings
+    // above) which forward to the native <leader><leader>* EasyMotion sequences.
+    // Requires vim.easymotion: true (already set).
+    //
+
+    {
+      "key": "j",
+      "name": "+Jump (EasyMotion)",
+      "type": "bindings",
+      "bindings": [
+        { "key": "w", "name": "Jump Word →",  "type": "command", "command": "vim.remap", "args": {"after": ["<leader>","<leader>","w"]} },
+        { "key": "b", "name": "Jump Word ←",  "type": "command", "command": "vim.remap", "args": {"after": ["<leader>","<leader>","b"]} },
+        { "key": "j", "name": "Jump Line ↓",  "type": "command", "command": "vim.remap", "args": {"after": ["<leader>","<leader>","j"]} },
+        { "key": "k", "name": "Jump Line ↑",  "type": "command", "command": "vim.remap", "args": {"after": ["<leader>","<leader>","k"]} },
+        { "key": "s", "name": "Jump Char",    "type": "command", "command": "vim.remap", "args": {"after": ["<leader>","<leader>","s"]} }
+      ]
+    },
+
     // ── w = Window ─────────────────────────────────────────────────────────────────────
 
     {
@@ -700,9 +755,17 @@
       "type": "bindings",
       "bindings": [
         { "key": "w", "name": "Toggle Word Wrap", "type": "command", "command": "editor.action.toggleWordWrap" },
-        { "key": "z", "name": "Toggle Zen Mode",  "type": "command", "command": "workbench.action.toggleZenMode" }
+        { "key": "z", "name": "Toggle Zen Mode",  "type": "command", "command": "workbench.action.toggleZenMode" },
+        { "key": "r", "name": "Clear Search HL",  "type": "command", "command": "vim.remap", "args": { "after": ["<Esc>"] } }
       ]
     },
+    //
+    // Note on ur / Clear Search HL:
+    // vim.remap {"after": ["<Esc>"]} sends an Escape keypress into vim's handler.
+    // The vim.normalModeKeyBindingsNonRecursive binding "<Esc>" → ":nohl" (defined above)
+    // catches it and clears the search highlight. If this stops working after a VSCodeVim
+    // update, press <Esc> directly in normal mode as an equivalent fallback.
+    //
 
     // ── [ = Previous / ] = Next (bracket navigation) ──────────────────────────────────
     //

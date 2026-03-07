@@ -4,6 +4,44 @@ Complete shortcuts guide and cheat sheet for VimCode - LazyVim-style keybindings
 
 **Leader key:** `<space>`
 
+## How the Three Layers Work
+
+VimCode stacks three layers of keybindings on top of each other. Understanding this helps debug any binding that doesn't behave as expected.
+
+```
+Layer 3 — which-key (VSpaceCode.whichkey)
+  Trigger:  <space> in Normal/Visual mode → whichkey.show
+  Owns:     the popup menu tree (whichkey.bindings in settings.json)
+  Fallback: if which-key is not installed, <space> is a no-op and
+            the Layer 2 vim bindings handle everything directly
+
+Layer 2 — Custom LazyVim mappings
+  Leader:   settings.json → vim.normalModeKeyBindingsNonRecursive
+            (first match wins; <space> → whichkey.show is entry #1)
+  Modifiers: keybindings.json — Ctrl/Alt/Shift bindings
+             (last definition wins for equal when-clause specificity;
+              user keybindings.json always beats VSCodeVim's handlers)
+  Escape:   vim.handleKeys — explicitly releases certain Ctrl keys
+            back to VS Code (e.g. <C-f>, <C-w>, <C-s>)
+
+Layer 1 — VSCodeVim defaults (vscodevim.vim)
+  Core Vim: h j k l, w b e, gg G, / ? * #, etc.
+  Ctrl keys intercepted by default (vim.useCtrlKeys=true):
+    C-d C-u (half-page scroll — kept in vim.handleKeys)
+    C-o C-i (jump list — kept)
+    C-r     (redo — kept)
+    C-n C-p (autocomplete in Insert — kept)
+    C-f C-b C-h C-j C-k C-l C-w C-s C-a C-c C-v C-z
+            (all released to VS Code via vim.handleKeys: false)
+  Plugins:  EasyMotion (<leader><leader>*) — re-exposed as <leader>j*
+            Sneak (s/S forward/backward, ; next, , prev)
+            Surround (ys / ds / cs)
+```
+
+**Key resolution rule:** if a binding isn't firing, check whether a higher-priority layer is consuming it first. User `keybindings.json` always beats VSCodeVim's type handler for the same key+when combination.
+
+---
+
 ## Quick Reference Card
 
 ### Most Essential Keybindings
@@ -394,13 +432,17 @@ gK          → Show signature help
 |------------|--------|-------|
 | `jk` | Exit to Normal mode | Alternative to Esc |
 | `jj` | Exit to Normal mode | Alternative to Esc |
-| `Ctrl+j` | Next suggestion | Autocomplete |
-| `Ctrl+k` | Previous suggestion | Autocomplete |
+| `Ctrl+n` | Next suggestion | Autocomplete (vim default) |
+| `Ctrl+p` | Previous suggestion | Autocomplete (vim default) |
+| `Ctrl+j` | Next suggestion | Autocomplete (when widget visible) |
+| `Ctrl+k` | Previous suggestion | Autocomplete (when widget visible) |
 | `Ctrl+s` | Save file | Standard VS Code |
 
 **Tips:**
 - Use `jk` or `jj` instead of reaching for Esc
-- `Ctrl+j/k` works in suggestion widgets for Vim-style navigation
+- `Ctrl+j/k` navigates suggestions when the autocomplete widget is visible (keybindings.json)
+- `Ctrl+n/p` are vim's native autocomplete keys and always work as a reliable fallback
+- `Ctrl+d/u` for page-jumping through suggestions is **not** available: `vim.handleKeys` keeps those keys for half-page scrolling and they cannot be conditionally released
 
 ### Visual Mode
 
@@ -466,17 +508,23 @@ VimCode enables several Vim plugins for enhanced functionality:
 
 Fast cursor movement to visible text.
 
+**Bindings** (use `<leader>j*` — the `<leader>j` group in which-key):
+
 | Keybinding | Action |
 |------------|--------|
-| `<leader><leader>w` | Jump to word (forward) |
-| `<leader><leader>b` | Jump to word (backward) |
-| `<leader><leader>s{char}` | Jump to character |
-| `<leader><leader>j` | Jump to line (down) |
-| `<leader><leader>k` | Jump to line (up) |
+| `<leader>jw` | Jump to word (forward) |
+| `<leader>jb` | Jump to word (backward) |
+| `<leader>js{char}` | Jump to character |
+| `<leader>jj` | Jump to line (down) |
+| `<leader>jk` | Jump to line (up) |
+
+The native `<leader><leader>*` form still works when which-key is **not** installed. When which-key is active, use `<leader>j*` instead — these are wrapper bindings that forward to the underlying EasyMotion sequences.
+
+**Why the change?** `<space>` now triggers the which-key menu, so `<space><space>` becomes a menu navigation keystroke rather than EasyMotion's double-leader trigger. The `<leader>j` (j = jump) prefix restores full EasyMotion access through which-key.
 
 **Usage:**
 ```
-1. <leader><leader>w    # Activate EasyMotion
+1. <leader>jw           # Activate EasyMotion (word jump forward)
 2. Letters appear       # On each word
 3. Type letter          # Jump to word
 ```
@@ -499,6 +547,8 @@ Two-character search for quick navigation.
 3. ;                # Next 'th'
 4. ,                # Previous 'th'
 ```
+
+**Note on `,` and which-key:** The which-key menu also has `,` bound to "Switch Buffer" (`<space>,`). These do **not** conflict — Sneak's `,` fires when you press `,` directly in Normal mode; which-key's `,` only fires when the which-key menu is already open (i.e. after pressing `<space>`). They are entirely separate key sequences.
 
 ### Surround
 
