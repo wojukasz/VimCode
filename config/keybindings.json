@@ -192,15 +192,19 @@
     "key": "ctrl+;",
     "command": "workbench.action.focusActiveEditorGroup",
     "when": "terminalFocus"
-  }
+  },
 
-  // #TODO: EXPERIMENTAL - TO TEST AND VALIDATE!
   // ┌────────────────────────────────────────────────────────────────────────────────────┐
   // │ SUGGESTION WIDGET NAVIGATION - Ctrl+j/k when autocomplete is visible               │
   // └────────────────────────────────────────────────────────────────────────────────────┘
   //
   // Navigate autocomplete suggestions using Vim-style j/k keys.
   // These override the window navigation when suggestion widget is visible.
+  //
+  // Note: Ctrl+D / Ctrl+U for page-scrolling suggestions are intentionally NOT included.
+  // vim.handleKeys sets <C-d>: true and <C-u>: true, meaning vim intercepts those keys
+  // even when the suggestion widget is open. Ctrl+N / Ctrl+P (vim insert defaults) are
+  // the reliable alternatives for cycling through suggestions one at a time.
   //
   {
     "key": "ctrl+j",
@@ -210,16 +214,6 @@
   {
     "key": "ctrl+k",
     "command": "selectPrevSuggestion",
-    "when": "suggestWidgetVisible"
-  },
-  {
-    "key": "ctrl+d",
-    "command": "selectNextPageSuggestion",
-    "when": "suggestWidgetVisible"
-  },
-  {
-    "key": "ctrl+u",
-    "command": "selectPrevPageSuggestion",
     "when": "suggestWidgetVisible"
   },
 
