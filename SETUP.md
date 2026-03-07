@@ -412,6 +412,33 @@ q  →        +Quit
 
 Edit the `whichkey.bindings` array in your `settings.json` to add, remove, or rename entries. See the [vscode-which-key docs](https://vspacecode.github.io/docs/whichkey/) for the full binding format.
 
+## Alternative: vscode-neovim (Higher Parity)
+
+VimCode is built on **VSCodeVim** — a JavaScript simulation of Vim. It covers ~95% of daily LazyVim keybindings and requires zero extra setup beyond installing the extension.
+
+If the remaining ~5% matters to you (visual block mode, complex macros, full register parity, automatic which-key discovery), consider **vscode-neovim** instead. It embeds a real Neovim process inside VS Code and achieves near-identical LazyVim behaviour.
+
+| | VimCode (VSCodeVim) | vscode-neovim + LazyVim extra |
+|-|---------------------|-------------------------------|
+| Setup | Install one extension | Install Neovim + extension + LazyVim config |
+| Daily keybinding parity | ~95% | ~98% |
+| Visual block mode | ❌ Broken | ✅ Works |
+| Complex macros | ❌ Limited | ✅ Full |
+| which-key | Manual JSON config | Auto-discovery (which-key.nvim) |
+| LazyVim official support | Community approach | Official VSCode extra |
+| Stability | Mature, stable | Widely used, labelled experimental |
+
+**To try vscode-neovim:**
+1. Install Neovim 0.9+ (`brew install neovim` / `apt install neovim`)
+2. Install the `asvetliakov.vscode-neovim` VS Code extension
+3. Set up LazyVim with the VSCode extra: `https://www.lazyvim.org/extras/vscode`
+
+VimCode's `config/keybindings.json` (the modifier key bindings) is compatible with vscode-neovim and can be reused directly. The `config/settings.json` is VSCodeVim-specific and is not needed under vscode-neovim.
+
+See [KNOWN_ISSUES.md](KNOWN_ISSUES.md) for a full breakdown of what VSCodeVim can and cannot replicate.
+
+---
+
 ## Platform-Specific Notes
 
 ### macOS
