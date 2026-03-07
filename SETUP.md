@@ -37,6 +37,7 @@ For experienced users who want to get started quickly:
 code --install-extension vscodevim.vim
 
 # 2. Install recommended extensions
+code --install-extension VSpaceCode.whichkey
 code --install-extension eamodio.gitlens
 code --install-extension hoovercj.vscode-settings-cycler
 
@@ -76,12 +77,14 @@ code --install-extension eamodio.gitlens
 code --install-extension hoovercj.vscode-settings-cycler
 ```
 
-#### Optional Extensions
+#### Recommended Extensions
 
-**Which Key** - Keybinding discovery menu (LazyVim-style):
+**Which Key** - Popup menu showing available `<space>` bindings (LazyVim-style discoverable keymaps). The full binding tree is pre-configured in `settings.json`:
 ```bash
 code --install-extension VSpaceCode.whichkey
 ```
+
+#### Optional Extensions
 
 **Error Lens** - Inline diagnostics display:
 ```bash
@@ -366,23 +369,48 @@ To enable line number toggling with `<leader>ul`:
 
 ### Which Key (Keybinding Discovery)
 
-To enable LazyVim-style keybinding menus:
+Which Key shows a popup menu of available bindings whenever you press `<space>` in Normal or Visual mode — exactly like `which-key.nvim` in Neovim / LazyVim. The full binding tree is **already included** in `config/settings.json` under `whichkey.bindings`. All you need to do is install the extension.
 
-1. Install Which Key extension (see [Step 1](#step-1-install-extensions))
+**Setup (one step):**
 
-2. Configure in `settings.json` (optional customization):
-   ```json
-   "whichkey.bindings": [
-     {
-       "key": "f",
-       "name": "File operations",
-       "type": "bindings",
-       "bindings": [
-         {"key": "f", "name": "Find files", "type": "command", "command": "workbench.action.quickOpen"}
-       ]
-     }
-   ]
-   ```
+```bash
+code --install-extension VSpaceCode.whichkey
+```
+
+After restarting VS Code, pressing `<space>` in Normal mode will open the menu:
+
+```
+<space>     Find Files          (Quick Open)
+,           Switch Buffer
+/           Search in Files
+f  →        +File
+   f        Find Files
+   r        Recent Files
+   n        New File
+   ...
+g  →        +Git
+   g        Git Status
+   b        Blame Toggle
+   d        Git Diff
+   ...
+c  →        +Code
+s  →        +Search
+b  →        +Buffer
+w  →        +Window
+x  →        +Diagnostics
+u  →        +UI Toggles
+q  →        +Quit
+```
+
+**How it works:**
+
+- `<space>` in Normal/Visual mode triggers `whichkey.show` (wired via `vim.normalModeKeyBindingsNonRecursive`)
+- which-key reads the `whichkey.bindings` tree from `settings.json` and displays the menu
+- All existing `<leader>*` vim bindings remain intact as a fallback — they work normally if which-key is not installed
+
+**Customising the menu:**
+
+Edit the `whichkey.bindings` array in your `settings.json` to add, remove, or rename entries. See the [vscode-which-key docs](https://vspacecode.github.io/docs/whichkey/) for the full binding format.
 
 ## Platform-Specific Notes
 

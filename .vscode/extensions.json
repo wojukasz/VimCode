@@ -1,0 +1,11 @@
+{
+  // VS Code will prompt "Do you want to install the recommended extensions?" when
+  // someone opens this repository for the first time.
+  "recommendations": [
+    "vscodevim.vim",          // Required: Vim emulation
+    "VSpaceCode.whichkey",    // Recommended: discoverable <space> menu
+    "eamodio.gitlens",        // Recommended: git blame, history, and more
+    "hoovercj.vscode-settings-cycler", // Optional: line number toggling
+    "usernamehw.errorlens"    // Optional: inline diagnostic display
+  ]
+}

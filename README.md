@@ -20,6 +20,7 @@ A comprehensive **Vim configuration for VS Code and compatible forks** that mirr
 ## Features
 
 - **50+ LazyVim-aligned keybindings** - Organized by prefix (`<leader>f*`, `<leader>s*`, `<leader>c*`, etc.)
+- **which-key popup menu** - Press `<space>` to see a discoverable menu of all bindings (requires `VSpaceCode.whichkey`)
 - **Full Vim emulation** - Modal editing with proper mode indicators
 - **LSP integration** - Code navigation, formatting, refactoring
 - **Git operations** - Integrated with GitLens for blame, history, diff
@@ -38,6 +39,7 @@ code --install-extension vscodevim.vim
 ### 2. Install Recommended Extensions
 
 ```bash
+code --install-extension VSpaceCode.whichkey
 code --install-extension eamodio.gitlens
 code --install-extension hoovercj.vscode-settings-cycler
 ```
@@ -144,7 +146,7 @@ VimCode follows these principles:
 
 After installation, test these essential bindings:
 
-- [ ] `Space` in Normal mode doesn't move cursor
+- [ ] `Space` in Normal mode shows which-key menu (or doesn't move cursor if which-key is not installed)
 - [ ] `<leader>ff` (Space, f, f) opens file picker
 - [ ] `<leader>/` (Space, /) opens workspace search
 - [ ] `gd` jumps to definition
