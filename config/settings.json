@@ -767,6 +767,37 @@
     // update, press <Esc> directly in normal mode as an equivalent fallback.
     //
 
+    // ── [ = Previous / ] = Next (bracket navigation) ──────────────────────────────────
+    //
+    // These mirror the keybindings.json bracket bindings so they appear in the which-key
+    // menu. The VS Code commands are identical — this is purely for discoverability.
+    //
+
+    {
+      "key": "[",
+      "name": "Prev",
+      "type": "bindings",
+      "bindings": [
+        { "key": "b", "name": "Prev Buffer",         "type": "command", "command": "workbench.action.previousEditor" },
+        { "key": "d", "name": "Prev Diagnostic",     "type": "command", "command": "editor.action.marker.prevInFiles" },
+        { "key": "e", "name": "Prev Error",          "type": "command", "command": "editor.action.marker.prev" },
+        { "key": "h", "name": "Prev Git Hunk",       "type": "command", "command": "workbench.action.editor.previousChange" },
+        { "key": "q", "name": "Prev Search Result",  "type": "command", "command": "search.action.focusPreviousSearchResult" }
+      ]
+    },
+    {
+      "key": "]",
+      "name": "Next",
+      "type": "bindings",
+      "bindings": [
+        { "key": "b", "name": "Next Buffer",         "type": "command", "command": "workbench.action.nextEditor" },
+        { "key": "d", "name": "Next Diagnostic",     "type": "command", "command": "editor.action.marker.nextInFiles" },
+        { "key": "e", "name": "Next Error",          "type": "command", "command": "editor.action.marker.next" },
+        { "key": "h", "name": "Next Git Hunk",       "type": "command", "command": "workbench.action.editor.nextChange" },
+        { "key": "q", "name": "Next Search Result",  "type": "command", "command": "search.action.focusNextSearchResult" }
+      ]
+    },
+
     // ── q = Quit ───────────────────────────────────────────────────────────────────────
 
     {
