@@ -2,6 +2,22 @@
 
 All notable changes to this configuration will be documented in this file.
 
+## [2.7.0] - 2026-03-07
+
+Keymapping conflict audit fixes.
+
+### Fixed
+- **EasyMotion `<leader>j*` prefix** — `<space><space>` now opens which-key instead of EasyMotion's double-leader trigger; wrapper bindings under `<leader>j` (jw, jb, jj, jk, js) restore full EasyMotion access via direct key and the which-key `+Jump` submenu
+- **Removed `Ctrl+D/U` suggestion navigation** — `vim.handleKeys` intercepts those keys for half-page scroll before any `when` clause fires; removed the conflicting keybindings and documented `Ctrl+N/P` as the reliable fallback
+- **`<S-h>/<S-l>` duplicate removed** — dead definitions in `settings.json` removed; `keybindings.json` wins by VS Code priority rules
+- **`<space>d` delete now register-aware** — changed from `editor.action.deleteLines` (discards line) to `vim.remap dd` so deleted lines go into the unnamed register and are pasteable with `p`
+- **Added `<leader>ur`** (Clear Search Highlight) to which-key UI Toggles submenu
+
+### Changed
+- `KEYBINDINGS.md`: three-layer architecture diagram added, EasyMotion bindings corrected to `<leader>j*`, Sneak `,` vs which-key `,` conflict explained
+
+---
+
 ## [2.6.0] - 2026-03-07
 
 LazyVim parity documentation and bracket navigation in which-key.
