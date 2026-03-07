@@ -48,7 +48,7 @@
   "vim.useSystemClipboard": true,                      // Use system clipboard for yank/paste
   "vim.useCtrlKeys": true,                             // Enable Vim Ctrl key bindings
   "vim.smartRelativeLine": true,                       // Absolute line numbers in insert mode
-  "vim.timeout: 600,                                   // Wait 600ms for multi-key mappings after a prefix key
+  // "vim.timeout": 600,                                   // Wait 600ms for multi-key mappings after a prefix key
 
   // Vim plugin emulations (built into VSCode Vim extension)
   "vim.easymotion": true,                              // Enable EasyMotion (use <leader><leader>w etc)
@@ -557,7 +557,7 @@
   // Visual mode enhancements for better selection handling and LazyVim parity
   //
 
-  "vim.visualModeKeyBindings": [
+  "vim.visualModeKeyBindingsNonRecursive": [
     {
       "before": ["<space>"],                           // <space> = show which-key menu in visual mode
       "commands": ["whichkey.show"]
