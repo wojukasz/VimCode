@@ -1,6 +1,6 @@
 {
   "name": "vimcode-config",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "description": "LazyVim-inspired Vim configuration for VS Code with 50+ keybindings. Bring Neovim muscle memory to VS Code with full LSP, Git integration, and modern editor features.",
   "keywords": [
     "vim",
@@ -42,8 +42,8 @@
   "author": "wojukasz",
   "license": "MIT",
   "scripts": {
-    "install:vscode": "code --install-extension vscodevim.vim && code --install-extension eamodio.gitlens && code --install-extension hoovercj.vscode-settings-cycler",
-    "install:cursor": "cursor --install-extension vscodevim.vim && cursor --install-extension eamodio.gitlens && cursor --install-extension hoovercj.vscode-settings-cycler"
+    "install:vscode": "code --install-extension vscodevim.vim && code --install-extension VSpaceCode.whichkey && code --install-extension eamodio.gitlens && code --install-extension hoovercj.vscode-settings-cycler",
+    "install:cursor": "cursor --install-extension vscodevim.vim && cursor --install-extension VSpaceCode.whichkey && cursor --install-extension eamodio.gitlens && cursor --install-extension hoovercj.vscode-settings-cycler"
   },
   "files": [
     "config/",
