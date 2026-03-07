@@ -2,6 +2,24 @@
 
 All notable changes to this configuration will be documented in this file.
 
+## [2.5.0] - 2026-03-07
+
+Bundled which-key integration with a full pre-configured popup menu.
+
+### Added
+- **which-key popup menu** (`VSpaceCode.whichkey`) promoted from optional mention to first-class feature:
+  - `whichkey.bindings` tree added to `config/settings.json` covering all 9 leader groups (`f`, `s`, `c`, `b`, `g`, `w`, `x`, `u`, `q`) plus top-level direct bindings (`,`, `/`, `` ` ``, `-`, `|`, `d`, `e`, `E`)
+  - `<space>` → `whichkey.show` wired at the top of `vim.normalModeKeyBindingsNonRecursive` and `vim.visualModeKeyBindings` so the menu appears immediately on space-press
+  - Existing `<leader>*` vim bindings preserved as fallback — config works correctly without the extension installed
+- **`.vscode/extensions.json`** — workspace extension recommendations file so VS Code prompts "Install recommended extensions?" on first open
+
+### Changed
+- `SETUP.md`: which-key moved from "Optional Extensions" to its own **"Recommended Extensions"** section with full setup instructions, popup menu preview, and explanation of the fallback behaviour
+- `SETUP.md`: Quick Installation commands updated to include `VSpaceCode.whichkey`
+- `README.md`: which-key listed in Features; added to Quick Start install commands; validation checklist updated
+
+---
+
 ## [2.4.0] - 2026-03-06
 
 Generalised documentation to be VS Code fork-agnostic.

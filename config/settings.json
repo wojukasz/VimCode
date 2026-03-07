@@ -140,6 +140,20 @@
   "vim.normalModeKeyBindingsNonRecursive": [
 
     // ┌────────────────────────────────────────────────────────────────────────────────┐
+    // │ WHICH KEY - Show popup menu on <space> (requires VSpaceCode.whichkey)          │
+    // └────────────────────────────────────────────────────────────────────────────────┘
+    //
+    // When which-key is installed, pressing <space> shows the discoverable menu.
+    // Without which-key, this binding is a no-op and the <leader>* bindings below
+    // continue to work as normal.
+    //
+
+    {
+      "before": ["<space>"],                           // <space> = show which-key menu
+      "commands": ["whichkey.show"]
+    },
+
+    // ┌────────────────────────────────────────────────────────────────────────────────┐
     // │ GENERAL UTILITY MAPPINGS                                                       │
     // └────────────────────────────────────────────────────────────────────────────────┘
 
@@ -517,6 +531,10 @@
 
   "vim.visualModeKeyBindings": [
     {
+      "before": ["<space>"],                           // <space> = show which-key menu in visual mode
+      "commands": ["whichkey.show"]
+    },
+    {
       "before": ["<leader>", "/"],                     // <leader>/ = search selected text
       "commands": ["workbench.action.findInFiles"]
     },
@@ -532,6 +550,172 @@
       "before": ["g", "c"],                            // gc = comment toggle
       "commands": ["editor.action.commentLine"]
     }
+  ],
+
+  // ──────────────────────────────────────────────────────────────────────────────────────
+  // WHICH KEY BINDINGS (requires VSpaceCode.whichkey extension)
+  // ──────────────────────────────────────────────────────────────────────────────────────
+  //
+  // This defines the popup menu tree that appears when you press <space> in Normal/Visual
+  // mode. Each entry mirrors an existing <leader>* vim binding above.
+  //
+  // Structure:
+  //   type "command"  = executes a single VS Code command directly
+  //   type "bindings" = opens a sub-menu with nested entries
+  //
+  // Install: VSpaceCode.whichkey (from VS Code Marketplace)
+  //
+
+  "whichkey.bindings": [
+
+    // ── Top-level direct bindings ──────────────────────────────────────────────────────
+
+    { "key": " ",  "name": "Find Files",           "type": "command", "command": "workbench.action.quickOpen" },
+    { "key": ",",  "name": "Switch Buffer",         "type": "command", "command": "workbench.action.showAllEditors" },
+    { "key": "/",  "name": "Search in Files",       "type": "command", "command": "workbench.action.findInFiles" },
+    { "key": "`",  "name": "Last Buffer",           "type": "command", "command": "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup" },
+    { "key": "-",  "name": "Split Below",           "type": "command", "command": "workbench.action.splitEditorDown" },
+    { "key": "|",  "name": "Split Right",           "type": "command", "command": "workbench.action.splitEditorRight" },
+    { "key": "d",  "name": "Delete Line",           "type": "command", "command": "editor.action.deleteLines" },
+    { "key": "e",  "name": "Toggle Sidebar",        "type": "command", "command": "workbench.action.toggleSidebarVisibility" },
+    { "key": "E",  "name": "Focus Explorer",        "type": "command", "command": "workbench.files.action.focusFilesExplorer" },
+
+    // ── f = File ───────────────────────────────────────────────────────────────────────
+
+    {
+      "key": "f",
+      "name": "+File",
+      "type": "bindings",
+      "bindings": [
+        { "key": "f", "name": "Find Files",       "type": "command", "command": "workbench.action.quickOpen" },
+        { "key": "r", "name": "Recent Files",     "type": "command", "command": "workbench.action.openRecent" },
+        { "key": "n", "name": "New File",         "type": "command", "command": "workbench.action.files.newUntitledFile" },
+        { "key": "b", "name": "Buffers",          "type": "command", "command": "workbench.action.showAllEditors" },
+        { "key": "e", "name": "Show in Explorer", "type": "command", "command": "workbench.files.action.showActiveFileInExplorer" },
+        { "key": "t", "name": "Toggle Terminal",  "type": "command", "command": "workbench.action.terminal.toggleTerminal" }
+      ]
+    },
+
+    // ── s = Search ─────────────────────────────────────────────────────────────────────
+
+    {
+      "key": "s",
+      "name": "+Search",
+      "type": "bindings",
+      "bindings": [
+        { "key": "g", "name": "Grep in Files",        "type": "command", "command": "workbench.action.findInFiles" },
+        { "key": "w", "name": "Search Word",          "type": "command", "command": "workbench.action.findInFiles" },
+        { "key": "r", "name": "Replace in Files",     "type": "command", "command": "workbench.action.replaceInFiles" },
+        { "key": "s", "name": "Symbol in File",       "type": "command", "command": "workbench.action.gotoSymbol" },
+        { "key": "S", "name": "Symbol in Workspace",  "type": "command", "command": "workbench.action.showAllSymbols" },
+        { "key": "k", "name": "Keymaps",              "type": "command", "command": "workbench.action.openGlobalKeybindings" },
+        { "key": "c", "name": "Command Palette",      "type": "command", "command": "workbench.action.showCommands" },
+        { "key": "h", "name": "Help / All Commands",  "type": "command", "command": "workbench.action.showAllCommands" }
+      ]
+    },
+
+    // ── c = Code (LSP) ─────────────────────────────────────────────────────────────────
+
+    {
+      "key": "c",
+      "name": "+Code",
+      "type": "bindings",
+      "bindings": [
+        { "key": "a", "name": "Code Action",      "type": "command", "command": "editor.action.quickFix" },
+        { "key": "A", "name": "Source Action",    "type": "command", "command": "editor.action.sourceAction" },
+        { "key": "f", "name": "Format Document",  "type": "command", "command": "editor.action.formatDocument" },
+        { "key": "F", "name": "Format Selection", "type": "command", "command": "editor.action.formatSelection" },
+        { "key": "r", "name": "Rename Symbol",    "type": "command", "command": "editor.action.rename" },
+        { "key": "d", "name": "Line Diagnostics", "type": "command", "command": "editor.action.showHover" },
+        { "key": "l", "name": "Problems Panel",   "type": "command", "command": "workbench.action.problems.focus" },
+        { "key": "o", "name": "Organise Imports", "type": "command", "command": "editor.action.organizeImports" }
+      ]
+    },
+
+    // ── b = Buffer ─────────────────────────────────────────────────────────────────────
+
+    {
+      "key": "b",
+      "name": "+Buffer",
+      "type": "bindings",
+      "bindings": [
+        { "key": "b", "name": "Switch Buffer",       "type": "command", "command": "workbench.action.showAllEditors" },
+        { "key": "d", "name": "Close Buffer",        "type": "command", "command": "workbench.action.closeActiveEditor" },
+        { "key": "D", "name": "Close Other Buffers", "type": "command", "command": "workbench.action.closeOtherEditors" },
+        { "key": "o", "name": "Close Others",        "type": "command", "command": "workbench.action.closeOtherEditors" },
+        { "key": "p", "name": "Pin Buffer",          "type": "command", "command": "workbench.action.pinEditor" },
+        { "key": "P", "name": "Unpin Buffer",        "type": "command", "command": "workbench.action.unpinEditor" }
+      ]
+    },
+
+    // ── g = Git (requires GitLens) ─────────────────────────────────────────────────────
+
+    {
+      "key": "g",
+      "name": "+Git",
+      "type": "bindings",
+      "bindings": [
+        { "key": "g", "name": "Git Status",        "type": "command", "command": "workbench.view.scm" },
+        { "key": "s", "name": "Git Status",        "type": "command", "command": "workbench.view.scm" },
+        { "key": "b", "name": "Blame Toggle",      "type": "command", "command": "gitlens.toggleFileBlame" },
+        { "key": "B", "name": "Browse on Remote",  "type": "command", "command": "gitlens.openFileOnRemote" },
+        { "key": "d", "name": "Git Diff",          "type": "command", "command": "git.openChange" },
+        { "key": "l", "name": "File History",      "type": "command", "command": "gitlens.showQuickFileHistory" },
+        { "key": "L", "name": "Branch History",    "type": "command", "command": "gitlens.showQuickRepoHistory" },
+        { "key": "c", "name": "Commit Details",    "type": "command", "command": "gitlens.showQuickCommitDetails" }
+      ]
+    },
+
+    // ── w = Window ─────────────────────────────────────────────────────────────────────
+
+    {
+      "key": "w",
+      "name": "+Window",
+      "type": "bindings",
+      "bindings": [
+        { "key": "d", "name": "Close Window",    "type": "command", "command": "workbench.action.closeActiveEditor" },
+        { "key": "w", "name": "Switch Window",   "type": "command", "command": "workbench.action.focusNextGroup" },
+        { "key": "m", "name": "Maximise Window", "type": "command", "command": "workbench.action.toggleEditorWidths" }
+      ]
+    },
+
+    // ── x = Diagnostics ────────────────────────────────────────────────────────────────
+
+    {
+      "key": "x",
+      "name": "+Diagnostics",
+      "type": "bindings",
+      "bindings": [
+        { "key": "x", "name": "Diagnostics List",      "type": "command", "command": "workbench.action.problems.focus" },
+        { "key": "X", "name": "Workspace Diagnostics", "type": "command", "command": "workbench.actions.view.problems" },
+        { "key": "l", "name": "Location List",         "type": "command", "command": "workbench.action.problems.focus" }
+      ]
+    },
+
+    // ── u = UI Toggles ─────────────────────────────────────────────────────────────────
+
+    {
+      "key": "u",
+      "name": "+UI Toggles",
+      "type": "bindings",
+      "bindings": [
+        { "key": "w", "name": "Toggle Word Wrap", "type": "command", "command": "editor.action.toggleWordWrap" },
+        { "key": "z", "name": "Toggle Zen Mode",  "type": "command", "command": "workbench.action.toggleZenMode" }
+      ]
+    },
+
+    // ── q = Quit ───────────────────────────────────────────────────────────────────────
+
+    {
+      "key": "q",
+      "name": "+Quit",
+      "type": "bindings",
+      "bindings": [
+        { "key": "q", "name": "Quit VSCode", "type": "command", "command": "workbench.action.closeWindow" },
+        { "key": "a", "name": "Quit All",    "type": "command", "command": "workbench.action.quit" }
+      ]
+    }
+
   ],
 
   // ──────────────────────────────────────────────────────────────────────────────────────
