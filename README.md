@@ -8,7 +8,7 @@
 > Please feel free to contribute and share ideas!
 > Things might break in progress due to editors' updates and changes. If I notice something, I try to patch as I go on.
 
-[![Version](https://img.shields.io/badge/version-2.5.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-2.7.0-blue.svg)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](#)
 ![GitHub stars](https://img.shields.io/github/stars/wojukasz/VimCode?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/wojukasz/VimCode?style=social)
