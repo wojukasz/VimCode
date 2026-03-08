@@ -2,6 +2,16 @@
 
 All notable changes are documented here. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.9.1] - 2026-03-08
+
+Qualify editor compatibility claims as tested vs expected.
+
+### Changed
+- **README.md** — "Works with any editor" replaced with "Tested on Antigravity (Linux/WSL). Expected to work on any editor that supports VSCodeVim"; compatibility section updated to the same effect
+- **SETUP.md** — Editor-Specific Notes intro now states Antigravity is tested; VS Code, Cursor, and Windsurf are untested but expected to work
+
+---
+
 ## [2.9.0] - 2026-03-08
 
 Documentation refactoring to NvimCode style throughout.
@@ -216,6 +226,7 @@ Initial release with comprehensive Vim keybindings for VS Code.
 
 ---
 
+[2.9.1]: https://github.com/wojukasz/VimCode/compare/v2.9.0...v2.9.1
 [2.9.0]: https://github.com/wojukasz/VimCode/compare/v2.8.0...v2.9.0
 [2.8.0]: https://github.com/wojukasz/VimCode/compare/v2.7.0...v2.8.0
 [2.7.0]: https://github.com/wojukasz/VimCode/compare/v2.6.0...v2.7.0
