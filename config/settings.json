@@ -199,10 +199,6 @@
       "commands": [":nohl"]
     },
     {
-      "before": ["<leader>", "u", "r"],                // <leader>ur = clear search (LazyVim "unredraw")
-      "commands": [":nohl"]
-    },
-    {
       "before": ["<C-n>"],                             // Ctrl+n also clears search highlight
       "commands": [":nohl"]
     },
@@ -614,6 +610,7 @@
     // register and remains pasteable with p. editor.action.deleteLines would discard it.
     { "key": "e",  "name": "Toggle Sidebar",        "type": "command", "command": "workbench.action.toggleSidebarVisibility" },
     { "key": "E",  "name": "Focus Explorer",        "type": "command", "command": "workbench.files.action.focusFilesExplorer" },
+    { "key": "K",  "name": "Show Hover",            "type": "command", "command": "editor.action.showHover" },
 
     // ── f = File ───────────────────────────────────────────────────────────────────────
 
@@ -663,7 +660,9 @@
         { "key": "r", "name": "Rename Symbol",    "type": "command", "command": "editor.action.rename" },
         { "key": "d", "name": "Line Diagnostics", "type": "command", "command": "editor.action.showHover" },
         { "key": "l", "name": "Problems Panel",   "type": "command", "command": "workbench.action.problems.focus" },
-        { "key": "o", "name": "Organise Imports", "type": "command", "command": "editor.action.organizeImports" }
+        { "key": "o", "name": "Organise Imports", "type": "command", "command": "editor.action.organizeImports" },
+        { "key": "c", "name": "Toggle Comment",   "type": "command", "command": "editor.action.commentLine" }
+        // ↑ gc in visual mode; also works on current line in normal mode
       ]
     },
 
@@ -674,12 +673,14 @@
       "name": "+Buffer",
       "type": "bindings",
       "bindings": [
-        { "key": "b", "name": "Switch Buffer",       "type": "command", "command": "workbench.action.showAllEditors" },
-        { "key": "d", "name": "Close Buffer",        "type": "command", "command": "workbench.action.closeActiveEditor" },
-        { "key": "D", "name": "Close Other Buffers", "type": "command", "command": "workbench.action.closeOtherEditors" },
-        { "key": "o", "name": "Close Others",        "type": "command", "command": "workbench.action.closeOtherEditors" },
-        { "key": "p", "name": "Pin Buffer",          "type": "command", "command": "workbench.action.pinEditor" },
-        { "key": "P", "name": "Unpin Buffer",        "type": "command", "command": "workbench.action.unpinEditor" }
+        { "key": "b", "name": "Switch Buffer",            "type": "command", "command": "workbench.action.showAllEditors" },
+        { "key": "n", "name": "Next Buffer     [Shift+L]","type": "command", "command": "workbench.action.nextEditor" },
+        { "key": "p", "name": "Prev Buffer     [Shift+H]","type": "command", "command": "workbench.action.previousEditor" },
+        { "key": "d", "name": "Close Buffer",            "type": "command", "command": "workbench.action.closeActiveEditor" },
+        { "key": "D", "name": "Close Other Buffers",     "type": "command", "command": "workbench.action.closeOtherEditors" },
+        { "key": "o", "name": "Close Others",            "type": "command", "command": "workbench.action.closeOtherEditors" },
+        { "key": "P", "name": "Pin Buffer",              "type": "command", "command": "workbench.action.pinEditor" },
+        { "key": "U", "name": "Unpin Buffer",            "type": "command", "command": "workbench.action.unpinEditor" }
       ]
     },
 
@@ -698,6 +699,30 @@
         { "key": "l", "name": "File History",      "type": "command", "command": "gitlens.showQuickFileHistory" },
         { "key": "L", "name": "Branch History",    "type": "command", "command": "gitlens.showQuickRepoHistory" },
         { "key": "c", "name": "Commit Details",    "type": "command", "command": "gitlens.showQuickCommitDetails" }
+      ]
+    },
+
+    // ── G = Go To / LSP Navigation ────────────────────────────────────────────────────
+    //
+    // These mirror the g* bindings in normalModeKeyBindingsNonRecursive.
+    // Pressing g directly is always faster; this submenu exists purely so you can
+    // browse the available go-to commands via which-key — and execute them if you
+    // forget the direct key. <space>Gd does exactly the same as gd.
+    //
+
+    {
+      "key": "G",
+      "name": "+Go To (LSP nav)",
+      "type": "bindings",
+      "bindings": [
+        { "key": "d", "name": "Definition",       "type": "command", "command": "editor.action.revealDefinition" },
+        { "key": "D", "name": "Declaration",      "type": "command", "command": "editor.action.revealDeclaration" },
+        { "key": "r", "name": "References",       "type": "command", "command": "editor.action.goToReferences" },
+        { "key": "I", "name": "Implementation",   "type": "command", "command": "editor.action.goToImplementation" },
+        { "key": "y", "name": "Type Definition",  "type": "command", "command": "editor.action.goToTypeDefinition" },
+        { "key": "K", "name": "Signature Help",   "type": "command", "command": "editor.action.triggerParameterHints" },
+        { "key": "h", "name": "Hover Docs  [K]",  "type": "command", "command": "editor.action.showHover" }
+        // ↑ key labels show the direct shortcut so the menu doubles as a cheatsheet
       ]
     },
 
@@ -721,16 +746,39 @@
       ]
     },
 
-    // ── w = Window ─────────────────────────────────────────────────────────────────────
+    // ── w = Window / Navigation ────────────────────────────────────────────────────────
+    //
+    // Comprehensive navigation hub — use this submenu to discover direct shortcuts.
+    // Focus commands mirror the Ctrl+h/j/k/l bindings in keybindings.json.
+    // Resize commands mirror the Ctrl+Arrow bindings in keybindings.json.
+    //
 
     {
       "key": "w",
-      "name": "+Window",
+      "name": "+Window / Nav",
       "type": "bindings",
       "bindings": [
-        { "key": "d", "name": "Close Window",    "type": "command", "command": "workbench.action.closeActiveEditor" },
-        { "key": "w", "name": "Switch Window",   "type": "command", "command": "workbench.action.focusNextGroup" },
-        { "key": "m", "name": "Maximise Window", "type": "command", "command": "workbench.action.toggleEditorWidths" }
+        // ── Focus pane (direct: Ctrl+h/j/k/l) ─────────────────────────────────────────
+        { "key": "h", "name": "Focus Left   [C-h]",  "type": "command", "command": "workbench.action.focusLeftGroup" },
+        { "key": "j", "name": "Focus Down   [C-j]",  "type": "command", "command": "workbench.action.focusBelowGroup" },
+        { "key": "k", "name": "Focus Up     [C-k]",  "type": "command", "command": "workbench.action.focusAboveGroup" },
+        { "key": "l", "name": "Focus Right  [C-l]",  "type": "command", "command": "workbench.action.focusRightGroup" },
+        // ── Create split ───────────────────────────────────────────────────────────────
+        { "key": "s", "name": "Split Below  [-]",    "type": "command", "command": "workbench.action.splitEditorDown" },
+        { "key": "v", "name": "Split Right  [|]",    "type": "command", "command": "workbench.action.splitEditorRight" },
+        // ── Resize split (direct: Ctrl+Arrow) ─────────────────────────────────────────
+        { "key": "=", "name": "Increase Width  [C-→]","type": "command", "command": "workbench.action.increaseViewWidth" },
+        { "key": "-", "name": "Decrease Width  [C-←]","type": "command", "command": "workbench.action.decreaseViewWidth" },
+        { "key": "+", "name": "Increase Height [C-↑]","type": "command", "command": "workbench.action.increaseViewHeight" },
+        { "key": "_", "name": "Decrease Height [C-↓]","type": "command", "command": "workbench.action.decreaseViewHeight" },
+        // ── Manage ─────────────────────────────────────────────────────────────────────
+        { "key": "d", "name": "Close Window",         "type": "command", "command": "workbench.action.closeActiveEditor" },
+        { "key": "w", "name": "Next Window  [C-w C-w]","type": "command", "command": "workbench.action.focusNextGroup" },
+        { "key": "m", "name": "Maximise Toggle",      "type": "command", "command": "workbench.action.toggleEditorWidths" },
+        // ── Jump to specific group (direct: Ctrl+1/2/3) ───────────────────────────────
+        { "key": "1", "name": "Group 1  [C-1]",       "type": "command", "command": "workbench.action.focusFirstEditorGroup" },
+        { "key": "2", "name": "Group 2  [C-2]",       "type": "command", "command": "workbench.action.focusSecondEditorGroup" },
+        { "key": "3", "name": "Group 3  [C-3]",       "type": "command", "command": "workbench.action.focusThirdEditorGroup" }
       ]
     },
 
