@@ -1,6 +1,31 @@
 # Changelog
 
-All notable changes to this configuration will be documented in this file.
+All notable changes are documented here. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
+
+## [2.9.0] - 2026-03-08
+
+Documentation refactoring to NvimCode style throughout.
+
+### Changed
+- **All 8 documentation files** refactored: terse imperative tone, table-heavy reference sections, `**Symptoms:** / **Solution(s):**` format in TROUBLESHOOTING.md, `**Status:**` label on every entry in KNOWN_ISSUES.md, `## Step N — Name` structure in SETUP.md
+- **KEYBINDINGS.md** — removed "By Workflow" and "Tips for Learning" sections; content moved to TIPS_AND_TRICKS.md; renamed "By Prefix" → "Leader Bindings"; removed ToC
+- **TIPS_AND_TRICKS.md** — received workflow sequences from KEYBINDINGS.md; removed Keyboard-First Development, Performance Optimization, Common Pitfalls sections (duplicates); removed coaching language
+- **TROUBLESHOOTING.md** — removed FAQ section (10 entries); removed VS Code Freezing subsection; enforced 3-part format on every issue entry
+- **SETUP.md** — removed Configuration Architecture deep-dive, Quick Installation, Next Steps, vscode-neovim section; fixed validation checklist; added Prerequisites table
+- **KNOWN_ISSUES.md** — stripped emoji headings; added Status label to every issue; converted "Considering Higher Parity?" to blockquote
+- **REFERENCES.md** — removed Video Tutorials, Quick Links, Contributing, License, LazyVim Concepts, VimCode Documentation, Vim-Inspired Tools sections
+- **README.md** — removed Why VimCode, Philosophy, Validation Checklist, Configuration Structure, Keybinding Organization sections; converted docs list to table
+- **CHANGELOG.md** — added `---` separators between version blocks; rewrote [2.0.0] as single summary sentence; added version comparison links
+
+### Removed
+- `bindings-cheatsheet.md` — generated audit artifact; content absorbed into main docs
+- `validation-report.md` — generated audit artifact; issues tracked in KNOWN_ISSUES.md
+
+### Fixed
+- KNOWN_ISSUES.md: added `]b` buffer navigation bug (moved from SETUP.md checklist) with **Status:** Open
+- SETUP.md: validation checklist pre-checked items, typos ("beetwen", "dosent"), editorial note ("might remove ctrl + w in the future") all removed
+
+---
 
 ## [2.8.0] - 2026-03-08
 
@@ -107,8 +132,7 @@ Replaced Windsurf with Antigravity throughout; corrected editor-specific technic
 - Updated config paths to use `Antigravity/User/` instead of `Windsurf/User/`
 - Removed `windsurf` from package.json keywords
 - Version bump: package.json and README badge to 2.3.0
-
-> Windsurf (by Codeium/Cognition AI) and Antigravity (by Google) are distinct products that share technological roots. VimCode now targets Antigravity specifically as the third supported editor.
+- Note: Windsurf (by Codeium/Cognition AI) and Antigravity (by Google) are distinct products that share technological roots; VimCode now targets Antigravity specifically as the third supported editor
 
 ---
 
@@ -142,53 +166,13 @@ Documentation cleanup and consolidation.
 - Updated `REFERENCES.md` to remove `EDITOR_COMPARISON.md` from VimCode Documentation list
 - Updated `TROUBLESHOOTING.md` FAQ to point to `SETUP.md` instead of removed file
 
+---
+
 ## [2.0.0] - 2026-01-17
 
-Major update with comprehensive documentation, community health files, and refined keybindings.
+Major release adding comprehensive documentation (`SETUP.md`, `TIPS_AND_TRICKS.md`, `TROUBLESHOOTING.md`, `REFERENCES.md`), GitHub community health files, package metadata, and a full keybinding realignment to LazyVim conventions with `<space>` as leader and `<leader>f*` / `s*` / `c*` / `b*` / `g*` / `w*` / `x*` / `u*` prefix organisation.
 
-### Added
-- **GitHub Community Health Files:**
-  - `.github/CONTRIBUTING.md` - Contribution guidelines following LazyVim conventions
-  - `.github/ISSUE_TEMPLATE/` - Bug report, feature request, and keybinding conflict templates
-  - `.github/PULL_REQUEST_TEMPLATE.md` - Structured PR template
-- **Package Metadata:**
-  - `package.json` - npm/GitHub package metadata with keywords for discoverability
-  - Install scripts for VS Code and Cursor
-- **Comprehensive Documentation:**
-  - `SETUP.md` - Detailed installation and configuration guide
-  - `TIPS_AND_TRICKS.md` - Advanced usage patterns and workflows
-  - `TROUBLESHOOTING.md` - Common issues and solutions
-  - `REFERENCES.md` - Additional resources and learning materials
-- **Enhanced Keybindings Documentation:**
-  - Significantly expanded `KEYBINDINGS.md` with comprehensive key mapping documentation
-  - Quick reference cheatsheet
-  - Organized by LazyVim conventions
-
-### Changed
-- **Keybindings aligned with LazyVim conventions:**
-  - Primary leader key: `<space>` (space)
-  - Organized by prefix: `<leader>f*` (files), `<leader>s*` (search), `<leader>c*` (code), etc.
-  - File Explorer Toggle: `<space>e`
-  - Workspace Search: `<space>/`
-  - Better consistency with LazyVim muscle memory
-- **Configuration Structure:**
-  - Unified configuration in `config/` directory
-  - Single `settings.json` and `keybindings.json` for all compatible editors
-  - Multi-editor support for VS Code, Cursor, and Antigravity
-- **Documentation Improvements:**
-  - Updated `README.md` with improved structure and clarity
-  - Better organization of all documentation files
-  - Enhanced contribution guidelines
-
-### Fixed
-- Corrected changelog entries and version history
-- Improved keybinding consistency
-- Fixed documentation references
-
-### Removed
-- Promotional marketing content
-- Redundant documentation files
-- Multi-editor scaffolding (consolidated to single config)
+---
 
 ## [1.0.0] - 2025-01-22
 
@@ -228,3 +212,18 @@ Initial release with comprehensive Vim keybindings for VS Code.
   - Exit insert mode: `jj`
   - Toggle comment: `<leader>c`
   - Clear search: `ctrl+n`
+
+
+---
+
+[2.9.0]: https://github.com/wojukasz/VimCode/compare/v2.8.0...v2.9.0
+[2.8.0]: https://github.com/wojukasz/VimCode/compare/v2.7.0...v2.8.0
+[2.7.0]: https://github.com/wojukasz/VimCode/compare/v2.6.0...v2.7.0
+[2.6.0]: https://github.com/wojukasz/VimCode/compare/v2.5.0...v2.6.0
+[2.5.0]: https://github.com/wojukasz/VimCode/compare/v2.4.0...v2.5.0
+[2.4.0]: https://github.com/wojukasz/VimCode/compare/v2.3.0...v2.4.0
+[2.3.0]: https://github.com/wojukasz/VimCode/compare/v2.2.0...v2.3.0
+[2.2.0]: https://github.com/wojukasz/VimCode/compare/v2.1.0...v2.2.0
+[2.1.0]: https://github.com/wojukasz/VimCode/compare/v2.0.0...v2.1.0
+[2.0.0]: https://github.com/wojukasz/VimCode/compare/v1.0.0...v2.0.0
+[1.0.0]: https://github.com/wojukasz/VimCode/releases/tag/v1.0.0

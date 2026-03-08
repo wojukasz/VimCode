@@ -1,18 +1,8 @@
-# VimCode Troubleshooting Guide
+# Troubleshooting
 
-Solutions to common issues when using VimCode - LazyVim-style keybindings for VS Code.
+> For architectural limitations (visual block mode, macros, registers), see [KNOWN_ISSUES.md](KNOWN_ISSUES.md).
 
-## Table of Contents
-
-- [Installation Issues](#installation-issues)
-- [Leader Key Problems](#leader-key-problems)
-- [Performance Issues](#performance-issues)
-- [Keybinding Conflicts](#keybinding-conflicts)
-- [Platform-Specific Issues](#platform-specific-issues)
-- [Extension Issues](#extension-issues)
-- [Git Integration Problems](#git-integration-problems)
-- [Editor Behavior Issues](#editor-behavior-issues)
-- [FAQ](#faq)
+---
 
 ## Installation Issues
 
@@ -24,7 +14,7 @@ Solutions to common issues when using VimCode - LazyVim-style keybindings for VS
 
 **Solutions:**
 
-1. **Verify file location:**
+1. Verify file location:
    ```bash
    # macOS
    ls -la ~/Library/Application\ Support/Code/User/settings.json
@@ -39,23 +29,15 @@ Solutions to common issues when using VimCode - LazyVim-style keybindings for VS
    dir $env:APPDATA\Code\User\keybindings.json
    ```
 
-2. **Check file permissions:**
+2. Check file permissions:
    ```bash
-   # macOS/Linux - ensure files are readable
    chmod 644 ~/Library/Application\ Support/Code/User/settings.json
    chmod 644 ~/Library/Application\ Support/Code/User/keybindings.json
    ```
 
-3. **Restart VS Code completely:**
-   - Close all VS Code windows
-   - Quit VS Code (not just close window)
-   - Reopen VS Code
-   - Test with `<leader>ff`
+3. Restart VS Code completely — close all windows, quit (not just close), reopen, and test with `<leader>ff`.
 
-4. **Verify JSON syntax:**
-   - Open settings.json in VS Code
-   - Check for red squiggly lines (syntax errors)
-   - Fix any JSON formatting issues
+4. Verify JSON syntax — open `settings.json` in VS Code and check for red squiggly lines.
 
 ### Vim Extension Not Installing
 
@@ -65,31 +47,21 @@ Solutions to common issues when using VimCode - LazyVim-style keybindings for VS
 
 **Solutions:**
 
-1. **Install manually:**
-   - Open VS Code
-   - Press `Ctrl+Shift+X` (Extensions)
-   - Search for "Vim"
-   - Click "Install" on "Vim" by vscodevim
+1. Install manually: `Ctrl+Shift+X` → search "Vim" → install "Vim" by vscodevim.
 
-2. **Check internet connection:**
+2. Test marketplace connectivity:
    ```bash
-   # Test marketplace connectivity
    curl -I https://marketplace.visualstudio.com
    ```
 
-3. **Clear extension cache:**
+3. Clear extension cache:
    ```bash
    # macOS/Linux
    rm -rf ~/.vscode/extensions
-
-   # Windows (PowerShell)
-   Remove-Item -Recurse -Force $env:USERPROFILE\.vscode\extensions
    ```
    Then reinstall extensions.
 
-4. **Use different network:**
-   - Corporate firewalls may block marketplace
-   - Try home network or mobile hotspot
+---
 
 ## Leader Key Problems
 
@@ -100,30 +72,22 @@ Solutions to common issues when using VimCode - LazyVim-style keybindings for VS
 - Leader keybindings don't work
 
 **Diagnosis:**
-```
-1. Open settings.json
-2. Search for "vim.leader"
-3. Verify it says: "vim.leader": "<space>"
-```
+Open `settings.json` and verify `"vim.leader": "<space>"` is present.
 
 **Solutions:**
 
-1. **Ensure leader is configured:**
+1. Ensure leader is configured:
    ```json
    {
      "vim.leader": "<space>"
    }
    ```
 
-2. **Verify you're in Normal mode:**
-   - Status bar should be blue (not green for Insert)
-   - Try pressing `Esc` first, then space
+2. Verify you're in Normal mode — status bar should be blue (not green for Insert). Press `Esc` first, then space.
 
-3. **Check for conflicting settings:**
-   - Search settings.json for other `"leader"` mentions
-   - Remove any duplicate configurations
+3. Check for conflicting settings: search `settings.json` for duplicate `"leader"` mentions.
 
-4. **Restart VS Code**
+4. Restart VS Code.
 
 ### Leader Keybindings in Wrong File
 
@@ -131,15 +95,14 @@ Solutions to common issues when using VimCode - LazyVim-style keybindings for VS
 - Leader bindings not working
 - Other keybindings work fine
 
-**Problem:**
-Leader bindings are in `keybindings.json` instead of `settings.json`.
+**Cause:**
+Leader bindings placed in `keybindings.json` instead of `settings.json`.
 
 **Solution:**
-Leader bindings MUST be in `settings.json` under `vim.normalModeKeyBindingsNonRecursive`. Move them from `keybindings.json` if they're there.
+Leader bindings must be in `settings.json` under `vim.normalModeKeyBindingsNonRecursive`. Move them if they're in `keybindings.json`.
 
-**Correct structure:**
 ```json
-// settings.json
+// settings.json — correct location
 {
   "vim.normalModeKeyBindingsNonRecursive": [
     {
@@ -149,6 +112,8 @@ Leader bindings MUST be in `settings.json` under `vim.normalModeKeyBindingsNonRe
   ]
 }
 ```
+
+---
 
 ## Performance Issues
 
@@ -161,7 +126,7 @@ Leader bindings MUST be in `settings.json` under `vim.normalModeKeyBindingsNonRe
 
 **Solutions:**
 
-1. **Add dedicated thread setting (CRITICAL):**
+1. Add dedicated thread setting:
    ```json
    {
      "extensions.experimental.affinity": {
@@ -169,25 +134,16 @@ Leader bindings MUST be in `settings.json` under `vim.normalModeKeyBindingsNonRe
      }
    }
    ```
-   This runs Vim extension in a separate thread.
 
-2. **On macOS, enable key repeat:**
+2. On macOS, enable key repeat:
    ```bash
    defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
    ```
-   Then **restart your Mac** (not just VS Code).
+   Then restart your Mac (not just VS Code).
 
-3. **Disable unused extensions:**
-   - Open Extensions panel (`Ctrl+Shift+X`)
-   - Disable extensions you don't use
-   - Restart VS Code
+3. Disable unused extensions — open Extensions panel (`Ctrl+Shift+X`) and disable extensions you don't use.
 
-4. **Check resource usage:**
-   - Open Activity Monitor (macOS) or Task Manager (Windows)
-   - Look for high CPU/memory usage
-   - Close resource-heavy applications
-
-5. **Reduce editor animations:**
+4. Reduce editor animations:
    ```json
    {
      "editor.smoothScrolling": false,
@@ -196,42 +152,7 @@ Leader bindings MUST be in `settings.json` under `vim.normalModeKeyBindingsNonRe
    }
    ```
 
-6. **Disable minimap:**
-   ```json
-   {
-     "editor.minimap.enabled": false
-   }
-   ```
-
-### VS Code Freezing
-
-**Symptoms:**
-- VS Code stops responding
-- Spinning wheel or "Not Responding"
-
-**Solutions:**
-
-1. **Disable Vim extension temporarily:**
-   - Extensions panel → Vim → Disable
-   - If problem persists, it's not VimCode
-   - If problem stops, see typing lag solutions above
-
-2. **Check for infinite loops:**
-   - Review custom keybindings
-   - Look for recursive mappings
-
-3. **Clear workspace storage:**
-   ```bash
-   # macOS/Linux
-   rm -rf ~/Library/Application\ Support/Code/workspaceStorage
-
-   # Windows
-   Remove-Item -Recurse $env:APPDATA\Code\workspaceStorage
-   ```
-
-4. **Start with clean profile:**
-   - Create new VS Code profile
-   - Test if issue persists
+---
 
 ## Keybinding Conflicts
 
@@ -240,6 +161,9 @@ Leader bindings MUST be in `settings.json` under `vim.normalModeKeyBindingsNonRe
 **Symptoms:**
 - `Ctrl+h` deletes character (like backspace)
 - Doesn't navigate to left split
+
+**Cause:**
+macOS Terminal maps `Ctrl+h` to delete. The keybinding in `keybindings.json` may also need a `!terminalFocus` guard.
 
 **Solution:**
 Add to `keybindings.json`:
@@ -272,13 +196,8 @@ In `keybindings.json`, replace:
 "key": "oem_6"  // ]
 
 // NEW (international)
-"key": "[BracketLeft]"   // [
-"key": "[BracketRight]"  // ]
-```
-
-**Find all instances:**
-```bash
-grep -n "oem_4\|oem_6" keybindings.json
+"key": "[BracketLeft]"
+"key": "[BracketRight]"
 ```
 
 ### Suggestion Widget Conflicts
@@ -288,7 +207,7 @@ grep -n "oem_4\|oem_6" keybindings.json
 - Autocomplete breaks
 
 **Solution:**
-Ensure these keybindings are in `keybindings.json`:
+Ensure these are in `keybindings.json`:
 ```json
 {
   "key": "ctrl+j",
@@ -306,7 +225,6 @@ Ensure these keybindings are in `keybindings.json`:
 
 **Symptoms:**
 - `Ctrl+h/j/k/l` doesn't work when terminal is focused
-- Terminal intercepts keybindings
 
 **Solution:**
 Add terminal-specific when clauses:
@@ -318,6 +236,8 @@ Add terminal-specific when clauses:
 }
 ```
 
+---
+
 ## Platform-Specific Issues
 
 ### macOS: Key Repeat Not Working
@@ -328,45 +248,23 @@ Add terminal-specific when clauses:
 
 **Solution:**
 ```bash
-# For VS Code
 defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
-
-# For Cursor
 defaults write com.cursor.Cursor ApplePressAndHoldEnabled -bool false
-
-# For Antigravity
 defaults write com.google.antigravity ApplePressAndHoldEnabled -bool false
 ```
 
-**IMPORTANT:** Restart your Mac (log out/in isn't enough).
-
-**Verify it worked:**
-```bash
-defaults read com.microsoft.VSCode ApplePressAndHoldEnabled
-# Should output: 0
-```
-
-### macOS: Ctrl+h Deletes
-
-**Cause:**
-macOS Terminal maps `Ctrl+h` to delete.
-
-**Solution:**
-See [Ctrl+h Deletes Instead of Navigating](#ctrlh-deletes-instead-of-navigating).
+> Restart your Mac after running these commands. Verify with: `defaults read com.microsoft.VSCode ApplePressAndHoldEnabled` — should output `0`.
 
 ### Windows: PowerShell Commands Don't Work
 
 **Symptoms:**
 - `Copy-Item` command not found
-- Copy commands fail
 
 **Solutions:**
 
-1. **Use PowerShell, not Command Prompt:**
-   - Open PowerShell (not cmd.exe)
-   - Run the copy commands
+1. Use PowerShell, not Command Prompt.
 
-2. **Alternative using cmd.exe:**
+2. Alternative using cmd.exe:
    ```cmd
    copy config\settings.json %APPDATA%\Code\User\
    copy config\keybindings.json %APPDATA%\Code\User\
@@ -376,30 +274,22 @@ See [Ctrl+h Deletes Instead of Navigating](#ctrlh-deletes-instead-of-navigating)
 
 **Symptoms:**
 - `y` (yank) doesn't copy to clipboard
-- Can't paste yanked text outside VS Code
 
 **Solution:**
 
-1. **Install clipboard utility:**
+1. Install clipboard utility:
    ```bash
-   # Debian/Ubuntu
-   sudo apt install xclip
-
-   # Fedora
-   sudo dnf install xclip
-
-   # Arch
-   sudo pacman -S xclip
+   sudo apt install xclip      # Debian/Ubuntu
+   sudo dnf install xclip      # Fedora
+   sudo pacman -S xclip        # Arch
    ```
 
-2. **Enable system clipboard:**
+2. Enable system clipboard:
    ```json
-   {
-     "vim.useSystemClipboard": true
-   }
+   { "vim.useSystemClipboard": true }
    ```
 
-3. **Restart VS Code**
+---
 
 ## Extension Issues
 
@@ -417,25 +307,16 @@ code --list-extensions | grep gitlens
 
 **Solutions:**
 
-1. **Install GitLens:**
+1. Install GitLens:
    ```bash
    code --install-extension eamodio.gitlens
    ```
 
-2. **Verify you're in a git repository:**
-   ```bash
-   git status
-   # Should show git info, not "not a git repository"
-   ```
+2. Verify you're in a git repository (`git status`).
 
-3. **Check GitLens is enabled:**
-   - Extensions panel
-   - Ensure GitLens is not disabled
-   - Click "Enable" if needed
+3. Check GitLens is enabled in the Extensions panel.
 
-4. **Reload window:**
-   - `Ctrl+Shift+P`
-   - "Developer: Reload Window"
+4. Reload window: `Ctrl+Shift+P` → "Developer: Reload Window".
 
 ### Settings Cycler Not Working
 
@@ -444,14 +325,12 @@ code --list-extensions | grep gitlens
 
 **Solutions:**
 
-1. **Install Settings Cycler:**
+1. Install Settings Cycler:
    ```bash
    code --install-extension hoovercj.vscode-settings-cycler
    ```
 
-2. **Uncomment settings.cycle section:**
-
-   In `settings.json`, find and uncomment:
+2. Uncomment `settings.cycle` section in `settings.json`:
    ```json
    "settings.cycle": [
      {
@@ -465,37 +344,20 @@ code --list-extensions | grep gitlens
    ]
    ```
 
-3. **Verify keybinding:**
-
-   In `settings.json`, ensure binding exists:
-   ```json
-   {
-     "before": ["<leader>", "u", "l"],
-     "commands": ["settings.cycle.lineNumbers"]
-   }
-   ```
-
 ### Which Key Not Appearing
 
 **Symptoms:**
 - No keybinding menu appears after pressing leader
-- Expected popup doesn't show
 
 **Note:**
-VimCode doesn't require Which Key extension. It's optional.
+VimCode works without Which Key — it's optional. All `<leader>*` bindings function without it.
 
-**If you want Which Key:**
+**To install:**
+```bash
+code --install-extension VSpaceCode.whichkey
+```
 
-1. **Install extension:**
-   ```bash
-   code --install-extension VSpaceCode.whichkey
-   ```
-
-2. **Configure in settings.json:**
-   ```json
-   "whichkey.delay": 500,
-   "whichkey.sortOrder": "alphabetically"
-   ```
+---
 
 ## Git Integration Problems
 
@@ -507,67 +369,37 @@ VimCode doesn't require Which Key extension. It's optional.
 
 **Diagnosis:**
 ```bash
-# Check if folder is a git repo
-git status
-
-# Check git is installed
-git --version
+git status    # Check if folder is a git repo
+git --version # Check git is installed
 ```
 
 **Solutions:**
 
-1. **Initialize git repository:**
+1. Initialize git repository: `git init`
+
+2. Open the folder containing `.git` — File → Open Folder → navigate to git repository root.
+
+3. Install git if missing:
    ```bash
-   git init
+   brew install git     # macOS
+   sudo apt install git # Linux
    ```
 
-2. **Open folder containing .git:**
-   - File → Open Folder
-   - Navigate to git repository root
-   - Open the folder
-
-3. **Install git if missing:**
-   ```bash
-   # macOS
-   brew install git
-
-   # Linux
-   sudo apt install git
-
-   # Windows
-   # Download from git-scm.com
-   ```
-
-### Git Blame Shows "Not a Git Repository"
-
-**Symptoms:**
-- GitLens blame shows error
-- File not in git repo
-
-**Solution:**
-Ensure you've opened the repository root folder, not a parent directory.
-
-**Check:**
-```bash
-# Should be in folder with .git directory
-ls -la .git
-```
+4. If GitLens blame shows "Not a Git Repository": ensure you've opened the repository root, not a parent directory. Verify: `ls -la .git`
 
 ### Hunk Navigation Shows No Changes
 
 **Symptoms:**
 - `[h` and `]h` do nothing
-- No hunks found
 
-**Causes:**
-1. No uncommitted changes
-2. File not in git repo
-3. File is new (not tracked)
+**Causes:** No uncommitted changes, file not in git repo, or file is new (not tracked).
 
 **Solutions:**
-1. Make changes to tracked file
-2. Stage some changes, leave some unstaged
-3. Try `[h` and `]h` again
+1. Make changes to a tracked file.
+2. Leave some changes unstaged.
+3. Try `[h` and `]h` again.
+
+---
 
 ## Editor Behavior Issues
 
@@ -575,7 +407,6 @@ ls -la .git
 
 **Symptoms:**
 - Line numbers show absolute, not relative
-- Expected relative numbers
 
 **Solution:**
 ```json
@@ -585,18 +416,14 @@ ls -la .git
 }
 ```
 
-**Note:** Line numbers should be:
-- Relative in Normal/Visual modes
-- Absolute in Insert mode
+Line numbers are relative in Normal/Visual modes and absolute in Insert mode.
 
 ### Status Bar Color Not Changing
 
 **Symptoms:**
 - Status bar stays same color in all modes
-- No visual mode indicator
 
 **Solution:**
-Add to `settings.json`:
 ```json
 {
   "vim.statusBarColorControl": true,
@@ -611,136 +438,28 @@ Add to `settings.json`:
 
 **Symptoms:**
 - `Ctrl+v` doesn't enter visual block mode
-- Column editing doesn't work
 
 **Cause:**
-`Ctrl+v` is paste in VS Code by default.
+`Ctrl+v` is paste in VS Code by default. Visual block paste is also unreliable in VSCodeVim. See [KNOWN_ISSUES.md](KNOWN_ISSUES.md).
 
 **Solution:**
-VimCode lets VS Code handle `Ctrl+v` for paste. Use VS Code's column edit:
+Use VS Code's column edit instead:
 - `Alt+Click` for multiple cursors
 - `Alt+Shift+Drag` for column selection
-
-**Or configure Vim to handle it:**
-```json
-{
-  "vim.handleKeys": {
-    "<C-v>": true
-  }
-}
-```
-
-**Trade-off:** You lose `Ctrl+v` for paste.
 
 ### Search Highlighting Persists
 
 **Symptoms:**
 - Search highlights stay after search
-- Can't clear highlights
 
 **Solution:**
 ```
 <leader>ur      # Clear search highlight
+:noh            # Vim native alternative
 ```
-
-Or use Vim's native:
-```
-:noh            # No highlight
-```
-
-## FAQ
-
-### Can I use VimCode with other editors (Cursor, Antigravity, Windsurf, etc.)?
-
-**Yes!** VimCode works with any VS Code-compatible fork that supports the VSCodeVim extension. All forks use the same `settings.json` and `keybindings.json` format.
-
-Each editor has its own config directory following the standard pattern:
-- `~/.config/<EditorName>/User/` on Linux
-- `~/Library/Application Support/<EditorName>/User/` on macOS
-- `%APPDATA%\<EditorName>\User\` on Windows
-
-See [SETUP.md](SETUP.md) for per-editor paths and editor-specific notes. Behaviour should be equivalent across forks, but minor differences may exist. Community contributions for fork-specific fixes are welcome.
-
-### How do I temporarily disable Vim mode?
-
-**Quick disable:**
-1. Extensions panel (`Ctrl+Shift+X`)
-2. Find "Vim"
-3. Click "Disable"
-4. Reload window
-
-**Toggle with keybinding:**
-Add to `keybindings.json`:
-```json
-{
-  "key": "ctrl+alt+v",
-  "command": "toggleVim"
-}
-```
-
-### Can I use my own keybindings?
-
-**Absolutely!** VimCode is a starting point. Customize in:
-- `settings.json` - Leader bindings
-- `keybindings.json` - Modifier keys
-
-See [TIPS_AND_TRICKS.md#customization-tips](TIPS_AND_TRICKS.md#customization-tips).
-
-### Why are there two configuration files?
-
-**Technical reason:**
-- `settings.json` - Vim extension settings (leader bindings)
-- `keybindings.json` - VS Code keybindings (modifier keys)
-
-Vim needs to process leader bindings before VS Code sees them.
-
-See [SETUP.md#configuration-architecture](SETUP.md#configuration-architecture).
-
-### How do I revert to my old configuration?
-
-**If you made backups:**
-```bash
-# macOS
-cp ~/Library/Application\ Support/Code/User/settings.json.backup ~/Library/Application\ Support/Code/User/settings.json
-cp ~/Library/Application\ Support/Code/User/keybindings.json.backup ~/Library/Application\ Support/Code/User/keybindings.json
-
-# Linux
-cp ~/.config/Code/User/settings.json.backup ~/.config/Code/User/settings.json
-cp ~/.config/Code/User/keybindings.json.backup ~/.config/Code/User/keybindings.json
-```
-
-**If you didn't make backups:**
-1. Delete current files
-2. VS Code will recreate defaults
-3. Manually re-add your settings
-
-### Where can I get more help?
-
-- **GitHub Issues:** [github.com/wojukasz/VimCode/issues](https://github.com/wojukasz/VimCode/issues)
-- **VS Code Vim Docs:** [github.com/VSCodeVim/Vim](https://github.com/VSCodeVim/Vim)
-- **LazyVim Keymaps:** [lazyvim.org/keymaps](https://www.lazyvim.org/keymaps)
-
-### Is VimCode production-ready?
-
-**Note from author:**
-> Some keybindings are experimental. Test thoroughly before relying on them for critical work. Feedback welcome!
-
-**Recommendation:**
-- Use in personal projects first
-- Validate all keybindings you use
-- Customize to your workflow
-- Report issues on GitHub
 
 ---
 
-**Still having issues?** Open an issue on GitHub with:
-1. Your VS Code version
-2. Your OS and version
-3. Steps to reproduce
-4. Expected vs actual behavior
-5. Relevant sections of your settings.json
-
-**Quick Links:**
-- [SETUP.md](SETUP.md) - Installation guide
-- [KEYBINDINGS.md](KEYBINDINGS.md) - Keybinding reference
-- [TIPS_AND_TRICKS.md](TIPS_AND_TRICKS.md) - Advanced usage
+> Still having issues? Open a [GitHub Issue](https://github.com/wojukasz/VimCode/issues) with your VS Code version, OS, steps to reproduce, expected vs actual behavior, and relevant `settings.json` sections.
+>
+> See also: [SETUP.md](SETUP.md) — installation guide | [KEYBINDINGS.md](KEYBINDINGS.md) — keybinding reference | [KNOWN_ISSUES.md](KNOWN_ISSUES.md) — architectural limitations

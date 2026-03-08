@@ -1,14 +1,14 @@
-# Known Issues and VSCodeVim Ceiling
+# Known Issues
 
-This file documents known issues, hard limitations, and areas where VimCode intentionally diverges from LazyVim due to architectural constraints. For new bugs, please [open a GitHub Issue](https://github.com/wojukasz/VimCode/issues).
+Format: `## Title` → description → `**Workaround:**` → `**Status:**`
+
+> For issues not listed here, see [TROUBLESHOOTING.md](TROUBLESHOOTING.md) or open a [GitHub Issue](https://github.com/wojukasz/VimCode/issues).
 
 ---
 
 ## LazyVim Parity: What Works, What Doesn't
 
-VimCode achieves **~95% parity with LazyVim's daily keybinding surface**. The 5% gap is structural — VSCodeVim is a JavaScript *simulation* of Vim, not actual Vim. Some things cannot be fixed with configuration alone.
-
-### ✅ Fully Matched (Exact Parity)
+### Exact Parity
 
 These work identically to LazyVim:
 
@@ -23,7 +23,7 @@ These work identically to LazyVim:
 - Search/grep: `<leader>/`, `<leader>ff`, `<leader>,`, `<leader>sg`, `<leader>sr`
 - which-key popup menu on `<space>` with the same group structure (`f`, `s`, `c`, `b`, `g`, `w`, `x`, `u`, `q`)
 
-### ⚠️ Works Differently (Same Goal, Different Feel)
+### Works Differently
 
 | Feature | LazyVim | VimCode | Why |
 |---------|---------|---------|-----|
@@ -34,25 +34,27 @@ These work identically to LazyVim:
 | **Symbol picker** | Telescope with fuzzy + preview | VS Code goto symbol | Minor UX difference |
 | **which-key discovery** | Auto-reads `desc` from all keymaps | Manually configured in `whichkey.bindings` JSON | Structural: no introspection API available in VS Code |
 
+### Unavailable
+
+These LazyVim features have no equivalent in VSCodeVim. See VSCodeVim Hard Limits below.
+
 ---
 
 ## VSCodeVim Hard Limits
 
 These are **architectural limitations of VSCodeVim** — not bugs in VimCode, and not fixable with any amount of configuration.
 
-### ❌ Visual Block Mode (`Ctrl+v`)
-
-**Status:** Fundamentally broken in VSCodeVim.
+### Visual Block Mode (`Ctrl+v`)
 
 Pasting in visual block mode inserts incorrect newlines. Column-wise editing (inserting the same text at the start of multiple lines) is unreliable. This is a known long-standing issue in the VSCodeVim issue tracker.
 
 **Workaround:** Use VS Code's native multi-cursor (`Alt+Click` or `Ctrl+Alt+↑↓`) for column editing. For block selection, use `Shift+Alt+drag`.
 
+**Status:** Won't fix — VSCodeVim architectural limitation
+
 ---
 
-### ❌ Complex Macros Involving Registers
-
-**Status:** Partially broken.
+### Complex Macros Involving Registers
 
 Basic macro recording (`qq … q`, then `@q`) works. However:
 - Applying macros to a visual selection (`'<,'>norm! @q`) fails
@@ -61,29 +63,29 @@ Basic macro recording (`qq … q`, then `@q`) works. However:
 
 **Workaround:** Use VS Code's multi-cursor or find-and-replace for operations that would normally use register-heavy macros in Neovim.
 
+**Status:** Won't fix — VSCodeVim architectural limitation
+
 ---
 
-### ❌ Full Register Parity
-
-**Status:** Partial.
+### Full Register Parity
 
 Named registers (`"ay`, `"ap`) work. System clipboard register (`"+y`, `"+p`) works via `vim.useSystemClipboard`. However, the black-hole register (`"_`), expression register (`"=`), and some special registers behave differently or are not implemented.
 
+**Status:** Won't fix — partial by design
+
 ---
 
-### ⚠️ `Ctrl+D` / `Ctrl+U` in Autocomplete
-
-**Status:** By design, not available.
+### `Ctrl+D` / `Ctrl+U` in Autocomplete
 
 LazyVim users expect `Ctrl+D`/`Ctrl+U` to page through autocomplete suggestions. In VimCode, `vim.handleKeys` assigns `<C-d>` and `<C-u>` to vim's half-page scroll — this cannot be made context-aware (i.e. "release to VS Code when suggest widget is visible").
 
 **Workaround:** Use `Ctrl+J`/`Ctrl+K` (bound in `keybindings.json`) or `Ctrl+N`/`Ctrl+P` (vim insert defaults) to navigate suggestions.
 
+**Status:** By design
+
 ---
 
-### ⚠️ EasyMotion vs flash.nvim
-
-**Status:** Works, but different trigger sequence.
+### EasyMotion vs flash.nvim
 
 LazyVim uses flash.nvim (`s` = jump to char with labels). VimCode uses vim-sneak (`s` = 2-char sneak). EasyMotion is available via `<leader>j*` wrappers:
 
@@ -95,25 +97,40 @@ LazyVim uses flash.nvim (`s` = jump to char with labels). VimCode uses vim-sneak
 
 The `<leader>j` prefix was introduced because `<space><space>` (EasyMotion's original trigger) conflicts with the which-key menu.
 
+**Status:** Fixed in v2.7.0
+
 ---
 
 ## Editor / Terminal Conflicts
 
-- **Capital-letter filenames in terminal:** Filenames containing capital letters may conflict with terminal keybindings (e.g., `Shift+N` navigates instead of typing `N`). Workaround: use lowercase filenames or remap the conflicting terminal binding.
+Capital-letter filenames in terminal: filenames containing capital letters may conflict with terminal keybindings (e.g., `Shift+N` navigates instead of typing `N`).
+
+**Workaround:** Use lowercase filenames or remap the conflicting terminal binding.
+
+**Status:** Open
 
 ---
 
-## Considering Higher Parity?
+## `]b` Buffer Navigation
 
-If the gaps above matter for your workflow, consider **vscode-neovim** — an alternative VS Code extension that embeds a real Neovim process rather than simulating one. It achieves ~95% true Neovim parity, supports which-key.nvim with auto-discovery, and has an official LazyVim extra (`lazyvim.org/extras/vscode`).
+`]b` (next buffer, alternative binding) does not work reliably. `Shift+L` remains the recommended binding for next-buffer navigation.
 
-Trade-offs: requires Neovim installed locally, more complex setup, and is labelled experimental (though widely used in production). See [SETUP.md](SETUP.md#alternative-vscode-neovim) for a comparison.
+**Workaround:** Use `Shift+L` / `Shift+H` instead of `]b` / `[b`.
+
+**Status:** Open
 
 ---
 
-## Reporting New Issues
+> **Note:** If the gaps above matter for your workflow, consider **vscode-neovim** — it embeds a real Neovim process rather than simulating one and achieves near-identical LazyVim behaviour, including visual block mode, complex macros, and auto-discovery of which-key bindings. Trade-offs: requires Neovim 0.9+ installed locally and a more complex initial setup.
 
-If you encounter a problem not listed here:
-1. Check [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for common solutions
-2. Search [existing issues](https://github.com/wojukasz/VimCode/issues)
-3. Open a new issue using the bug report template
+---
+
+<!-- Future issue template:
+## Issue Title
+
+Description of the issue and when it occurs.
+
+**Workaround:** Steps to work around the issue.
+
+**Status:** Open | Fixed in vX.Y | Won't fix — reason | By design
+-->

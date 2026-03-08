@@ -1,32 +1,25 @@
-# VimCode — LazyVim-Style Vim Configuration for VS Code and Compatible Forks
+# VimCode — LazyVim-Style Vim Configuration for VS Code
 
-> Bring the power and efficiency of LazyVim to VS Code and any compatible fork with 50+ carefully crafted keybindings.
-
-> This is very much a work in progress, and I plan to refine this configuration and fix it as I go on.
-> Coming from a Vim background, I have no desire to learn editor-specific shortcuts and instead plan to use Vim functionality within VS Code-compatible editors.
-> The core principle is to rely on native Vim shortcuts/commands first, make them work in VS Code and its forks as much as possible, log any odd behaviour, and fix anything that feels off.
-> Please feel free to contribute and share ideas!
-> Things might break in progress due to editors' updates and changes. If I notice something, I try to patch as I go on.
-
-[![Version](https://img.shields.io/badge/version-2.7.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-2.9.0-blue.svg)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](#)
 ![GitHub stars](https://img.shields.io/github/stars/wojukasz/VimCode?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/wojukasz/VimCode?style=social)
 ![GitHub last commit](https://img.shields.io/github/last-commit/wojukasz/VimCode)
 ![GitHub issues](https://img.shields.io/github/issues/wojukasz/VimCode)
 
-A comprehensive **Vim configuration for VS Code and compatible forks** that mirrors the LazyVim experience with `<space>` as the leader key. Perfect for developers who want **Neovim muscle memory in their editor** with full LSP integration, Git operations, and modern editor features. Works with any editor that supports the **VSCodeVim extension**.
+LazyVim-style keybindings for VS Code and compatible forks. Mirrors the LazyVim experience with `<space>` as leader key, full LSP integration, Git operations via GitLens, and a which-key popup menu for keybinding discovery.
+
+Works with any editor that supports the VSCodeVim extension: VS Code, Cursor, Antigravity, Windsurf, and other forks.
 
 ## Features
 
-- **50+ LazyVim-aligned keybindings** - Organized by prefix (`<leader>f*`, `<leader>s*`, `<leader>c*`, etc.)
-- **which-key popup menu** - Press `<space>` to see a discoverable menu of all bindings (requires `VSpaceCode.whichkey`)
-- **Full Vim emulation** - Modal editing with proper mode indicators
-- **LSP integration** - Code navigation, formatting, refactoring
-- **Git operations** - Integrated with GitLens for blame, history, diff
-- **Window management** - `Ctrl+h/j/k/l` split navigation
-- **Performance optimized** - Dedicated thread prevents typing lag
-- **Multi-editor support** - Works with VS Code and any VS Code-compatible fork
+- **50+ LazyVim-aligned keybindings** organized by prefix (`<leader>f*`, `<leader>s*`, `<leader>c*`, etc.)
+- **which-key popup menu** — press `<space>` to see all bindings (requires `VSpaceCode.whichkey`)
+- **Full Vim emulation** — modal editing with proper mode indicators
+- **LSP integration** — code navigation, formatting, refactoring
+- **Git operations** — integrated with GitLens for blame, history, diff
+- **Window management** — `Ctrl+h/j/k/l` split navigation
+- **Performance optimized** — dedicated thread prevents typing lag
 
 ## Quick Start
 
@@ -68,7 +61,7 @@ Copy-Item config\keybindings.json $env:APPDATA\Code\User\
 
 ### 4. Restart VS Code
 
-That's it! See [SETUP.md](SETUP.md) for detailed installation instructions and troubleshooting.
+See [SETUP.md](SETUP.md) for detailed installation instructions and troubleshooting.
 
 ## Essential Keybindings
 
@@ -90,95 +83,26 @@ See [KEYBINDINGS.md](KEYBINDINGS.md) for complete shortcuts reference.
 
 ## Documentation
 
-- **[SETUP.md](SETUP.md)** - Complete installation guide and configuration details
-- **[KEYBINDINGS.md](KEYBINDINGS.md)** - Comprehensive shortcuts guide and cheat sheet
-- **[TIPS_AND_TRICKS.md](TIPS_AND_TRICKS.md)** - Power user features, workflows, and best practices
-- **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)** - Common issues and solutions
-- **[REFERENCES.md](REFERENCES.md)** - Learning resources and external links
-- **[CHANGELOG.md](CHANGELOG.md)** - Version history and breaking changes
-- **[KNOWN_ISSUES.md](KNOWN_ISSUES.md)** - Known issues and workarounds
-
-## Configuration Structure
-
-```
-VimCode/
-├── config/
-│   ├── settings.json      # VS Code settings + all <leader> bindings
-│   └── keybindings.json   # Modifier keys (Ctrl/Alt/Shift) bindings
-├── SETUP.md               # Installation and configuration guide
-├── KEYBINDINGS.md         # Shortcuts reference and cheat sheet
-├── TIPS_AND_TRICKS.md     # Power user guide
-└── TROUBLESHOOTING.md     # Common issues and solutions
-```
-
-## Keybinding Organization
-
-VimCode uses the LazyVim convention of organizing keybindings by prefix:
-
-- **`<leader>f*`** - File operations (find, recent, new, buffer list)
-- **`<leader>s*`** - Search operations (grep, workspace symbols, replace)
-- **`<leader>c*`** - Code actions (format, rename, quick fix)
-- **`<leader>b*`** - Buffer management (close, switch, pin/unpin)
-- **`<leader>g*`** - Git operations (blame, status, history, diff)
-- **`<leader>w*`** - Window management (split, close, maximize)
-- **`<leader>x*`** - Diagnostics (problems panel, navigation)
-- **`<leader>u*`** - UI toggles (word wrap, zen mode, line numbers)
+| File | Contents |
+|------|----------|
+| [SETUP.md](SETUP.md) | Installation guide, validation checklist, platform notes |
+| [KEYBINDINGS.md](KEYBINDINGS.md) | Complete shortcuts reference and cheat sheet |
+| [TIPS_AND_TRICKS.md](TIPS_AND_TRICKS.md) | Workflows, plugin mastery, customization |
+| [TROUBLESHOOTING.md](TROUBLESHOOTING.md) | Common issues and solutions |
+| [KNOWN_ISSUES.md](KNOWN_ISSUES.md) | VSCodeVim limitations and workarounds |
+| [REFERENCES.md](REFERENCES.md) | Learning resources and external links |
+| [CHANGELOG.md](CHANGELOG.md) | Version history |
 
 ## Supported Editors
 
-VimCode works with any editor built on VS Code's extension host that supports the VSCodeVim extension. This includes VS Code, Cursor, Antigravity, Windsurf, and other forks using the same settings and keybindings format.
+VimCode works with any editor built on VS Code's extension host that supports the VSCodeVim extension. This includes VS Code, Cursor, Antigravity, Windsurf, and other forks — all using the same `settings.json` and `keybindings.json` format.
 
-Configuration is actively maintained on a VS Code-compatible fork. Other editors follow the same settings format and should work equivalently, but minor differences may exist. Community contributions for fork-specific testing and fixes are very welcome.
-
-> **Path note:** Each editor stores config in its own directory (e.g. `~/.config/Cursor/User/`, `~/.config/Antigravity/User/`). See [SETUP.md](SETUP.md) for per-editor paths.
-
-## Philosophy
-
-VimCode follows these principles:
-
-1. **Consistency** - Same keybindings between Neovim and VS Code
-2. **Discoverability** - Organized by prefix for easy learning
-3. **Efficiency** - Common operations accessible with minimal keystrokes
-4. **Integration** - Work with VS Code's native features, not against them
-5. **Performance** - Optimized configuration for responsive editing
-
-## Validation Checklist
-
-After installation, test these essential bindings:
-
-- [ ] `Space` in Normal mode shows which-key menu (or doesn't move cursor if which-key is not installed)
-- [ ] `<leader>ff` (Space, f, f) opens file picker
-- [ ] `<leader>/` (Space, /) opens workspace search
-- [ ] `gd` jumps to definition
-- [ ] `Shift+H` / `Shift+L` switches buffers
-- [ ] `Ctrl+h/j/k/l` navigates between splits
-
-See [SETUP.md](SETUP.md#validation) for complete validation checklist.
-
-## Why VimCode?
-
-If you love Vim but need the power of VS Code's ecosystem, VimCode gives you the best of both worlds:
-
-- **Familiar muscle memory** from LazyVim
-- **Modern LSP features** with VS Code's IntelliSense
-- **Rich extension ecosystem** (GitLens, debuggers, formatters)
-- **Visual feedback** with status bar mode indicators
-- **Cross-platform** works on macOS, Linux, and Windows
+> Each editor stores config in its own directory (e.g. `~/.config/Cursor/User/`, `~/.config/Antigravity/User/`). See [SETUP.md](SETUP.md) for per-editor paths.
 
 ## Contributing
 
-Contributions are welcome! Found a bug or have a suggestion? Feel free to open an issue or submit a pull request.
-
-For major changes, please open an issue first to discuss what you would like to change. See [.github/CONTRIBUTING.md](.github/CONTRIBUTING.md) for detailed contribution guidelines.
-
-## Note
-
-Some keybindings are experimental and may require adjustments based on your workflow. Feel free to customize the configuration files to suit your needs.
+Contributions are welcome. For bugs or suggestions, open an issue or submit a pull request. For major changes, open an issue first to discuss. See [.github/CONTRIBUTING.md](.github/CONTRIBUTING.md) for contribution guidelines.
 
 ## License
 
 MIT
-
----
-
-**Get Started:** [SETUP.md](SETUP.md) | **Quick Reference:** [KEYBINDINGS.md](KEYBINDINGS.md) | **Learn More:** [TIPS_AND_TRICKS.md](TIPS_AND_TRICKS.md)
