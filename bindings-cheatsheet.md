@@ -70,16 +70,16 @@
 
 ## Buffer `<space>b`
 
-| Key | Action | Command |
-|-----|--------|---------|
-| `<space>bb` | Switch Buffer | `workbench.action.showAllEditors` |
-| `<space>bd` | Close Buffer | `workbench.action.closeActiveEditor` |
-| `<space>bD` | Close Other Buffers | `workbench.action.closeOtherEditors` |
-| `<space>bo` | Close Others (alias for `bD`) | `workbench.action.closeOtherEditors` |
-| `<space>bp` | Pin Buffer | `workbench.action.pinEditor` |
-| `<space>bP` | Unpin Buffer | `workbench.action.unpinEditor` |
-| `<S-h>` | Prev Buffer *(keybindings.json)* | `workbench.action.previousEditor` |
-| `<S-l>` | Next Buffer *(keybindings.json)* | `workbench.action.nextEditor` |
+| Key | Action | Direct shortcut | Command |
+|-----|--------|-----------------|---------|
+| `<space>bb` | Switch Buffer (pick list) | — | `workbench.action.showAllEditors` |
+| `<space>bn` | Next Buffer | `Shift+L` or `]b` | `workbench.action.nextEditor` |
+| `<space>bp` | Prev Buffer | `Shift+H` or `[b` | `workbench.action.previousEditor` |
+| `<space>bd` | Close Buffer | — | `workbench.action.closeActiveEditor` |
+| `<space>bD` | Close Other Buffers | — | `workbench.action.closeOtherEditors` |
+| `<space>bo` | Close Others (alias for `bD`) | — | `workbench.action.closeOtherEditors` |
+| `<space>bP` | Pin Buffer | — | `workbench.action.pinEditor` |
+| `<space>bU` | Unpin Buffer | — | `workbench.action.unpinEditor` |
 
 ---
 
@@ -114,15 +114,40 @@
 
 ---
 
-## Window `<space>w`
+## Window / Navigation `<space>w`
 
-| Key | Action | Command |
-|-----|--------|---------|
-| `<space>wd` | Close Window/Split | `workbench.action.closeActiveEditor` |
-| `<space>ww` | Switch to Next Window | `workbench.action.focusNextGroup` |
-| `<space>wm` | Maximise/Toggle Width | `workbench.action.toggleEditorWidths` |
-| `<space>-` | Split Below *(also top-level)* | `workbench.action.splitEditorDown` |
-| `<space>\|` | Split Right *(also top-level)* | `workbench.action.splitEditorRight` |
+> The bracket notation `[C-h]` shows the direct shortcut — browse here to look it up, use the direct key once you know it.
+
+### Focus pane
+
+| Key | Action | Direct shortcut | Command |
+|-----|--------|-----------------|---------|
+| `<space>wh` | Focus Left Pane | `Ctrl+H` | `workbench.action.focusLeftGroup` |
+| `<space>wj` | Focus Down Pane | `Ctrl+J` | `workbench.action.focusBelowGroup` |
+| `<space>wk` | Focus Up Pane | `Ctrl+K` | `workbench.action.focusAboveGroup` |
+| `<space>wl` | Focus Right Pane | `Ctrl+L` | `workbench.action.focusRightGroup` |
+| `<space>w1` | Jump to Group 1 | `Ctrl+1` | `workbench.action.focusFirstEditorGroup` |
+| `<space>w2` | Jump to Group 2 | `Ctrl+2` | `workbench.action.focusSecondEditorGroup` |
+| `<space>w3` | Jump to Group 3 | `Ctrl+3` | `workbench.action.focusThirdEditorGroup` |
+
+### Create / manage splits
+
+| Key | Action | Direct shortcut | Command |
+|-----|--------|-----------------|---------|
+| `<space>ws` | Split Below | `<space>-` | `workbench.action.splitEditorDown` |
+| `<space>wv` | Split Right | `<space>\|` | `workbench.action.splitEditorRight` |
+| `<space>wd` | Close Window/Split | — | `workbench.action.closeActiveEditor` |
+| `<space>ww` | Next Window | — | `workbench.action.focusNextGroup` |
+| `<space>wm` | Maximise Toggle | — | `workbench.action.toggleEditorWidths` |
+
+### Resize splits
+
+| Key | Action | Direct shortcut | Command |
+|-----|--------|-----------------|---------|
+| `<space>w=` | Increase Width | `Ctrl+→` | `workbench.action.increaseViewWidth` |
+| `<space>w-` | Decrease Width | `Ctrl+←` | `workbench.action.decreaseViewWidth` |
+| `<space>w+` | Increase Height | `Ctrl+↑` | `workbench.action.increaseViewHeight` |
+| `<space>w_` | Decrease Height | `Ctrl+↓` | `workbench.action.decreaseViewHeight` |
 
 ---
 

@@ -673,12 +673,14 @@
       "name": "+Buffer",
       "type": "bindings",
       "bindings": [
-        { "key": "b", "name": "Switch Buffer",       "type": "command", "command": "workbench.action.showAllEditors" },
-        { "key": "d", "name": "Close Buffer",        "type": "command", "command": "workbench.action.closeActiveEditor" },
-        { "key": "D", "name": "Close Other Buffers", "type": "command", "command": "workbench.action.closeOtherEditors" },
-        { "key": "o", "name": "Close Others",        "type": "command", "command": "workbench.action.closeOtherEditors" },
-        { "key": "p", "name": "Pin Buffer",          "type": "command", "command": "workbench.action.pinEditor" },
-        { "key": "P", "name": "Unpin Buffer",        "type": "command", "command": "workbench.action.unpinEditor" }
+        { "key": "b", "name": "Switch Buffer",            "type": "command", "command": "workbench.action.showAllEditors" },
+        { "key": "n", "name": "Next Buffer     [Shift+L]","type": "command", "command": "workbench.action.nextEditor" },
+        { "key": "p", "name": "Prev Buffer     [Shift+H]","type": "command", "command": "workbench.action.previousEditor" },
+        { "key": "d", "name": "Close Buffer",            "type": "command", "command": "workbench.action.closeActiveEditor" },
+        { "key": "D", "name": "Close Other Buffers",     "type": "command", "command": "workbench.action.closeOtherEditors" },
+        { "key": "o", "name": "Close Others",            "type": "command", "command": "workbench.action.closeOtherEditors" },
+        { "key": "P", "name": "Pin Buffer",              "type": "command", "command": "workbench.action.pinEditor" },
+        { "key": "U", "name": "Unpin Buffer",            "type": "command", "command": "workbench.action.unpinEditor" }
       ]
     },
 
@@ -744,16 +746,39 @@
       ]
     },
 
-    // ── w = Window ─────────────────────────────────────────────────────────────────────
+    // ── w = Window / Navigation ────────────────────────────────────────────────────────
+    //
+    // Comprehensive navigation hub — use this submenu to discover direct shortcuts.
+    // Focus commands mirror the Ctrl+h/j/k/l bindings in keybindings.json.
+    // Resize commands mirror the Ctrl+Arrow bindings in keybindings.json.
+    //
 
     {
       "key": "w",
-      "name": "+Window",
+      "name": "+Window / Nav",
       "type": "bindings",
       "bindings": [
-        { "key": "d", "name": "Close Window",    "type": "command", "command": "workbench.action.closeActiveEditor" },
-        { "key": "w", "name": "Switch Window",   "type": "command", "command": "workbench.action.focusNextGroup" },
-        { "key": "m", "name": "Maximise Window", "type": "command", "command": "workbench.action.toggleEditorWidths" }
+        // ── Focus pane (direct: Ctrl+h/j/k/l) ─────────────────────────────────────────
+        { "key": "h", "name": "Focus Left   [C-h]",  "type": "command", "command": "workbench.action.focusLeftGroup" },
+        { "key": "j", "name": "Focus Down   [C-j]",  "type": "command", "command": "workbench.action.focusBelowGroup" },
+        { "key": "k", "name": "Focus Up     [C-k]",  "type": "command", "command": "workbench.action.focusAboveGroup" },
+        { "key": "l", "name": "Focus Right  [C-l]",  "type": "command", "command": "workbench.action.focusRightGroup" },
+        // ── Create split ───────────────────────────────────────────────────────────────
+        { "key": "s", "name": "Split Below  [-]",    "type": "command", "command": "workbench.action.splitEditorDown" },
+        { "key": "v", "name": "Split Right  [|]",    "type": "command", "command": "workbench.action.splitEditorRight" },
+        // ── Resize split (direct: Ctrl+Arrow) ─────────────────────────────────────────
+        { "key": "=", "name": "Increase Width  [C-→]","type": "command", "command": "workbench.action.increaseViewWidth" },
+        { "key": "-", "name": "Decrease Width  [C-←]","type": "command", "command": "workbench.action.decreaseViewWidth" },
+        { "key": "+", "name": "Increase Height [C-↑]","type": "command", "command": "workbench.action.increaseViewHeight" },
+        { "key": "_", "name": "Decrease Height [C-↓]","type": "command", "command": "workbench.action.decreaseViewHeight" },
+        // ── Manage ─────────────────────────────────────────────────────────────────────
+        { "key": "d", "name": "Close Window",         "type": "command", "command": "workbench.action.closeActiveEditor" },
+        { "key": "w", "name": "Next Window  [C-w C-w]","type": "command", "command": "workbench.action.focusNextGroup" },
+        { "key": "m", "name": "Maximise Toggle",      "type": "command", "command": "workbench.action.toggleEditorWidths" },
+        // ── Jump to specific group (direct: Ctrl+1/2/3) ───────────────────────────────
+        { "key": "1", "name": "Group 1  [C-1]",       "type": "command", "command": "workbench.action.focusFirstEditorGroup" },
+        { "key": "2", "name": "Group 2  [C-2]",       "type": "command", "command": "workbench.action.focusSecondEditorGroup" },
+        { "key": "3", "name": "Group 3  [C-3]",       "type": "command", "command": "workbench.action.focusThirdEditorGroup" }
       ]
     },
 
