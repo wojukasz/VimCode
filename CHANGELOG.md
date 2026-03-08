@@ -2,6 +2,32 @@
 
 All notable changes to this configuration will be documented in this file.
 
+## [2.8.0] - 2026-03-08
+
+Full which-key audit; which-key promoted to complete in-editor cheatsheet.
+
+### Added
+- **`bindings-cheatsheet.md`** — comprehensive reference for every binding in the config, organised by submenu. Includes a "Direct shortcut" column for non-leader bindings so the file is useful as a standalone reference as well as a source of truth for the which-key menu structure.
+- **`validation-report.md`** — documents issues found during the audit, changes applied, and confirms coverage of all `<leader>*` bindings.
+- **`<space>G` — Go To / LSP Navigation submenu** — surfaces all six `g*` navigation bindings (`gd`, `gD`, `gr`, `gI`, `gy`, `gK`) plus hover docs (`K`) in the which-key popup. Entry names include the direct shortcut (e.g. `"Hover Docs  [K]"`), so the submenu doubles as a live, actionable cheatsheet. `<space>Gd` and `gd` execute the same command.
+- **`<space>cc` — Toggle Comment** added to the `c` (Code) submenu, mirroring the visual-mode `gc` binding. Works on the current line in normal mode.
+- **`<space>K` — Show Hover** added as a top-level which-key entry, mirroring the standalone `K` binding.
+- **`<space>w` expanded into a full navigation hub** — the Window submenu now covers all navigation you might forget:
+  - `h/j/k/l` — focus left/down/up/right pane (mirrors `Ctrl+H/J/K/L`; shortcut shown in label)
+  - `s` / `v` — split below / split right (aliases for top-level `<space>-` and `<space>|`)
+  - `=` / `-` / `+` / `_` — resize split width/height (mirrors `Ctrl+Arrow`)
+  - `1` / `2` / `3` — jump to specific editor group (mirrors `Ctrl+1/2/3`)
+- **`<space>bn` and `<space>bp`** — Next Buffer / Prev Buffer added to the `b` (Buffer) submenu with `Shift+L` / `Shift+H` labels, making these discoverable without remembering the direct key.
+
+### Fixed
+- **Duplicate `<leader>ur`** — the `:nohl` binding appeared twice in `normalModeKeyBindingsNonRecursive` (once in General Utility, once in UI Toggles). The stray copy in General Utility was removed; the canonical entry in UI Toggles is kept.
+
+### Changed
+- **`<space>b` — Pin / Unpin keys reassigned** — `p` freed up for the new Prev Buffer entry; Pin moved from `p` → `P`, Unpin moved from `P` → `U`.
+- **`<space>w` renamed** from `"+Window"` to `"+Window / Nav"` to reflect its new role as a navigation discovery hub.
+
+---
+
 ## [2.7.0] - 2026-03-07
 
 Keymapping conflict audit fixes.
