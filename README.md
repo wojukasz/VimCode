@@ -9,7 +9,7 @@
 
 LazyVim-style keybindings for VS Code and compatible forks. Mirrors the LazyVim experience with `<space>` as leader key, full LSP integration, Git operations via GitLens, and a which-key popup menu for keybinding discovery.
 
-Works with any editor that supports the VSCodeVim extension: VS Code, Cursor, Antigravity, Windsurf, and other forks.
+Tested on Antigravity (Linux/WSL). Expected to work on any editor that supports the VSCodeVim extension — VS Code, Cursor, Windsurf, and other forks share the same config format.
 
 ## Features
 
@@ -95,7 +95,7 @@ See [KEYBINDINGS.md](KEYBINDINGS.md) for complete shortcuts reference.
 
 ## Supported Editors
 
-VimCode works with any editor built on VS Code's extension host that supports the VSCodeVim extension. This includes VS Code, Cursor, Antigravity, Windsurf, and other forks — all using the same `settings.json` and `keybindings.json` format.
+VimCode is built and tested on Antigravity (Linux/WSL). Any editor that uses VS Code's extension host and supports VSCodeVim should work — the `settings.json` and `keybindings.json` format is identical across VS Code, Cursor, Windsurf, and other forks. Only the config directory path and CLI command differ.
 
 > Each editor stores config in its own directory (e.g. `~/.config/Cursor/User/`, `~/.config/Antigravity/User/`). See [SETUP.md](SETUP.md) for per-editor paths.
 

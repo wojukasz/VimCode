@@ -234,7 +234,7 @@ To customise the menu, edit the `whichkey.bindings` array in your `settings.json
 
 ## Editor-Specific Notes
 
-This section covers known considerations for specific VS Code forks. The same config format works across all forks — differences are mainly in config paths, CLI commands, and editor-specific AI keybindings.
+This section covers known considerations for specific VS Code forks. The config format is identical across VS Code forks — differences are config paths, CLI commands, and editor-specific AI keybindings. Tested on Antigravity; VS Code, Cursor, and Windsurf are untested but expected to work.
 
 > Config paths follow the standard VS Code fork convention (e.g. `~/.config/<EditorName>/User/` on Linux). If the path doesn't exist, check your editor's documentation.
 
