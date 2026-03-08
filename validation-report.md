@@ -54,7 +54,10 @@ The following bindings are triggered by keystrokes that do **not** start with `<
 | `gK` | Normal | Signature Help |
 | `gc` | Visual | Toggle Comment |
 
-**Action taken:** `K` was added to `whichkey.bindings` as a top-level entry under `<space>K` (the slot was free) so it is discoverable from the menu. The remaining `g*` and `gc` bindings cannot be surfaced in the `<space>` menu — the `g` slot is already used by the `+Git` submenu. All are documented in `bindings-cheatsheet.md`.
+**Action taken:**
+- `K` is a top-level whichkey entry (`<space>K`) and is also surfaced in the new `G` submenu as `<space>Gh`.
+- A new `G` submenu (`+Go To / LSP nav`) was added, covering all six `g*` navigation bindings. `<space>G` opens the submenu in which-key, where each entry shows both the whichkey path and the direct shortcut. The entries execute the same VSCode commands as the direct `g*` bindings, so `<space>Gd` and `gd` are equivalent — the `G` submenu is a live, actionable cheatsheet.
+- `gc` (toggle comment) was added to the `c` submenu as `<space>cc`, which works on the current line in normal mode (same command as `gc` in visual mode).
 
 ### `<leader><space>` — intentional omission
 
@@ -127,5 +130,8 @@ The file correctly uses `vim.visualModeKeyBindingsNonRecursive` throughout. Usin
 |------|--------|
 | `config/settings.json` | Removed duplicate `<leader>ur` entry from General Utility section |
 | `config/settings.json` | Added `{ "key": "K", … }` top-level whichkey entry for Show Hover |
+| `config/settings.json` | Added `G` submenu (`+Go To / LSP nav`) mirroring all `g*` bindings |
+| `config/settings.json` | Added `cc` (Toggle Comment / `gc`) to `c` (Code) submenu |
 | `bindings-cheatsheet.md` | Created — full reference for all bindings organised by submenu |
+| `bindings-cheatsheet.md` | Updated — `G` submenu section with direct-shortcut column; `cc` in Code section |
 | `validation-report.md` | Created — this file |

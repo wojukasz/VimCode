@@ -660,7 +660,9 @@
         { "key": "r", "name": "Rename Symbol",    "type": "command", "command": "editor.action.rename" },
         { "key": "d", "name": "Line Diagnostics", "type": "command", "command": "editor.action.showHover" },
         { "key": "l", "name": "Problems Panel",   "type": "command", "command": "workbench.action.problems.focus" },
-        { "key": "o", "name": "Organise Imports", "type": "command", "command": "editor.action.organizeImports" }
+        { "key": "o", "name": "Organise Imports", "type": "command", "command": "editor.action.organizeImports" },
+        { "key": "c", "name": "Toggle Comment",   "type": "command", "command": "editor.action.commentLine" }
+        // ↑ gc in visual mode; also works on current line in normal mode
       ]
     },
 
@@ -695,6 +697,30 @@
         { "key": "l", "name": "File History",      "type": "command", "command": "gitlens.showQuickFileHistory" },
         { "key": "L", "name": "Branch History",    "type": "command", "command": "gitlens.showQuickRepoHistory" },
         { "key": "c", "name": "Commit Details",    "type": "command", "command": "gitlens.showQuickCommitDetails" }
+      ]
+    },
+
+    // ── G = Go To / LSP Navigation ────────────────────────────────────────────────────
+    //
+    // These mirror the g* bindings in normalModeKeyBindingsNonRecursive.
+    // Pressing g directly is always faster; this submenu exists purely so you can
+    // browse the available go-to commands via which-key — and execute them if you
+    // forget the direct key. <space>Gd does exactly the same as gd.
+    //
+
+    {
+      "key": "G",
+      "name": "+Go To (LSP nav)",
+      "type": "bindings",
+      "bindings": [
+        { "key": "d", "name": "Definition",       "type": "command", "command": "editor.action.revealDefinition" },
+        { "key": "D", "name": "Declaration",      "type": "command", "command": "editor.action.revealDeclaration" },
+        { "key": "r", "name": "References",       "type": "command", "command": "editor.action.goToReferences" },
+        { "key": "I", "name": "Implementation",   "type": "command", "command": "editor.action.goToImplementation" },
+        { "key": "y", "name": "Type Definition",  "type": "command", "command": "editor.action.goToTypeDefinition" },
+        { "key": "K", "name": "Signature Help",   "type": "command", "command": "editor.action.triggerParameterHints" },
+        { "key": "h", "name": "Hover Docs  [K]",  "type": "command", "command": "editor.action.showHover" }
+        // ↑ key labels show the direct shortcut so the menu doubles as a cheatsheet
       ]
     },
 

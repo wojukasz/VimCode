@@ -64,6 +64,7 @@
 | `<space>cd` | Line Diagnostics (hover) | `editor.action.showHover` |
 | `<space>cl` | Problems Panel | `workbench.action.problems.focus` |
 | `<space>co` | Organise Imports | `editor.action.organizeImports` |
+| `<space>cc` | Toggle Comment (`gc` direct) | `editor.action.commentLine` |
 
 ---
 
@@ -170,18 +171,19 @@
 
 ---
 
-## LSP Navigation — `g` prefix (Normal Mode, no leader)
+## Go To / LSP Navigation `<space>G`
 
-> These are standard Vim-style go-to bindings triggered by pressing `g` directly — **not** via `<space>`. They cannot appear in the Which-Key `<space>` menu.
+> Browse and execute all LSP go-to commands via which-key. Each entry also lists the **direct shortcut** (`gd`, `gD`, …) — pressing `g` directly is always faster; `<space>G` exists so you can look them up without leaving the editor.
 
-| Key | Action | Command |
-|-----|--------|---------|
-| `gd` | Go to Definition | `editor.action.revealDefinition` |
-| `gD` | Go to Declaration | `editor.action.revealDeclaration` |
-| `gr` | Go to References | `editor.action.goToReferences` |
-| `gI` | Go to Implementation | `editor.action.goToImplementation` |
-| `gy` | Go to Type Definition | `editor.action.goToTypeDefinition` |
-| `gK` | Signature Help (parameter hints) | `editor.action.triggerParameterHints` |
+| Key | Direct shortcut | Action | Command |
+|-----|-----------------|--------|---------|
+| `<space>Gd` | `gd` | Go to Definition | `editor.action.revealDefinition` |
+| `<space>GD` | `gD` | Go to Declaration | `editor.action.revealDeclaration` |
+| `<space>Gr` | `gr` | Go to References | `editor.action.goToReferences` |
+| `<space>GI` | `gI` | Go to Implementation | `editor.action.goToImplementation` |
+| `<space>Gy` | `gy` | Go to Type Definition | `editor.action.goToTypeDefinition` |
+| `<space>GK` | `gK` | Signature Help | `editor.action.triggerParameterHints` |
+| `<space>Gh` | `K` | Hover Docs | `editor.action.showHover` |
 
 ---
 
