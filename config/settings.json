@@ -199,10 +199,6 @@
       "commands": [":nohl"]
     },
     {
-      "before": ["<leader>", "u", "r"],                // <leader>ur = clear search (LazyVim "unredraw")
-      "commands": [":nohl"]
-    },
-    {
       "before": ["<C-n>"],                             // Ctrl+n also clears search highlight
       "commands": [":nohl"]
     },
@@ -614,6 +610,7 @@
     // register and remains pasteable with p. editor.action.deleteLines would discard it.
     { "key": "e",  "name": "Toggle Sidebar",        "type": "command", "command": "workbench.action.toggleSidebarVisibility" },
     { "key": "E",  "name": "Focus Explorer",        "type": "command", "command": "workbench.files.action.focusFilesExplorer" },
+    { "key": "K",  "name": "Show Hover",            "type": "command", "command": "editor.action.showHover" },
 
     // ── f = File ───────────────────────────────────────────────────────────────────────
 
