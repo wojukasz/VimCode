@@ -347,15 +347,19 @@ code --list-extensions | grep gitlens
 ### Which Key Not Appearing
 
 **Symptoms:**
-- No keybinding menu appears after pressing leader
+- No keybinding menu appears after pressing `<Tab>`
 
 **Note:**
-VimCode works without Which Key — it's optional. All `<leader>*` bindings function without it.
+VimCode works without Which Key — it's optional. All `<leader>*` bindings function without it. The which-key trigger is `<Tab>` (not `<space>`).
 
 **To install:**
 ```bash
 code --install-extension VSpaceCode.whichkey
 ```
+
+**After installing:** press `<Tab>` in Normal mode (not `<space>`) — the menu should appear.
+
+**Why not `<space>`?** `<space>` is also `vim.leader`, and the leader intercepts the keypress before which-key can fire. `<Tab>` avoids this conflict. See [KNOWN_ISSUES.md](KNOWN_ISSUES.md) for details.
 
 ---
 
