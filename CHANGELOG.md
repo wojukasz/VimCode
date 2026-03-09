@@ -2,6 +2,20 @@
 
 All notable changes are documented here. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.9.2] - 2026-03-09
+
+Remap which-key trigger from `<space>` to `<Tab>`; disable minimap by default.
+
+### Changed
+- **config/settings.json** — which-key trigger changed from `<space>` to `<Tab>` in both `vim.normalModeKeyBindingsNonRecursive` and `vim.visualModeKeyBindingsNonRecursive`; `<space>` was unreliable and did not always fire. The leader key remains `<space>` — all `<leader>*` bindings are unaffected.
+- **config/settings.json** — `"editor.minimap.enabled": false` added; minimap was not functioning correctly and is now off by default. Re-enable by setting it to `true`.
+
+### To revert
+- Replace `"<Tab>"` with `"<space>"` in both which-key binding entries in `settings.json`.
+- Remove or set `"editor.minimap.enabled": true` to restore the minimap.
+
+---
+
 ## [2.9.1] - 2026-03-08
 
 Qualify editor compatibility claims as tested vs expected.
