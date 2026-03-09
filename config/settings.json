@@ -35,6 +35,7 @@
   "editor.smoothScrolling": true,                      // Smooth scrolling animations
   "editor.bracketPairColorization.enabled": true,      // Colour matching brackets
   "editor.guides.bracketPairs": true,                  // Show bracket pair guides
+  "editor.minimap.enabled": false,                     // Minimap disabled (unreliable, re-enable if needed)
   "editor.minimap.renderCharacters": false,            // Simplified minimap
   "editor.minimap.scale": 2,                           // Larger minimap scale
   "editor.cursorBlinking": "solid",                    // Solid cursor (Vim-like)
@@ -140,16 +141,19 @@
   "vim.normalModeKeyBindingsNonRecursive": [
 
     // ┌────────────────────────────────────────────────────────────────────────────────┐
-    // │ WHICH KEY - Show popup menu on <space> (requires VSpaceCode.whichkey)          │
+    // │ WHICH KEY - Show popup menu on <Tab> (requires VSpaceCode.whichkey)           │
     // └────────────────────────────────────────────────────────────────────────────────┘
     //
-    // When which-key is installed, pressing <space> shows the discoverable menu.
-    // Without which-key, this binding is a no-op and the <leader>* bindings below
-    // continue to work as normal.
+    // NOTE: <space> was the original trigger but proved unreliable (didn't always fire).
+    // <Tab> is used instead as it triggers consistently. The <leader> key remains <space>
+    // so all <leader>* bindings continue to work unchanged.
+    //
+    // To revert: change "<Tab>" back to "<space>" in both normalModeKeyBindingsNonRecursive
+    // and visualModeKeyBindingsNonRecursive below.
     //
 
     {
-      "before": ["<space>"],                           // <space> = show which-key menu
+      "before": ["<Tab>"],                             // <Tab> = show which-key menu
       "commands": ["whichkey.show"]
     },
 
@@ -555,7 +559,7 @@
 
   "vim.visualModeKeyBindingsNonRecursive": [
     {
-      "before": ["<space>"],                           // <space> = show which-key menu in visual mode
+      "before": ["<Tab>"],                             // <Tab> = show which-key menu in visual mode
       "commands": ["whichkey.show"]
     },
     {
