@@ -1,6 +1,6 @@
 # Keybindings
 
-**Leader key:** `<space>`
+**Leader key:** `<space>` | **Which-key trigger:** `<Tab>`
 
 ## How the Three Layers Work
 
@@ -8,10 +8,15 @@ VimCode stacks three layers of keybindings on top of each other. Understanding t
 
 ```
 Layer 3 — which-key (VSpaceCode.whichkey)
-  Trigger:  <space> in Normal/Visual mode → whichkey.show
+  Trigger:  <Tab> in Normal/Visual mode → whichkey.show
   Owns:     the popup menu tree (whichkey.bindings in settings.json)
-  Fallback: if which-key is not installed, <space> is a no-op and
+  Fallback: if which-key is not installed, <Tab> is a no-op and
             the Layer 2 vim bindings handle everything directly
+
+  NOTE: <space> would be the LazyVim-matching trigger but conflicts
+        with vim.leader = "<space>" — the leader intercepts <space>
+        before which-key can fire. <Tab> is used as a workaround.
+        See config/settings.json for a placeholder to revert when fixed.
 
 Layer 2 — Custom LazyVim mappings
   Leader:   settings.json → vim.normalModeKeyBindingsNonRecursive
@@ -272,7 +277,7 @@ Fast cursor movement to visible text. Use `<leader>j*` — the `<leader>j` group
 | `<leader>jj` | Jump to line (down) |
 | `<leader>jk` | Jump to line (up) |
 
-The native `<leader><leader>*` form still works when which-key is **not** installed. When which-key is active, use `<leader>j*` instead — `<space>` now triggers the which-key menu, so `<space><space>` becomes a menu navigation keystroke rather than EasyMotion's double-leader trigger.
+The native `<leader><leader>*` form still works when which-key is **not** installed. When which-key is active, use `<leader>j*` instead — `<Tab>` now triggers the which-key menu. Note: `<space><space>` (EasyMotion's original double-leader) still works as a key sequence in the menu if which-key happens to be open, but direct EasyMotion via `<leader>j*` is the reliable path.
 
 ### Sneak
 

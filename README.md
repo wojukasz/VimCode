@@ -1,6 +1,6 @@
 # VimCode — LazyVim-Style Vim Configuration for VS Code
 
-[![Version](https://img.shields.io/badge/version-2.9.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-2.9.2-blue.svg)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](#)
 ![GitHub stars](https://img.shields.io/github/stars/wojukasz/VimCode?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/wojukasz/VimCode?style=social)
@@ -14,7 +14,7 @@ Tested on Antigravity (Linux/WSL). Expected to work on any editor that supports 
 ## Features
 
 - **50+ LazyVim-aligned keybindings** organized by prefix (`<leader>f*`, `<leader>s*`, `<leader>c*`, etc.)
-- **which-key popup menu** — press `<space>` to see all bindings (requires `VSpaceCode.whichkey`)
+- **which-key popup menu** — press `<Tab>` to see all bindings (requires `VSpaceCode.whichkey`)
 - **Full Vim emulation** — modal editing with proper mode indicators
 - **LSP integration** — code navigation, formatting, refactoring
 - **Git operations** — integrated with GitLens for blame, history, diff

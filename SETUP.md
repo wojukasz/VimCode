@@ -118,7 +118,8 @@ Close and reopen your editor for all changes to take effect. To apply without re
 
 Verify your setup with this checklist:
 
-- [ ] `Space` in Normal mode — cursor should NOT move (or which-key menu appears)
+- [ ] `Tab` in Normal mode — which-key menu appears (if VSpaceCode.whichkey is installed)
+- [ ] `Space` in Normal mode — cursor should NOT move (leader is active)
 - [ ] `i` — status bar turns green (Insert mode)
 - [ ] `Esc` or `jk` — status bar turns blue (Normal mode)
 - [ ] `v` — status bar turns purple (Visual mode)
@@ -184,14 +185,16 @@ Enables `<leader>ul` to cycle through line number modes (on → relative → off
 
 ### Which Key (Keybinding Discovery)
 
-Which Key shows a popup menu of available bindings whenever you press `<space>` in Normal or Visual mode — exactly like `which-key.nvim` in Neovim / LazyVim. The full binding tree is **already included** in `config/settings.json` under `whichkey.bindings`.
+Which Key shows a popup menu of available bindings — exactly like `which-key.nvim` in Neovim / LazyVim. The full binding tree is **already included** in `config/settings.json` under `whichkey.bindings`.
 
 **Setup (one step):**
 ```bash
 code --install-extension VSpaceCode.whichkey
 ```
 
-After restarting, pressing `<space>` in Normal mode opens the menu:
+After restarting, pressing `<Tab>` in Normal mode opens the menu:
+
+> **Note:** `<Tab>` is used as the trigger instead of `<space>` (the LazyVim default). Both `<space>` and `vim.leader` are `<space>`, which creates a conflict — the leader intercepts the keypress before which-key can fire. `<Tab>` sidesteps this. All `<leader>*` bindings still use `<space>` and are unaffected.
 ```
 <space>     Find Files          (Quick Open)
 ,           Switch Buffer

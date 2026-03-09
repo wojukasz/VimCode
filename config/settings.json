@@ -144,16 +144,23 @@
     // │ WHICH KEY - Show popup menu on <Tab> (requires VSpaceCode.whichkey)           │
     // └────────────────────────────────────────────────────────────────────────────────┘
     //
-    // NOTE: <space> was the original trigger but proved unreliable (didn't always fire).
-    // <Tab> is used instead as it triggers consistently. The <leader> key remains <space>
-    // so all <leader>* bindings continue to work unchanged.
+    // CURRENT TRIGGER: <Tab>
+    // <space> was the intended trigger (matching LazyVim) but conflicts with vim.leader = "<space>".
+    // The leader key intercepts <space> before which-key can fire, so the menu never appears.
+    // <Tab> is used as a workaround — it triggers consistently with no leader conflict.
     //
-    // To revert: change "<Tab>" back to "<space>" in both normalModeKeyBindingsNonRecursive
-    // and visualModeKeyBindingsNonRecursive below.
+    // ROOT CAUSE (to investigate): why does <space> as whichkey trigger conflict with
+    // vim.leader = "<space>"? Suspected: VSCodeVim resolves the leader prefix first and
+    // the whichkey.show binding never gets a chance to match. If this is ever fixed,
+    // swap "<Tab>" back to "<space>" in both normalMode and visualMode entries below.
+    //
+    // PLACEHOLDER — swap back to <space> once conflict is resolved:
+    // { "before": ["<space>"],                        // <space> = show which-key menu (broken: conflicts with leader)
+    //   "commands": ["whichkey.show"] }
     //
 
     {
-      "before": ["<Tab>"],                             // <Tab> = show which-key menu
+      "before": ["<Tab>"],                             // <Tab> = show which-key menu (workaround — see note above)
       "commands": ["whichkey.show"]
     },
 
@@ -558,8 +565,11 @@
   //
 
   "vim.visualModeKeyBindingsNonRecursive": [
+    // PLACEHOLDER — swap back to <space> once leader conflict is resolved (see normalMode note above):
+    // { "before": ["<space>"],                        // <space> = show which-key menu in visual mode (broken: conflicts with leader)
+    //   "commands": ["whichkey.show"] }
     {
-      "before": ["<Tab>"],                             // <Tab> = show which-key menu in visual mode
+      "before": ["<Tab>"],                             // <Tab> = show which-key menu in visual mode (workaround)
       "commands": ["whichkey.show"]
     },
     {

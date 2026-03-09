@@ -21,7 +21,7 @@ These work identically to LazyVim:
 - Git hunks: `[h`/`]h`
 - Line move: `Alt+j/k`
 - Search/grep: `<leader>/`, `<leader>ff`, `<leader>,`, `<leader>sg`, `<leader>sr`
-- which-key popup menu on `<space>` with the same group structure (`f`, `s`, `c`, `b`, `g`, `w`, `x`, `u`, `q`)
+- which-key popup menu on `<Tab>` with the same group structure (`f`, `s`, `c`, `b`, `g`, `w`, `x`, `u`, `q`) — note: LazyVim uses `<space>` as trigger; see Works Differently below
 
 ### Works Differently
 
@@ -33,6 +33,7 @@ These work identically to LazyVim:
 | **Motion search (`s`)** | flash.nvim — one char + jump labels | vim-sneak — two chars required | flash.nvim has no VS Code port; sneak is the closest available |
 | **Symbol picker** | Telescope with fuzzy + preview | VS Code goto symbol | Minor UX difference |
 | **which-key discovery** | Auto-reads `desc` from all keymaps | Manually configured in `whichkey.bindings` JSON | Structural: no introspection API available in VS Code |
+| **which-key trigger** | `<space>` opens menu | `<Tab>` opens menu | `<space>` conflicts with `vim.leader = "<space>"` — leader intercepts the keypress first; `<Tab>` is a workaround |
 
 ### Unavailable
 
@@ -95,7 +96,7 @@ LazyVim uses flash.nvim (`s` = jump to char with labels). VimCode uses vim-sneak
 | `<leader><leader>w` | `<leader>jw` | Functionally equivalent |
 | `<leader><leader>j` | `<leader>jj` | Functionally equivalent |
 
-The `<leader>j` prefix was introduced because `<space><space>` (EasyMotion's original trigger) conflicts with the which-key menu.
+The `<leader>j` prefix was introduced because `<space><space>` (EasyMotion's original double-leader trigger) would conflict with any which-key trigger that intercepts `<space>` first. With `<Tab>` as the current which-key trigger, `<space><space>` technically doesn't conflict — but `<leader>j*` remains the documented path since it's consistent and discoverable via the menu.
 
 **Status:** Fixed in v2.7.0
 
