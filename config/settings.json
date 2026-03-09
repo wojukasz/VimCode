@@ -559,10 +559,8 @@
   //
 
   "vim.visualModeKeyBindingsNonRecursive": [
-    {
-      "before": ["~"],                                 // ~ = show which-key menu in visual mode
-      "commands": ["whichkey.show"]
-    },
+    // ~ trigger not working reliably in visual mode — disabled for now, re-enable when fixed:
+    // { "before": ["~"], "commands": ["whichkey.show"] },
     {
       "before": ["<leader>", "/"],                     // <leader>/ = search selected text
       "commands": ["workbench.action.findInFiles"]
