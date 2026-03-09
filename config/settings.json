@@ -141,26 +141,20 @@
   "vim.normalModeKeyBindingsNonRecursive": [
 
     // ┌────────────────────────────────────────────────────────────────────────────────┐
-    // │ WHICH KEY - Show popup menu on <Tab> (requires VSpaceCode.whichkey)           │
+    // │ WHICH KEY - Show popup menu on ~ (requires VSpaceCode.whichkey)              │
     // └────────────────────────────────────────────────────────────────────────────────┘
     //
-    // CURRENT TRIGGER: <Tab>
-    // <space> was the intended trigger (matching LazyVim) but conflicts with vim.leader = "<space>".
-    // The leader key intercepts <space> before which-key can fire, so the menu never appears.
-    // <Tab> is used as a workaround — it triggers consistently with no leader conflict.
+    // NOTE: <space> was the original trigger but conflicts with vim.leader = "<space>" —
+    // VSCodeVim resolves the leader prefix first, so whichkey.show never fires.
+    // <Tab> was tried next but had inconsistencies. ~ triggers reliably in both
+    // Normal and Visual mode with no leader conflict.
     //
-    // ROOT CAUSE (to investigate): why does <space> as whichkey trigger conflict with
-    // vim.leader = "<space>"? Suspected: VSCodeVim resolves the leader prefix first and
-    // the whichkey.show binding never gets a chance to match. If this is ever fixed,
-    // swap "<Tab>" back to "<space>" in both normalMode and visualMode entries below.
-    //
-    // PLACEHOLDER — swap back to <space> once conflict is resolved:
-    // { "before": ["<space>"],                        // <space> = show which-key menu (broken: conflicts with leader)
-    //   "commands": ["whichkey.show"] }
+    // To revert: change "~" back to "<Tab>" or "<space>" in both normalModeKeyBindingsNonRecursive
+    // and visualModeKeyBindingsNonRecursive below.
     //
 
     {
-      "before": ["<Tab>"],                             // <Tab> = show which-key menu (workaround — see note above)
+      "before": ["~"],                                 // ~ = show which-key menu
       "commands": ["whichkey.show"]
     },
 
@@ -565,13 +559,8 @@
   //
 
   "vim.visualModeKeyBindingsNonRecursive": [
-    // PLACEHOLDER — swap back to <space> once leader conflict is resolved (see normalMode note above):
-    // { "before": ["<space>"],                        // <space> = show which-key menu in visual mode (broken: conflicts with leader)
-    //   "commands": ["whichkey.show"] }
-    {
-      "before": ["<Tab>"],                             // <Tab> = show which-key menu in visual mode (workaround)
-      "commands": ["whichkey.show"]
-    },
+    // ~ trigger not working reliably in visual mode — disabled for now, re-enable when fixed:
+    // { "before": ["~"], "commands": ["whichkey.show"] },
     {
       "before": ["<leader>", "/"],                     // <leader>/ = search selected text
       "commands": ["workbench.action.findInFiles"]
