@@ -8,19 +8,18 @@ VimCode stacks three layers of keybindings on top of each other. Understanding t
 
 ```
 Layer 3 — which-key (VSpaceCode.whichkey)
-  Trigger:  <Tab> in Normal/Visual mode → whichkey.show
+  Trigger:  ~ in Normal/Visual mode → whichkey.show
   Owns:     the popup menu tree (whichkey.bindings in settings.json)
-  Fallback: if which-key is not installed, <Tab> is a no-op and
+  Fallback: if which-key is not installed, ~ is a no-op and
             the Layer 2 vim bindings handle everything directly
 
   NOTE: <space> would be the LazyVim-matching trigger but conflicts
         with vim.leader = "<space>" — the leader intercepts <space>
-        before which-key can fire. <Tab> is used as a workaround.
-        See config/settings.json for a placeholder to revert when fixed.
+        before which-key can fire. ~ is used as the reliable workaround.
 
 Layer 2 — Custom LazyVim mappings
   Leader:   settings.json → vim.normalModeKeyBindingsNonRecursive
-            (first match wins; <space> → whichkey.show is entry #1)
+            (first match wins; ~ → whichkey.show is entry #1)
   Modifiers: keybindings.json — Ctrl/Alt/Shift bindings
              (last definition wins for equal when-clause specificity;
               user keybindings.json always beats VSCodeVim's handlers)
@@ -277,7 +276,7 @@ Fast cursor movement to visible text. Use `<leader>j*` — the `<leader>j` group
 | `<leader>jj` | Jump to line (down) |
 | `<leader>jk` | Jump to line (up) |
 
-The native `<leader><leader>*` form still works when which-key is **not** installed. When which-key is active, use `<leader>j*` instead — `<Tab>` now triggers the which-key menu. Note: `<space><space>` (EasyMotion's original double-leader) still works as a key sequence in the menu if which-key happens to be open, but direct EasyMotion via `<leader>j*` is the reliable path.
+The native `<leader><leader>*` form still works when which-key is **not** installed. When which-key is active, use `<leader>j*` instead — `~` now triggers the which-key menu, so `<space>` remains clean as the leader key.
 
 ### Sneak
 
