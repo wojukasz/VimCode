@@ -2,6 +2,18 @@
 
 All notable changes are documented here. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.9.3] - 2026-03-09
+
+Remap which-key trigger from `<Tab>` to `~`; more reliable in both Normal and Visual mode.
+
+### Changed
+- **config/settings.json** — which-key trigger changed from `<Tab>` to `~` in both `vim.normalModeKeyBindingsNonRecursive` and `vim.visualModeKeyBindingsNonRecursive`; `<Tab>` had inconsistencies during testing. `~` triggers reliably across both modes. The leader key remains `<space>` — all `<leader>*` bindings are unaffected.
+
+### To revert
+- Replace `"~"` with `"<Tab>"` in both which-key binding entries in `settings.json`.
+
+---
+
 ## [2.9.2] - 2026-03-09
 
 Remap which-key trigger from `<space>` to `<Tab>`; disable minimap by default.
