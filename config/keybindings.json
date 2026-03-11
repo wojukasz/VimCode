@@ -114,12 +114,12 @@
   {
     "key": "shift+h",
     "command": "workbench.action.previousEditor",
-    "when": "vim.active && vim.mode != 'Insert'"
+    "when": "vim.active && vim.mode != 'Insert' && editorTextFocus && !inputFocus"
   },
   {
     "key": "shift+l",
     "command": "workbench.action.nextEditor",
-    "when": "vim.active && vim.mode != 'Insert'"
+    "when": "vim.active && vim.mode != 'Insert' && editorTextFocus && !inputFocus"
   },
 
   // ┌────────────────────────────────────────────────────────────────────────────────────┐
